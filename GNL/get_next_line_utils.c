@@ -6,11 +6,23 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/09 18:36:00 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/09 19:12:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+size_t ft_strlen(const char *str)
+{
+	int	i;
+
+	i = 0;
+	if(!str)
+		return (0);
+	while(str[i])
+		i++;
+	return (i);
+}
 
 int ft_findchar(const char *str, char c)
 {
@@ -23,18 +35,6 @@ int ft_findchar(const char *str, char c)
 		str++;
 	}
 	return (0);
-}
-
-size_t ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if(!str)
-		return (0);
-	while(str[i])
-		i++;
-	return (i);
 }
 
 char	*ft_strjoin(char *s1, char *s2)

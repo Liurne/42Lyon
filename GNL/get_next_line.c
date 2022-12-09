@@ -6,65 +6,65 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:20 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/09 19:09:35 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/09 21:56:20 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
 
-char	*ft_get_line(char *left_str)
+char	*ft_get_line(char *str)
 {
 	int		i;
-	char	*str;
+	char	*line;
 
 	i = 0;
-	if (!left_str[i])
+	if (!str[i])
 		return (NULL);
-	while (left_str[i] && left_str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
-	str = (char *)malloc(sizeof(char) * (i + 2));
-	if (!str)
+	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (!line)
 		return (NULL);
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 	{
-		str[i] = left_str[i];
+		line[i] = str[i];
 		i++;
 	}
-	if (left_str[i] == '\n')
+	if (str[i] == '\n')
 	{
-		str[i] = left_str[i];
+		line[i] = str[i];
 		i++;
 	}
-	str[i] = '\0';
-	return (str);
+	line[i] = '\0';
+	return (line);
 }
 
-char	*ft_new_left_str(char *left_str)
+char	*ft_new_str(char *str)
 {
 	int		i;
 	int		j;
-	char	*str;
+	char	*new;
 
 	i = 0;
-	while (left_str[i] && left_str[i] != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
-	if (!left_str[i])
+	if (!str[i])
 	{
-		free(left_str);
+		free(str);
 		return (NULL);
 	}
-	str = (char *)malloc(sizeof(char) * (ft_strlen(left_str) - i + 1));
-	if (!str)
+	new = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	if (!new)
 		return (NULL);
 	i++;
 	j = 0;
-	while (left_str[i])
-		str[j++] = left_str[i++];
-	str[j] = '\0';
-	free(left_str);
-	return (str);
+	while (str[i])
+		new[j++] = str[i++];
+	new[j] = '\0';
+	free(str);
+	return (new);
 }
 
 char	*ft_read_line(int fd, char *str)
@@ -102,6 +102,6 @@ char	*get_next_line(int fd)
 	if(!str)
 		return(NULL);
 	line = ft_get_line(str);
-	str = ft_new_left_str(str);
+	str = ft_new_str(str);
 	return (line);
 }
