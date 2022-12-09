@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/09 19:12:44 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:02:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*ft_strjoin(char *s1, char *s2)
 
 	if (!s1)
 	{
-		s1 = (char *)malloc(1 * sizeof(char));
+		s1 = (char *)malloc(sizeof(char));
 		s1[0] = '\0';
 	}
 	i = 0;

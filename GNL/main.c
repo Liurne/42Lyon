@@ -1,4 +1,6 @@
 #include "get_next_line.h"
+#include <stdio.h>
+#include <fcntl.h>
 
 int main(int ac, char **av)
 {
@@ -7,15 +9,14 @@ int main(int ac, char **av)
 	char	*line;
 
 	i = 1;
-	fd = open("fileTest/text.txt", O_RDONLY);
+	fd = open("fileTest/bible.txt", O_RDONLY);
 	if(fd == -1)
 	{
 		printf ("fail\n");
 		return (1);
 	}
 	line = get_next_line(fd);
-	printf("sorti\n");
-	printf("%s line %d\n",get_next_line(fd), i);
+	printf("%s line %d\n",line, i);
 	while(line)
 	{
 		i++;

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:20 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/09 21:56:20 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/10 00:21:35 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,14 @@ char	*ft_get_line(char *str)
 	return (line);
 }
 
-char	*ft_new_str(char *str)
+char	*ft_left_str(char *str)
 {
 	int		i;
 	int		j;
 	char	*new;
 
 	i = 0;
-	while (str[i] && str[i] != '\n')
+	while (str[i] && str[i]  != '\n')
 		i++;
 	if (!str[i])
 	{
@@ -76,7 +76,7 @@ char	*ft_read_line(int fd, char *str)
 	if (!buff)
 		return (NULL);
 	rbytes = 1;
-	while(rbytes != 0 && !ft_findchar(str, '\n'))
+	while(rbytes && !ft_findchar(str, '\n'))
 	{
 		rbytes = read(fd, buff, BUFFER_SIZE);
 		if (rbytes == -1)
@@ -93,8 +93,8 @@ char	*ft_read_line(int fd, char *str)
 
 char	*get_next_line(int fd)
 {
-	char 		*line;
-	static char *str;
+	char		*line;
+	static char	*str;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
@@ -102,6 +102,6 @@ char	*get_next_line(int fd)
 	if(!str)
 		return(NULL);
 	line = ft_get_line(str);
-	str = ft_new_str(str);
+	str = ft_left_str(str);
 	return (line);
 }
