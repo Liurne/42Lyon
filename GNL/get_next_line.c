@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:20 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/10 00:21:35 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/10 15:26:49 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
 
 char	*ft_get_line(char *str)
 {
@@ -19,11 +18,13 @@ char	*ft_get_line(char *str)
 	char	*line;
 
 	i = 0;
-	if (!str[i])
+	if (!str || !str[i])
 		return (NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
-	line = (char *)malloc(sizeof(char) * (i + 2));
+	if (str[i] == '\n')
+		i++;
+	line = (char *)malloc(sizeof(char) * (i + 1));
 	if (!line)
 		return (NULL);
 	i = 0;
@@ -48,16 +49,19 @@ char	*ft_left_str(char *str)
 	char	*new;
 
 	i = 0;
-	while (str[i] && str[i]  != '\n')
+	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
 	{
 		free(str);
 		return (NULL);
 	}
-	new = (char *)malloc(sizeof(char) * (ft_strlen(str) - i + 1));
+	new = (char *)malloc(sizeof(char) * (ft_strlen(str) - i));
 	if (!new)
+	{
+		free(str);
 		return (NULL);
+	}
 	i++;
 	j = 0;
 	while (str[i])
@@ -69,25 +73,22 @@ char	*ft_left_str(char *str)
 
 char	*ft_read_line(int fd, char *str)
 {
-	char	*buff;
+	char	buff[BUFFER_SIZE + 1];
 	int		rbytes;
-	
-	buff = malloc((BUFFER_SIZE + 1) * sizeof(char));
-	if (!buff)
-		return (NULL);
+
 	rbytes = 1;
-	while(rbytes && !ft_findchar(str, '\n'))
+	while (rbytes && !ft_findchar(str, '\n'))
 	{
 		rbytes = read(fd, buff, BUFFER_SIZE);
 		if (rbytes == -1)
 		{
-			free(buff);
+			free(str);
+			str = NULL;
 			return (NULL);
 		}
 		buff[rbytes] = '\0';
 		str = ft_strjoin(str, buff);
 	}
-	free(buff);
 	return (str);
 }
 
@@ -96,12 +97,19 @@ char	*get_next_line(int fd)
 	char		*line;
 	static char	*str;
 
-	if (fd < 0 || BUFFER_SIZE <= 0)
+	if (fd < 0 || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (NULL);
 	str = ft_read_line(fd, str);
-	if(!str)
-		return(NULL);
+	if (!str)
+		return (NULL);
 	line = ft_get_line(str);
+	if (!line)
+	{
+		if (str)
+			free(str);
+		str = NULL;
+		return (NULL);
+	}
 	str = ft_left_str(str);
 	return (line);
 }
