@@ -1,24 +1,40 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strjoin.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 15:36:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/05 15:25:10 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/11 21:08:00 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/09 14:46:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+char	*ft_strjoin(char const *s1, char const *s2)
 {
-	if (!del)
-		return ;
-	if (lst)
+	size_t	l;
+	size_t	i;
+	size_t	j;
+	char	*res;
+
+	i = 0;
+	j = 0;
+	l = ft_strlen(s1) + ft_strlen(s2) + 1;
+	res = (char *)malloc(l * sizeof(char));
+	if (res == NULL)
+		return (NULL);
+	while (s1[i])
 	{
-		(*del)(lst->content);
-		free(lst);
+		res[i] = s1[i];
+		i++;
 	}
+	while (s2[j])
+	{
+		res[i + j] = s2[j];
+		j++;
+	}
+	res[l - 1] = '\0';
+	return (res);
 }

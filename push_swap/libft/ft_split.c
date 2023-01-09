@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:42:32 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/03 16:54:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/09 16:44:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ static int	ft_nbword(char const *s, char c)
 	return (res);
 }
 
-static void	*ft_free(char **tab, size_t nbword)
+void	*ft_free(char **tab, size_t nbword)
 {
 	while (nbword)
 	{
@@ -43,19 +43,18 @@ static void	*ft_free(char **tab, size_t nbword)
 	return (NULL);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(char const *s, char c, size_t *nbV)
 {
 	size_t	i;
 	size_t	j;
-	size_t	n;
 	char	**res;
 
 	j = 0;
-	n = ft_nbword(s, c);
-	res = (char **)malloc(sizeof(char *) * (n + 1));
+	*nbV = ft_nbword(s, c);
+	res = (char **)malloc(sizeof(char *) * (*nbV + 1));
 	if (!res)
 		return (NULL);
-	while (j < n)
+	while (j < *nbV)
 	{
 		while (*s == c)
 			s++;
