@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/09 16:39:00 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/10 15:42:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <stdint.h>
 
 typedef struct s_list
 {
@@ -40,6 +41,7 @@ char	**ft_split(char const *s, char c, size_t *nbV);
 void	*ft_free(char **tab, size_t nbword);
 char	*ft_strjoin(char const *s1, char const *s2);
 long int	ft_atol(const char *str);
+long int	*ft_split_atoi(char const *s, char c, size_t *nbV);
 
 int		ft_lstsize(t_list *lst);
 t_list	*ft_lstnew(void *content);
