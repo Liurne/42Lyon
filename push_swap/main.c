@@ -6,17 +6,17 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/09 17:19:56 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 14:54:26 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-char	**ft_load(int nbA, char **val, size_t *nbV)
+long int	*ft_load(int nbA, char **val, size_t *nbV)
 {
-	char	**res;
-	char	*tmp;
-	int		i;
+	long int	*res;
+	char		*tmp;
+	int			i;
 
 	tmp = malloc(sizeof(char));
 	if (!tmp)
@@ -28,46 +28,62 @@ char	**ft_load(int nbA, char **val, size_t *nbV)
 		tmp = ft_strjoin(tmp, " ");
 		i++;
 	}
-	res = ft_split(tmp, ' ', nbV);
+	res = ft_split_atoi(tmp, ' ', nbV);
 	free(tmp);
 	return (res);
 }
 
-t_value	**ft_fill_tab(int nbA, char **val
+t_list	**ft_create_list(size_t nbv, long int *val)
 {
-	int	i;
-	t_value **res;
-	
-	res = (t_value **)malloc(sizeof((t_value *) * nbA));
+	t_list	**res;
+	t_list	*tmp1;
+	t_list	*tmp2;
+	size_t	i;
+
+	tmp1 = NULL;
+	res = &tmp1;
 	i = 0;
-	while (i < nbA)
+	while (i < nbv)
 	{
-		
+		tmp2 = ft_lstnew((int)val[i]);
+		if (!tmp2)
+		{
+			ft_lstclear(res);
+			return (NULL);
+		}
+		ft_lstadd_back(res, tmp2);
+		i++;
 	}
+	return (res);
 }
 
 int	main(int ac, char **av)
 {
-	char		**tmp;
+	long int	*arg;	
 	size_t		nb_val;
-	int			i;
+	t_list		**list_a;
+	t_list		*tmp;
 
-	tmp = ft_load(ac, av, &nb_val);
-	if (!tmp)
-		return (1);
-	printf("%zu\n", ft_strlen("-2147483648"));
-	while (i < nb_val)
-	{
-		ft_putstr(tmp[i]);
-		ft_putstr("\n");
-		i++;
-	}
-	if (!verif_val(nb_val, tmp))
+	arg = ft_load(ac, av, &nb_val);
+	if (!arg)
 	{
 		ft_putstr("Error\n");
-		ft_free(tmp, nb_val);
+		return (1);
+	}
+	list_a = ft_create_list(nb_val, arg);
+	if (!list_a)
+	{
+		free(arg);
+		ft_putstr("Error\n");
 		return (0);
 	}
-	ft_free(tmp, nb_val);
+	tmp = *list_a;
+	while (tmp)
+	{
+		printf("%d\n", tmp->content);
+		tmp = tmp->next;
+	}
+	//ft_lstclear(list_a);
+	free(arg);
 	return (0);
 }

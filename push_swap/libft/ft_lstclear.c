@@ -6,22 +6,22 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:36:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/05 15:25:06 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 12:49:19 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lstclear(t_list **lst, void (*del)(void*))
+void	ft_lstclear(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!del || !lst || !*lst)
+	if (!lst || !*lst)
 		return ;
 	while (lst && *lst)
 	{
 		tmp = (*lst)->next;
-		ft_lstdelone(*lst, del);
+		ft_lstdelone(*lst);
 		*lst = tmp;
 	}
 }
