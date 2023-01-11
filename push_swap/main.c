@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/09 16:48:32 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:19:56 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,18 @@ char	**ft_load(int nbA, char **val, size_t *nbV)
 	return (res);
 }
 
-t_value	**ft_fill_tab(int nbA, char **val, )
+t_value	**ft_fill_tab(int nbA, char **val
+{
+	int	i;
+	t_value **res;
+	
+	res = (t_value **)malloc(sizeof((t_value *) * nbA));
+	i = 0;
+	while (i < nbA)
+	{
+		
+	}
+}
 
 int	main(int ac, char **av)
 {

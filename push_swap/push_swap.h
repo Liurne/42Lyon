@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/09 16:39:00 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/09 17:17:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,12 @@ typedef struct s_list
 	struct s_list	*next;
 }	t_list;
 
-typedef struct s_values
+typedef struct s_value
 {
 	long int		number;
 	unsigned int	index;
 	char			*arg;
-}	t_values;
+}	t_value;
 
 void	ft_bzero(void *s, size_t n);
 void	*ft_calloc(size_t count, size_t size);

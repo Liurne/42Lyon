@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:20 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/10 15:26:49 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:48:02 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,17 +28,7 @@ char	*ft_get_line(char *str)
 	if (!line)
 		return (NULL);
 	i = 0;
-	while (str[i] && str[i] != '\n')
-	{
-		line[i] = str[i];
-		i++;
-	}
-	if (str[i] == '\n')
-	{
-		line[i] = str[i];
-		i++;
-	}
-	line[i] = '\0';
+	line = ft_strcpy_spe(line, str);
 	return (line);
 }
 

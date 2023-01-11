@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/09 15:53:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/12/10 15:30:09 by jcoquard         ###   ########.fr       */
+/*   Updated: 2022/12/10 16:47:07 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,4 +64,25 @@ char	*ft_strjoin(char *s1, char *s2)
 	res[ft_strlen(s1) + ft_strlen(s2)] = '\0';
 	free(s1);
 	return (res);
+}
+
+char	*ft_strcpy_spe(char *dst, const char *src)
+{
+	size_t	i;
+
+	i = 0;
+	if (!dst)
+		return (NULL);
+	while (src && src[i] && src[i] != '\n')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	if (src[i] == '\n')
+	{
+		dst[i] = src[i];
+		i++;
+	}
+	dst[i] = '\0';
+	return (dst);
 }
