@@ -6,12 +6,20 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:21:47 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 15:24:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:52:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sa(t_list **a, t_list **b);
-void	sb(t_list **a, t_list **b);
-void	ss(t_list **a, t_list **b);
+void	swap(t_list **lst)
+{
+	t_list	*tmp;
+
+	if (!*lst || !(*lst)->next)
+		return ;
+	tmp = *lst;
+	*lst = tmp->next;
+	tmp->next = (*lst)->next;
+	(*lst)->next = tmp;
+}

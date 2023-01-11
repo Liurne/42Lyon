@@ -6,12 +6,13 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:21:44 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 15:25:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 19:01:26 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	ra(t_list **a, t_list **b);
-void	rb(t_list **a, t_list **b);
-void	rr(t_list **a, t_list **b);
+/*
+void	rotate(t_list **lst)
+{
+	
+}*/

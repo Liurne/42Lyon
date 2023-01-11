@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 16:09:08 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 18:53:35 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,29 +33,35 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	return (res);
 }
 
-t_list	**ft_create_list(size_t nbv, long int *val)
+t_list	**create_list(void)
 {
-	t_list	**res;
-	t_list	*tmp1;
-	t_list	*tmp2;
+	t_list	**l;
+
+	l = malloc(sizeof(t_list *));
+	*l = NULL;
+	return (l);
+}
+
+t_list	**ft_fill_list(size_t nbv, long int *val, t_list **l)
+{
+	t_list	*tmp;
 	size_t	i;
 
-	tmp1 = NULL;
-	res = &tmp1;
 	i = 0;
 	while (i < nbv)
 	{
-		tmp2 = ft_lstnew((int)val[i]);
-		if (!tmp2)
+		tmp = ft_lstnew((int)val[i]);
+		if (!tmp)
 		{
-			ft_lstclear(res);
-			return (res);
+			ft_lstclear(l);
+			return (l);
 		}
-		ft_lstadd_back(res, tmp2);
+		ft_lstadd_back(l, tmp);
 		i++;
 	}
-	return (res);
+	return (l);
 }
+
 
 int	main(int ac, char **av)
 {
@@ -71,22 +77,27 @@ int	main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (1);
 	}
-	list_b = NULL;
-	list_a = ft_create_list(nb_val, arg);
-	if (!list_a)
-	{
-		free(arg);
-		ft_putstr("Error\n");
+	list_a = create_list();
+	list_b = create_list();
+	if (!list_a || !list_b)
 		return (0);
-	}
-	//pb(list_a, list_b);
+	ft_fill_list(nb_val, arg, list_a);
+	swap(list_a);
+	printf("list a \n\n");
 	tmp = *list_a;
 	while (tmp)
 	{
 		printf("%d\n", tmp->content);
 		tmp = tmp->next;
 	}
-	//ft_lstclear(list_a);
-	free(arg);
+	printf("list b \n\n");
+	tmp = *list_b;
+	while (tmp)
+	{
+		printf("%d\n", tmp->content);
+		tmp = tmp->next;
+	}
+	ft_lstclear(list_a);
+	ft_lstclear(list_b);
 	return (0);
 }
