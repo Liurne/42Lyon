@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 13:48:11 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 15:52:51 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,5 +46,7 @@ void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 
 int			verif_val(int nbarg, char **value);
+void		pa(t_list **a, t_list **b);
+void		pb(t_list **a, t_list **b);
 
 #endif

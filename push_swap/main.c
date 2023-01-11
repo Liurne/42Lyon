@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 14:54:26 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/11 16:09:08 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_list	**ft_create_list(size_t nbv, long int *val)
 		if (!tmp2)
 		{
 			ft_lstclear(res);
-			return (NULL);
+			return (res);
 		}
 		ft_lstadd_back(res, tmp2);
 		i++;
@@ -62,6 +62,7 @@ int	main(int ac, char **av)
 	long int	*arg;	
 	size_t		nb_val;
 	t_list		**list_a;
+	t_list		**list_b;
 	t_list		*tmp;
 
 	arg = ft_load(ac, av, &nb_val);
@@ -70,6 +71,7 @@ int	main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (1);
 	}
+	list_b = NULL;
 	list_a = ft_create_list(nb_val, arg);
 	if (!list_a)
 	{
@@ -77,6 +79,7 @@ int	main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (0);
 	}
+	//pb(list_a, list_b);
 	tmp = *list_a;
 	while (tmp)
 	{
