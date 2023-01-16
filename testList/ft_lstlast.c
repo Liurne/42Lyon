@@ -1,33 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push.c                                             :+:      :+:    :+:   */
+/*   ft_lstlast.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:21:41 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 18:54:05 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/23 15:36:24 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/11 17:18:56 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "lst.h"
 
-void	push(t_list **dst, t_list **src)
+t_list	*ft_lstlast(t_list *lst)
 {
-	t_list	*tmp_a;
-	t_list	*tmp_b;
-	t_list	*tmp;
+	t_list *tmp;
 
-	if ((*src))
-	{
-		tmp_a = *dst;
-		tmp_b = *src;
-		tmp = tmp_b->next;
-		*dst = tmp_b;
-		(*src)->next = tmp_a;
-		if (!tmp)
-			*src = NULL;
-		else
-			*src = tmp;
-	}
+	tmp = lst;
+	while (tmp && tmp->next)
+		tmp = tmp->next;
+	return (tmp);
 }

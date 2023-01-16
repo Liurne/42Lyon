@@ -5,48 +5,52 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 11:27:02 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/01/11 16:11:51 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/11 17:49:04 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "lst.h"
+
+t_list	**create_table(void)
+{
+	t_list	**l;
+	t_list	*tmp;
+
+	l = malloc(sizeof(t_list *));
+	*l = NULL;
+	return (l);
+}
 
 int	main(int ac, char **av)
 {
-	long int	*arg;	
-	size_t		nb_val;
-	t_list		**list_a;
-	t_list		**list_b;
+	t_list	**l1;
+	t_list	**l2;
+	t_list	*tmp;
+	t_list	*tt;
+	size_t	i;
+	int t;
 
-	arg = ft_load(ac, av, &nb_val);
-	if (!arg)
+	i = 1;
+	l1 = create_table();
+	l2 = create_table();
+	while (i < 10)
 	{
-		ft_putstr("Error\n");
-		return (1);
+		tmp = ft_lstnew(i);
+		if (!tmp)
+			return (0);
+		ft_lstadd_back(l1, tmp);
+		i++;
 	}
-	list_a = create_list();
-	if (!list_a)
+	if (*l1)
+	tt = *l1;
+	while (tt && t != tt->content)
 	{
-		free(arg);
-		return (0);
-	}	
-	list_b = create_list();
-	if (!list_b)
-	{
-		free(arg);
-		ft_lstclear(list_a);
-		return (0);
+		printf("%d\n", tt->content);
+		t = tt->content;
+		tt = tt->next;
 	}
-	ft_fill_list(nb_val, arg, list_a);
-	reverse(list_a);
-	rotate(list_a);
-	printf("list a \n\n");
-	ft_afflst(list_a);
-	printf("list b \n\n");
-	ft_afflst(list_b);
-	free(arg);
-	ft_lstclear(list_a);
-	ft_lstclear(list_b);
+	ft_lstclear(l1);
+	//ft_lstclear(l2);
 	return (0);
 }

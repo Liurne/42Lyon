@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstclear.c                                      :+:      :+:    :+:   */
+/*   reverse.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/23 15:36:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 16:35:19 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/01/11 15:25:31 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/14 14:28:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_lstclear(t_list **lst)
+void	reverse(t_list **lst)
 {
 	t_list	*tmp;
 
-	if (!lst)
+	if (!*lst && !(*lst)->next)
 		return ;
-	if (!*lst)
-	{
-		free(lst);
-		return ;
-	}
-	while (lst && *lst)
-	{
-		tmp = (*lst)->next;
-		ft_lstdelone(*lst);
-		*lst = tmp;
-	}
-	free(lst);
+	tmp = ft_lstlast(*lst);
+	ft_lstbeforelast(*lst)->next = NULL;
+	tmp->next = *lst;
+	*lst = tmp;
 }

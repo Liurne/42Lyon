@@ -1,33 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   push_swap_utils.c                                  :+:      :+:    :+:   */
+/*   ft_lstnew.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 16:57:49 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 13:39:02 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/23 15:16:48 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/11 16:19:54 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "lst.h"
 
-int	verif_val(int nbarg, char **values)
+t_list	*ft_lstnew(long int value)
 {
-	int	i;
-	int	j;
+	t_list	*res;
 
-	i = 0;
-	while (i < nbarg)
-	{
-		j = i + 1;
-		while (j < nbarg)
-		{
-			if (!ft_strcmp(values[i], values[j]))
-				return (0);
-			j++;
-		}
-		i++;
-	}	
-	return (1);
+	res = (t_list *)malloc(sizeof(t_list));
+	if (!res)
+		return (NULL);
+	res->content = value;
+	res->next = NULL;
+	return (res);
 }

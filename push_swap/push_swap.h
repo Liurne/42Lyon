@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 18:56:20 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/14 14:37:45 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,14 +40,21 @@ long int	*ft_split_atoi(char const *s, char c, size_t *nbV);
 int			ft_lstsize(t_list *lst);
 t_list		*ft_lstnew(long int value);
 t_list		*ft_lstlast(t_list *lst);
+t_list		*ft_lstbeforelast(t_list *lst);
 void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
+void		ft_afflst(t_list **lst);
 
+long int	*ft_load(int nbA, char **val, size_t *nbV);
+t_list		**ft_fill_list(size_t nbv, long int *val, t_list **l);
 int			verif_val(int nbarg, char **value);
+t_list		**create_list(void);
+
 void		push(t_list **a, t_list **b);
 void		swap(t_list **lst);
 void		rotate(t_list **lst);
+void		reverse(t_list **lst);
 
 #endif

@@ -1,25 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   swap.c                                             :+:      :+:    :+:   */
+/*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/11 15:21:47 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/11 18:52:44 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/23 15:36:16 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/01/11 16:19:51 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "push_swap.h"
+#include "lst.h"
 
-void	swap(t_list **lst)
+int	ft_lstsize(t_list *lst)
 {
-	t_list	*tmp;
+	size_t	i;
 
-	if (!*lst || !(*lst)->next)
-		return ;
-	tmp = *lst;
-	*lst = tmp->next;
-	tmp->next = (*lst)->next;
-	(*lst)->next = tmp;
+	i = 0;
+	while (lst)
+	{
+		lst = lst->next;
+		i++;
+	}
+	return (i);
 }
