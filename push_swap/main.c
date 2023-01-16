@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 11:27:02 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:44:02 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@ int	main(int ac, char **av)
 		ft_putstr("Error\n");
 		return (1);
 	}
-	list_a = create_list();
+	list_a = ft_lstinit();
 	if (!list_a)
 	{
 		free(arg);
 		return (0);
 	}	
-	list_b = create_list();
+	list_b = ft_lstinit();
 	if (!list_b)
 	{
 		free(arg);

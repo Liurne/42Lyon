@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/14 14:37:45 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:42:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,11 @@ void		ft_lstclear(t_list **lst);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
 void		ft_afflst(t_list **lst);
+t_list		**ft_lstinit(void);
 
 long int	*ft_load(int nbA, char **val, size_t *nbV);
 t_list		**ft_fill_list(size_t nbv, long int *val, t_list **l);
 int			verif_val(int nbarg, char **value);
-t_list		**create_list(void);
 
 void		push(t_list **a, t_list **b);
 void		swap(t_list **lst);

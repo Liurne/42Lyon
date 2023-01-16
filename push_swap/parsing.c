@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/14 14:48:44 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/16 16:40:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,6 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	res = ft_split_atoi(join_arg, ' ', nbV);
 	free(join_arg);
 	return (res);
-}
-
-t_list	**create_list(void)
-{
-	t_list	**l;
-
-	l = malloc(sizeof(t_list *));
-	*l = NULL;
-	return (l);
 }
 
 t_list	**ft_fill_list(size_t nbv, long int *val, t_list **l)
