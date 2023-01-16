@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/01/14 14:41:41 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/01/16 16:45:41 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS =	libft/ft_atol.c \
 		libft/ft_strlen.c \
 		libft/ft_substr.c \
 		libft/ft_split_atoi.c \
+		libft/ft_lstinit.c \
 		push_swap_utils/push.c \
 		push_swap_utils/reverse.c \
 		push_swap_utils/rotate.c \

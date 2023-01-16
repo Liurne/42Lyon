@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 16:40:34 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:44:40 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,8 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	long int	*res;
 	char		*join_arg;
 
+	if (nbA < 2)
+		return (NULL);
 	join_arg = full_join_arg(nbA, val);
 	if (!join_arg)
 	{
@@ -65,6 +67,22 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	}
 	res = ft_split_atoi(join_arg, ' ', nbV);
 	free(join_arg);
+	return (res);
+}
+
+int	ft_index(size_t index_val, long int *tab, size_t size)
+{
+	size_t	i;
+	size_t	res;
+
+	i = 0;
+	res = 0;
+	while (i < size)
+	{
+		if (tab[i] < tab[index_val])
+			res++;
+		i++;
+	}
 	return (res);
 }
 
@@ -76,7 +94,7 @@ t_list	**ft_fill_list(size_t nbv, long int *val, t_list **l)
 	i = 0;
 	while (i < nbv)
 	{
-		tmp = ft_lstnew((int)val[i]);
+		tmp = ft_lstnew(ft_index(i, val, nbv));
 		if (!tmp)
 		{
 			ft_lstclear(l);

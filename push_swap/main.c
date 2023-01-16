@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 16:44:02 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/16 17:46:06 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	main(int ac, char **av)
 	reverse(list_a);
 	rotate(list_a);
 	printf("list a \n\n");
-	ft_afflst(list_a);
+	//ft_afflst(list_a);
 	printf("list b \n\n");
 	ft_afflst(list_b);
 	free(arg);
