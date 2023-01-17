@@ -6,23 +6,11 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:57:49 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 13:54:54 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 22:51:42 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-void	ft_afflst(t_list **lst)
-{
-	t_list	*tmp;
-
-	tmp = *lst;
-	while (tmp)
-	{
-		printf("%d\n", tmp->content);
-		tmp = tmp->next;
-	}
-}
 
 int	ft_issorted(size_t nbv, long int *values)
 {
@@ -53,7 +41,7 @@ int	value_by_index(size_t i, t_list **l)
 	return (tmp->content);
 }
 
-size_t	index_by_value(int value, t_list **l)
+size_t	index_by_value(size_t value, t_list **l)
 {
 	t_list	*tmp;
 	size_t	i;
@@ -68,4 +56,32 @@ size_t	index_by_value(int value, t_list **l)
 	if (tmp->content != value)
 		return (0);
 	return (i);
+}
+
+void	smart_rotate(t_list **lst, size_t nbv, size_t val, char c)
+{
+	size_t	tmp;
+	
+	tmp = index_by_value(val, lst);
+	if (tmp > nbv/2)
+		while ((*lst)->content != val)
+			reverse(lst, c);
+	else
+		while ((*lst)->content != val)
+			rotate(lst, c);
+}
+
+void	sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue)
+{
+	size_t tmp;
+	
+	tmp = 0;
+	
+	while (tmp < count)
+	{
+		smart_rotate(lst_b, count, svalue + tmp, 'b');
+		push(lst_a, lst_b, 'a');
+		rotate(lst_a, 'a');
+		tmp++;
+	}
 }

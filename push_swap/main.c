@@ -6,11 +6,23 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 13:44:46 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:05:27 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+void	ft_afflst(t_list **lst)
+{
+	t_list	*tmp;
+
+	tmp = *lst;
+	while (tmp)
+	{
+		printf("%ld\n", tmp->content);
+		tmp = tmp->next;
+	}
+}
 
 int	main(int ac, char **av)
 {
@@ -36,10 +48,12 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	ft_fill_list(nb_val, arg, list_a);
-	printf("list a \n\n");
+	ft_sort(list_a, list_b, nb_val);
+	/*printf("list a :\n");
 	ft_afflst(list_a);
-	printf("list b \n\n");
-	ft_afflst(list_b);
+	printf("list b :\n");
+	ft_afflst(list_b);*/
+	printf("nbv: %ld\n", nb_val);
 	free(arg);
 	ft_lstclear(list_a);
 	ft_lstclear(list_b);
