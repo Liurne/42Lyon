@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 11:49:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:44:42 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 		return (NULL);
 	}
 	res = ft_split_atoi(join_arg, ' ', nbV);
-	if (*nbV < 2)
+	if (!res || *nbV < 2 || ft_issorted(*nbV, res))
 	{
 		free(res);
 		res = NULL;

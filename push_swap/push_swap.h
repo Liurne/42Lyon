@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/16 17:18:01 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 12:37:30 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ long int	*ft_load(int nbA, char **val, size_t *nbV);
 t_list		**ft_fill_list(size_t nbv, long int *val, t_list **l);
 int			verif_val(int nbarg, char **value);
 int			ft_index(size_t index_val, long int *tab, size_t size);
+int			ft_issorted(size_t nbv, long int *values);
 
 void		push(t_list **a, t_list **b);
 void		swap(t_list **lst);
