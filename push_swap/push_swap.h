@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 14:02:14 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:52:41 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,13 @@ int			ft_issorted(size_t nbv, long int *values);
 int			value_by_index(size_t i, t_list **l);
 size_t		index_by_value(int value, t_list **l);
 
-void		push(t_list **a, t_list **b);
-void		swap(t_list **lst);
-void		rotate(t_list **lst);
-void		reverse(t_list **lst);
+void		push(t_list **a, t_list **b, char c);
+void		pushboth(t_list **dst, t_list **src);
+void		swap(t_list **lst, char c);
+void		swapboth(t_list **l1, t_list **l2);
+void		rotate(t_list **lst, char c);
+void		rotateboth(t_list **l1, t_list **l2);
+void		reverse(t_list **lst, char c);
+void		reverseboth(t_list **l1, t_list **l2);
 
 #endif
