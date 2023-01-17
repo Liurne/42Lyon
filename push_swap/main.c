@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 12:42:48 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 13:44:46 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,8 +36,6 @@ int	main(int ac, char **av)
 		return (0);
 	}
 	ft_fill_list(nb_val, arg, list_a);
-	reverse(list_a);
-	rotate(list_a);
 	printf("list a \n\n");
 	ft_afflst(list_a);
 	printf("list b \n\n");

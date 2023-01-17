@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 12:37:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 14:02:14 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ t_list		**ft_fill_list(size_t nbv, long int *val, t_list **l);
 int			verif_val(int nbarg, char **value);
 int			ft_index(size_t index_val, long int *tab, size_t size);
 int			ft_issorted(size_t nbv, long int *values);
+int			value_by_index(size_t i, t_list **l);
+size_t		index_by_value(int value, t_list **l);
 
 void		push(t_list **a, t_list **b);
 void		swap(t_list **lst);
