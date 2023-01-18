@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:32:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/18 14:25:40 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/18 16:28:39 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,10 @@ void	sort_b(t_list **lst_a, t_list **lst_b, size_t size, size_t svalue)
 	vmax = size;
 	while (tmp < vmax)
 	{
-		val = closer_val(lst_b, svalue + tmp, svalue + vmax - 1, vmax - tmp);
-		smart_rotate(lst_b, vmax - tmp, val, 'b');
+		val = closer_val(lst_b, svalue + tmp, svalue + vmax - 1, ft_lstsize(*lst_b));
+		//printf("val 1: %ld, val 2: %ld, close: %ld\n", svalue + tmp, svalue + vmax - 1, val);
+		//ft_afflst(lst_b);
+		smart_rotate(lst_b, ft_lstsize(*lst_b), val, 'b');
 		push(lst_a, lst_b, 'a');
 		if (val == svalue + tmp)
 		{
