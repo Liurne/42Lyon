@@ -1,0 +1,5 @@
+#ignorer le visualizer
+push_swap/visualizer
+
+#ignorer les .o
+*.o

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 14:52:41 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:27:22 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 
 typedef struct s_list
 {
-	int				content;
+	size_t			content;
 	struct s_list	*next;
 }	t_list;
 
@@ -54,15 +54,20 @@ int			verif_val(int nbarg, char **value);
 int			ft_index(size_t index_val, long int *tab, size_t size);
 int			ft_issorted(size_t nbv, long int *values);
 int			value_by_index(size_t i, t_list **l);
-size_t		index_by_value(int value, t_list **l);
+size_t		index_by_value(size_t value, t_list **l);
+void		smart_rotate(t_list **lst, size_t nbv, size_t val, char c);
+void		sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue);
 
-void		push(t_list **a, t_list **b, char c);
-void		pushboth(t_list **dst, t_list **src);
+void		ft_sort(t_list **a, t_list **b, size_t nbv);
+
+void		push(t_list **dst, t_list **src, char c);
 void		swap(t_list **lst, char c);
 void		swapboth(t_list **l1, t_list **l2);
 void		rotate(t_list **lst, char c);
 void		rotateboth(t_list **l1, t_list **l2);
 void		reverse(t_list **lst, char c);
 void		reverseboth(t_list **l1, t_list **l2);
+
+void		ft_afflst(t_list **lst);
 
 #endif
