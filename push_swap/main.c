@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 23:05:27 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:51:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ int	main(int ac, char **av)
 	/*printf("list a :\n");
 	ft_afflst(list_a);
 	printf("list b :\n");
-	ft_afflst(list_b);*/
-	printf("nbv: %ld\n", nb_val);
+	ft_afflst(list_b);
+	printf("nbv: %ld\n", nb_val);*/
 	free(arg);
 	ft_lstclear(list_a);
 	ft_lstclear(list_b);

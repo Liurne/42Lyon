@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 22:44:57 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/17 23:56:32 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void		rotate(t_list **lst, char c);
 void		rotateboth(t_list **l1, t_list **l2);
 void		reverse(t_list **lst, char c);
 void		reverseboth(t_list **l1, t_list **l2);
+
+void	ft_afflst(t_list **lst);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:57:49 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 22:51:42 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/18 00:51:52 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ void	smart_rotate(t_list **lst, size_t nbv, size_t val, char c)
 	size_t	tmp;
 	
 	tmp = index_by_value(val, lst);
+	/*printf("index: %ld, len: %ld , median: %ld, val: %ld, reel val:%d\n", tmp, nbv, nbv/2, val, value_by_index(tmp,lst));
+	ft_afflst(lst);
+	printf("end\n");*/
 	if (tmp > nbv/2)
 		while ((*lst)->content != val)
 			reverse(lst, c);
@@ -79,7 +82,7 @@ void	sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue)
 	
 	while (tmp < count)
 	{
-		smart_rotate(lst_b, count, svalue + tmp, 'b');
+		smart_rotate(lst_b, count - tmp, svalue + tmp, 'b');
 		push(lst_a, lst_b, 'a');
 		rotate(lst_a, 'a');
 		tmp++;
