@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:32:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/18 16:28:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/20 18:01:24 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,22 @@ int	closer_val(t_list **lst, size_t val1, size_t val2, size_t size)
 	return (val2);
 }
 
-void	sort_b(t_list **lst_a, t_list **lst_b, size_t size, size_t svalue)
+size_t	separate_value(t_list **lst_a, t_list **lst_b, size_t lim1, size_t lim2)
+{
+	if ((*lst_a)->content < lim1)
+	{
+		push(lst_b, lst_a, 'b');
+		if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > lim2)
+			rotate(lst_b, 'b');
+		return (1);
+	}
+	else
+	{
+		rotate(lst_a, 'a');
+		return (0);
+	}
+}
+void	sort_b(t_list **lst_a, t_list **lst_b, size_t size, size_t sval)
 {
 	size_t	tmp;
 	size_t	val;
@@ -51,12 +66,11 @@ void	sort_b(t_list **lst_a, t_list **lst_b, size_t size, size_t svalue)
 	vmax = size;
 	while (tmp < vmax)
 	{
-		val = closer_val(lst_b, svalue + tmp, svalue + vmax - 1, ft_lstsize(*lst_b));
-		//printf("val 1: %ld, val 2: %ld, close: %ld\n", svalue + tmp, svalue + vmax - 1, val);
-		//ft_afflst(lst_b);
+		val = closer_val(lst_b, sval + tmp, sval + vmax - 1,
+				ft_lstsize(*lst_b));
 		smart_rotate(lst_b, ft_lstsize(*lst_b), val, 'b');
 		push(lst_a, lst_b, 'a');
-		if (val == svalue + tmp)
+		if (val == sval + tmp)
 		{
 			rotate(lst_a, 'a');
 			tmp++;

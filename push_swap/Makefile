@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard>                        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/01/18 15:43:57 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/01/20 13:52:42 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ UNDERLINE    = \x1b[4m
 REV            = \x1b[7m
 ERASE        = \033[2K\r
 
-NAME = a.out
+NAME = push_swap
 
 FLAGS = -Wall -Wextra -Werror -I .
 
