@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split_atoi.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:42:32 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 11:45:33 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:21:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ static int	ft_nbword(char const *s, char c)
 
 void	*ft_abort(long int *tab, char **arg, size_t *nbv)
 {
-	ft_putstr("Error\n");
+	ft_putstr("Error\n", 2);
 	ft_free(arg, *nbv);
 	free(tab);
 	return (NULL);

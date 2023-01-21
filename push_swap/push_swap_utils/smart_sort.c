@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/18 12:32:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/20 18:01:24 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:04:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,22 @@ int	closer_val(t_list **lst, size_t val1, size_t val2, size_t size)
 	return (val2);
 }
 
-size_t	separate_value(t_list **lst_a, t_list **lst_b, size_t lim1, size_t lim2)
+size_t	separate_val(t_list **la, t_list **lb, size_t lim1, size_t lim2)
 {
-	if ((*lst_a)->content < lim1)
+	if ((*la)->content < lim1)
 	{
-		push(lst_b, lst_a, 'b');
-		if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > lim2)
-			rotate(lst_b, 'b');
+		push(lb, la, 'b');
+		if ((*lb) && (*lb)->next && (*lb)->content > lim2)
+			rotate(lb, 'b');
 		return (1);
 	}
 	else
 	{
-		rotate(lst_a, 'a');
+		rotate(la, 'a');
 		return (0);
 	}
 }
+
 void	sort_b(t_list **lst_a, t_list **lst_b, size_t size, size_t sval)
 {
 	size_t	tmp;

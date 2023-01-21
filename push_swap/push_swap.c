@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:15 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/20 17:53:01 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 17:04:19 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,27 +61,12 @@ void	sort_hundred(t_list **lst_a, t_list **lst_b, size_t nbv)
 
 	val_bmedian = 0;
 	while (val_bmedian < nbv / 2)
-	{
-		if ((*lst_a)->content < nbv / 2)
-		{
-			push(lst_b, lst_a, 'b');
-			if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > nbv / 4)
-				rotate(lst_b, 'b');
-			val_bmedian++;
-		}
-		else
-			rotate(lst_a, 'a');
-	}
+		val_bmedian += separate_val(lst_a, lst_b, nbv / 2, nbv / 4);
 	sort_b(lst_a, lst_b, val_bmedian / 2, 0);
 	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian / 2);
 	val_amedian = 0;
 	while (val_amedian < nbv - val_bmedian)
-	{
-		push(lst_b, lst_a, 'b');
-		if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > (nbv / 4) * 3)
-			rotate(lst_b, 'b');
-		val_amedian++;
-	}
+		val_amedian += separate_val(lst_a, lst_b, nbv, (nbv / 4) * 3);
 	sort_b(lst_a, lst_b, val_amedian / 2, val_bmedian);
 	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian + (val_amedian / 2));
 }
@@ -89,33 +74,29 @@ void	sort_hundred(t_list **lst_a, t_list **lst_b, size_t nbv)
 void	sort_fivehundred(t_list **lst_a, t_list **lst_b, size_t nbv)
 {
 	size_t	val_bmedian;
-	size_t	val_amedian;
+	//size_t	val_amedian;
+	size_t	val_qua1;
 
-	val_bmedian = separate_value(lst_a, lst_b, nbv / 2, nbv / 2, nbv / 4);
-	/*while (val_bmedian < nbv / 2)
+	val_bmedian = 0;
+	while (val_bmedian < nbv / 2)
+		val_bmedian += separate_val(lst_a, lst_b, nbv / 2, nbv / 4);
+	val_qua1 = 0;
+	while (val_qua1 < val_bmedian / 4 || (*lst_b)->content < val_bmedian / 2)
 	{
-		if ((*lst_a)->content < nbv / 2)
+		push(lst_a, lst_b, 'a');
+		if ((*lst_a)->content < val_bmedian / 4)
 		{
-			push(lst_b, lst_a, 'b');
-			if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > nbv / 4)
-				rotate(lst_b, 'b');
-			val_bmedian++;
+			rotate(lst_a,'a');
+			val_qua1++;
 		}
-		else
-			rotate(lst_a, 'a');
-	}*/
-	sort_b(lst_a, lst_b, val_bmedian / 2, 0);
+	}
+	/*sort_b(lst_a, lst_b, val_bmedian / 2, 0);
 	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian / 2);
 	val_amedian = 0;
 	while (val_amedian < nbv - val_bmedian)
-	{
-		push(lst_b, lst_a, 'b');
-		if ((*lst_b) && (*lst_b)->next && (*lst_b)->content > (nbv / 4) * 3)
-			rotate(lst_b, 'b');
-		val_amedian++;
-	}
+		val_amedian += separate_val(lst_a, lst_b, nbv, (nbv / 4) * 3);
 	sort_b(lst_a, lst_b, val_amedian / 2, val_bmedian);
-	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian + (val_amedian / 2));
+	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian + (val_amedian / 2));*/
 }
 
 void	ft_sort(t_list **a, t_list **b, size_t nbv)
@@ -126,8 +107,8 @@ void	ft_sort(t_list **a, t_list **b, size_t nbv)
 		sort_three(a);
 	else if (nbv <= 5)
 		sort_five(a, b, nbv);
-	//else if (nbv <= 100)
-	//	sort_hundred(a, b, nbv);
+	else if (nbv <= 100)
+		sort_hundred(a, b, nbv);
 	else
 		sort_fivehundred(a, b, nbv);
 }	

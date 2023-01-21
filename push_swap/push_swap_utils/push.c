@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   push.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:21:41 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 17:01:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:22:01 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	push(t_list **dst, t_list **src, char c)
 		else
 			*src = tmp;
 		if (c == 'a')
-			ft_putstr("pa\n");
+			ft_putstr("pa\n", 1);
 		if (c == 'b')
-			ft_putstr("pb\n");
+			ft_putstr("pb\n", 1);
 	}
 }

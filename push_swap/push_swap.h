@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/20 17:55:14 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:23:03 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_list
 void		ft_bzero(void *s, size_t n);
 void		*ft_calloc(size_t count, size_t size);
 size_t		ft_strlen(const char *s);
-void		ft_putstr(char *s);
+void		ft_putstr(char *s, int fd);
 int			ft_isnumber(char *s);
 int			ft_strcmp(char *s1, char *s2);
 char		*ft_substr(char const *s, unsigned int start, size_t len);
@@ -56,7 +56,7 @@ int			ft_issorted(size_t nbv, long int *values);
 int			value_by_index(size_t i, t_list **l);
 size_t		index_by_value(size_t value, t_list **l);
 void		smart_rotate(t_list **lst, size_t nbv, size_t val, char c);
-size_t		separate_value(t_list **lst_a, t_list **lst_b, size_t size, size_t lim1, size_t lim2);
+size_t		separate_val(t_list **la, t_list **lb, size_t lim1, size_t lim2);
 void		sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue);
 
 void		ft_sort(t_list **a, t_list **b, size_t nbv);

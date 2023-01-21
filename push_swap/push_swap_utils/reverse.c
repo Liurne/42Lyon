@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/11 15:25:31 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 14:51:47 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:22:13 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,14 +23,14 @@ void	reverse(t_list **lst, char c)
 	tmp->next = *lst;
 	*lst = tmp;
 	if (c == 'a')
-		ft_putstr("rra\n");
+		ft_putstr("rra\n", 1);
 	if (c == 'b')
-		ft_putstr("rrb\n");
+		ft_putstr("rrb\n", 1);
 }
 
 void	reverseboth(t_list **l1, t_list **l2)
 {
 	reverse(l1, '\0');
 	reverse(l2, '\0');
-	ft_putstr("rrr\n");
+	ft_putstr("rrr\n", 1);
 }
