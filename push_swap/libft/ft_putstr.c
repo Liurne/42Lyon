@@ -6,19 +6,19 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:53:45 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/05 16:02:23 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/21 16:21:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
 
-void	ft_putstr(char *s)
+void	ft_putstr(char *s, int fd)
 {
 	int	i;
 
 	i = 0;
 	if (!s)
-		write(1, "(null)", 6);
+		write(fd, "(null)", 6);
 	else
 	{
 		while (s[i])

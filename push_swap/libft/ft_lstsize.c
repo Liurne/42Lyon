@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_lstsize.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/23 15:36:16 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 13:57:48 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/18 14:26:36 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	ft_lstsize(t_list *lst)
 {
 	size_t	i;
-	t_list *tmp;
+	t_list	*tmp;
 
 	i = 0;
 	tmp = lst;
