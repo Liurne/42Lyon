@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:57:49 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/18 14:25:59 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:35:39 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,20 @@ size_t	index_by_value(size_t value, t_list **l)
 	if (tmp->content != value)
 		return (0);
 	return (i);
+}
+
+int	find_zero(long int *tab, size_t nbv)
+{
+	int			oc_zero;
+	size_t		i;
+
+	i = 0;
+	oc_zero = 0;
+	while (i < nbv && oc_zero < 2)
+	{
+		if (tab[i] == 0)
+			oc_zero++;
+		i++;
+	}
+	return (oc_zero);
 }

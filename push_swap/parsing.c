@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/17 12:44:42 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:37:04 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,12 @@ static char	*full_join_arg(int nbA, char **val)
 	i = 1;
 	while (i < nbA)
 	{
+		if (!val[i][0])
+		{
+			ft_putstr("Error\n", 2);
+			free(tmp2);
+			return (NULL);
+		}
 		tmp1 = ft_strjoin(tmp2, val[i]);
 		free(tmp2);
 		tmp2 = ft_strjoin(tmp1, " ");
@@ -62,17 +68,16 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 		return (NULL);
 	join_arg = full_join_arg(nbA, val);
 	if (!join_arg)
-	{
 		return (NULL);
-	}
 	res = ft_split_atoi(join_arg, ' ', nbV);
-	if (!res || *nbV < 2 || ft_issorted(*nbV, res))
+	if (!res || *nbV < 2 || ft_issorted(*nbV, res) || find_zero(res, *nbV) > 1)
 	{
+		if (find_zero(res, *nbV) > 1)
+			ft_putstr("Error\n", 2);
 		free(res);
 		res = NULL;
 	}
-	free(join_arg);
-	return (res);
+	return (free(join_arg), res);
 }
 
 int	ft_index(size_t index_val, long int *tab, size_t size)

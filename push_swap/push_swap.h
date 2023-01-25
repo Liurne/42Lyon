@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/21 16:23:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/25 17:35:02 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,6 @@ void		ft_lstdelone(t_list *lst);
 void		ft_lstclear(t_list **lst);
 void		ft_lstadd_front(t_list **lst, t_list *new);
 void		ft_lstadd_back(t_list **lst, t_list *new);
-void		ft_afflst(t_list **lst);
 t_list		**ft_lstinit(void);
 
 long int	*ft_load(int nbA, char **val, size_t *nbV);
@@ -55,11 +54,14 @@ int			ft_index(size_t index_val, long int *tab, size_t size);
 int			ft_issorted(size_t nbv, long int *values);
 int			value_by_index(size_t i, t_list **l);
 size_t		index_by_value(size_t value, t_list **l);
+int			find_zero(long int *tab, size_t nbv);
+
+void		ft_sort(t_list **a, t_list **b, size_t nbv);
 void		smart_rotate(t_list **lst, size_t nbv, size_t val, char c);
 size_t		separate_val(t_list **la, t_list **lb, size_t lim1, size_t lim2);
 void		sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue);
-
-void		ft_sort(t_list **a, t_list **b, size_t nbv);
+void		fh_first_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
+void		fh_second_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
 
 void		push(t_list **dst, t_list **src, char c);
 void		swap(t_list **lst, char c);
@@ -68,7 +70,5 @@ void		rotate(t_list **lst, char c);
 void		rotateboth(t_list **l1, t_list **l2);
 void		reverse(t_list **lst, char c);
 void		reverseboth(t_list **l1, t_list **l2);
-
-void		ft_afflst(t_list **lst);
 
 #endif
