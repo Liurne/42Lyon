@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:15 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/21 17:04:19 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/01/25 15:00:38 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,29 +74,93 @@ void	sort_hundred(t_list **lst_a, t_list **lst_b, size_t nbv)
 void	sort_fivehundred(t_list **lst_a, t_list **lst_b, size_t nbv)
 {
 	size_t	val_bmedian;
-	//size_t	val_amedian;
-	size_t	val_qua1;
+	size_t	val_amedian;
+	size_t	val_q1;
+	size_t	tmp;
 
 	val_bmedian = 0;
 	while (val_bmedian < nbv / 2)
 		val_bmedian += separate_val(lst_a, lst_b, nbv / 2, nbv / 4);
-	val_qua1 = 0;
-	while (val_qua1 < val_bmedian / 4 || (*lst_b)->content < val_bmedian / 2)
+	val_q1 = 0;
+	while ((*lst_b)->content < val_bmedian / 2 || val_q1 < val_bmedian / 4)
 	{
-		push(lst_a, lst_b, 'a');
-		if ((*lst_a)->content < val_bmedian / 4)
+		if ((*lst_b)->content < val_bmedian / 4)
 		{
-			rotate(lst_a,'a');
-			val_qua1++;
+			push(lst_a, lst_b, 'a');
+			val_q1++;
 		}
+		else
+			rotate(lst_b, 'b');
 	}
-	/*sort_b(lst_a, lst_b, val_bmedian / 2, 0);
-	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian / 2);
+	tmp = val_q1;
+	while (tmp)
+	{
+		push(lst_b, lst_a, 'b');
+		tmp--;
+	}
+	sort_b(lst_a, lst_b, val_bmedian / 4, 0);
+	sort_b(lst_a, lst_b, val_bmedian / 4, val_q1);
+	val_q1 = 0;
+	while (val_q1 < val_bmedian / 4)
+	{
+		if ((*lst_b)->content < (val_bmedian / 4) * 3)
+		{
+			push(lst_a, lst_b, 'a');
+			val_q1++;
+		}
+		else
+			rotate(lst_b, 'b');
+	}
+	tmp = val_q1;
+	while (tmp)
+	{
+		push(lst_b, lst_a, 'b');
+		tmp--;
+	}
+	sort_b(lst_a, lst_b, val_q1, ft_lstlast(*lst_a)->content + 1);
+	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), ft_lstlast(*lst_a)->content + 1);
+
 	val_amedian = 0;
 	while (val_amedian < nbv - val_bmedian)
 		val_amedian += separate_val(lst_a, lst_b, nbv, (nbv / 4) * 3);
-	sort_b(lst_a, lst_b, val_amedian / 2, val_bmedian);
-	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), val_bmedian + (val_amedian / 2));*/
+	val_q1 = 0;
+	while ((*lst_b)->content < val_bmedian + (val_amedian / 2) || val_q1 < val_amedian / 4)
+	{
+		if ((*lst_b)->content < val_bmedian + (val_amedian / 4))
+		{
+			push(lst_a, lst_b, 'a');
+			val_q1++;
+		}
+		else
+			rotate(lst_b, 'b');
+	}
+	tmp = val_q1;
+	while (tmp)
+	{
+		push(lst_b, lst_a, 'b');
+		tmp--;
+	}
+	sort_b(lst_a, lst_b, val_bmedian / 4, ft_lstlast(*lst_a)->content + 1);
+	sort_b(lst_a, lst_b, val_bmedian / 4, ft_lstlast(*lst_a)->content + 1);
+	val_q1 = 0;
+	while (val_q1 < val_amedian / 4)
+	{
+		if ((*lst_b)->content < val_bmedian + (val_amedian / 4) * 3)
+		{
+			push(lst_a, lst_b, 'a');
+			val_q1++;
+		}
+		else
+			rotate(lst_b, 'b');
+	}
+	tmp = val_q1;
+	while (tmp)
+	{
+		push(lst_b, lst_a, 'b');
+		tmp--;
+	}
+	sort_b(lst_a, lst_b, val_q1, ft_lstlast(*lst_a)->content + 1);
+	sort_b(lst_a, lst_b, ft_lstsize(*lst_b), ft_lstlast(*lst_a)->content + 1);
 }
 
 void	ft_sort(t_list **a, t_list **b, size_t nbv)
