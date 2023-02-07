@@ -65,11 +65,24 @@ int	find_zero(long int *tab, size_t nbv)
 
 	i = 0;
 	oc_zero = 0;
-	while (i < nbv && oc_zero < 2)
+	while (tab && i < nbv && oc_zero < 2)
 	{
 		if (tab[i] == 0)
 			oc_zero++;
 		i++;
 	}
 	return (oc_zero);
+}
+
+int	is_justspace(char *str)
+{
+	if (!str)
+		return (0);
+	while(*str)
+	{
+		if(*str != ' ')
+			return (0);
+		str++;
+	}
+	return (1);
 }

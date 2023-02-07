@@ -44,7 +44,7 @@ static char	*full_join_arg(int nbA, char **val)
 	i = 1;
 	while (i < nbA)
 	{
-		if (!val[i][0])
+		if (!val[i][0] || is_justspace(val[i]))
 		{
 			ft_putstr("Error\n", 2);
 			free(tmp2);
@@ -72,7 +72,7 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	res = ft_split_atoi(join_arg, ' ', nbV);
 	if (!res || *nbV < 2 || ft_issorted(*nbV, res) || find_zero(res, *nbV) > 1)
 	{
-		if (find_zero(res, *nbV) > 1)
+		if (res && find_zero(res, *nbV) > 1)
 			ft_putstr("Error\n", 2);
 		free(res);
 		res = NULL;

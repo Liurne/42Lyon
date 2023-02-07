@@ -74,7 +74,7 @@ all :	${NAME}
 # $@ : NAME de la regle
 # $^ : tous les OBJS
 ${NAME}:	${OBJS}
-		@ ${CC} $^ -o $@ && echo \\npush_swap compilation...\\n\\n*===============*
+		@ ${CC} ${FLAGS} $^ -o $@ && echo \\npush_swap compilation...\\n\\n*===============*
 
 # cree les objets
 # $< : premiere dependance

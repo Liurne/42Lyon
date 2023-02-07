@@ -55,6 +55,7 @@ int			ft_issorted(size_t nbv, long int *values);
 int			value_by_index(size_t i, t_list **l);
 size_t		index_by_value(size_t value, t_list **l);
 int			find_zero(long int *tab, size_t nbv);
+int			is_justspace(char *str);
 
 void		ft_sort(t_list **a, t_list **b, size_t nbv);
 void		smart_rotate(t_list **lst, size_t nbv, size_t val, char c);
