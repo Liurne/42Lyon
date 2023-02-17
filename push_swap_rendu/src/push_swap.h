@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/17 15:37:07 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:05:55 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,5 +51,6 @@ t_list		**ft_lstinit(void);
 int			ft_split_spe(char const *s, t_list **lst);
 int			ft_load(t_list **lst, int ac, char **av);
 int			ft_error(t_list **a, t_list **b);
+int			ft_isdouble(long int *tab, size_t index, size_t size);
 
 #endif
