@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:42:32 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/17 16:50:53 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/17 17:17:27 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,11 @@ static int	ft_nbword(char const *s)
 	return (res);
 }
 
-static int	ft_getvalue(int *tab, int wrd, int bwrd, int lwrd)
+static int	ft_getvalue(long int *tab, const char *str, int wrd, int lwrd)
 {
 	char	*val;
 
-	val = ft_substr(bwrd, 0, lwrd);
+	val = ft_substr(str, 0, lwrd);
 	if (!val)
 		return (1);
 	if (!ft_isnumber(val) || ft_strlen(val) > 11)
@@ -44,7 +44,7 @@ static int	ft_getvalue(int *tab, int wrd, int bwrd, int lwrd)
 	return (free(val), 0);
 }
 
-int	*ft_split_spe(char const *s, size_t *n)
+long int	*ft_split_spe(char const *s, size_t *n)
 {
 	size_t		i;
 	size_t		j;
@@ -62,7 +62,7 @@ int	*ft_split_spe(char const *s, size_t *n)
 		i = 0;
 		while (s[i] && s[i] != ' ')
 			i++;
-		if (ft_getvalue(tab, j, s, i))
+		if (ft_getvalue(tab, s, j, i))
 			return (free(tab), NULL);
 		j++;
 		s += i;
