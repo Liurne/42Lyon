@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/25 17:37:04 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/17 16:22:57 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,21 +80,7 @@ long int	*ft_load(int nbA, char **val, size_t *nbV)
 	return (free(join_arg), res);
 }
 
-int	ft_index(size_t index_val, long int *tab, size_t size)
-{
-	size_t	i;
-	size_t	res;
 
-	i = 0;
-	res = 0;
-	while (i < size)
-	{
-		if (tab[i] < tab[index_val])
-			res++;
-		i++;
-	}
-	return (res);
-}
 
 t_list	**ft_fill_list(size_t nbv, long int *val, t_list **l)
 {

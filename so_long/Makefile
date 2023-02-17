@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: jcoquard <jcoquard>                        +#+  +:+       +#+         #
+#    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/16 14:39:26 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/02/17 14:19:49 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,12 +46,12 @@ SRCS =  main.c
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = so_long.h
+HEADER = src/so_long.h
 
 all:   ${NAME}
 
 ${NAME}:	${OBJS}
-	 ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
+	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
 
 %.o:	%.c ${HEADER} Makefile
 	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@
