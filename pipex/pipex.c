@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:31:19 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/24 14:17:54 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/24 13:50:19 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,34 +19,23 @@ char	*find_path(char **envp)
 	return (*envp + 5);
 }
 
-static char	*get_cmd(char **paths, char *cmd)
-{
-	char	*tmp;
-	char	*command;
-
-	while (*paths)
-	{
-		tmp = ft_strjoin(*paths, "/");
-		command = ft_strjoin(tmp, cmd);
-		free(tmp);
-		if (access(command, 0) == 0)
-			return (command);
-		free(command);
-		paths++;
-	}
-	return (NULL);
-}
-
 int	main(int ac, char **av, char **envp)
 {
-	char	**paths;
-	char	**cmd;
-	char	*cmd_paths;
+	t_data	pipex;
+
 	if (ac != 5)
-		return (1);
-	paths = ft_split(find_path(envp), ':');
-	cmd = ft_split(av[2],' ');
-	cmd_paths = get_cmd(paths, cmd[0]);
-	execve(cmd_paths, cmd, envp);
-	return (0);
+		return (ft_putstr_fd("Invalid number of arguments\n", 2));
+	pipex.infile = open(av[1], O_RDONLY);
+	if (pipex.infile < 0)
+		msg_error("Infile", &pipex);
+	pipex.outfile = open(av[ac - 1], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	if (pipex.outfile < 0)
+		msg_error("Outfile", &pipex);
+	pipex.is_pipe_open = pipe(pipex.pipe);
+	if (pipex.is_pipe_open < 0)
+		msg_error("Pipe", &pipex);
+	pipex.paths = find_path(envp);
+	pipex.cmd_paths = ft_split(find_path(envp), ':');
+	childs(&pipex, av, envp);
+	return (parent_free(&pipex), 0);
 }
