@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/05 15:55:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/17 16:13:29 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/24 19:54:43 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	main(int ac, char **av)
 		return (ft_lstclear(list_a), 1);
 	if (ft_load(list_a, ac, av))
 		return (ft_error(list_a, list_b));
-	//ft_sort(list_a, list_b, nb_val);
+	if (!ft_issorted(list_a))
+		ft_sort(list_a, list_b, ft_lstsize(*list_a));
 	ft_lstclear(list_a);
 	ft_lstclear(list_b);
 	return (0);

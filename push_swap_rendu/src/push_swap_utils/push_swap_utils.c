@@ -3,30 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   push_swap_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: jcoquard <jcoquard>                        +#+  +:+       +#+        */
+/*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/03 16:57:49 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/25 17:35:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/24 18:42:39 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../push_swap.h"
-
-int	ft_issorted(size_t nbv, long int *values)
-{
-	size_t	i;
-	int		is_sorted;
-
-	i = 1;
-	is_sorted = 1;
-	while (i < nbv && is_sorted)
-	{
-		if (values[i - 1] > values[i])
-			is_sorted = 0;
-		i++;
-	}
-	return (is_sorted);
-}
 
 int	value_by_index(size_t i, t_list **l)
 {
@@ -72,17 +56,4 @@ int	find_zero(long int *tab, size_t nbv)
 		i++;
 	}
 	return (oc_zero);
-}
-
-int	is_justspace(char *str)
-{
-	if (!str)
-		return (0);
-	while(*str)
-	{
-		if(*str != ' ')
-			return (0);
-		str++;
-	}
-	return (1);
 }
