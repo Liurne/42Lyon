@@ -1,29 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   debug.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 22:42:54 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 11:56:31 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/02/24 16:41:49 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/02/24 17:43:36 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../pipex.h"
+#include "push_swap.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+void printTab(long int *tab, size_t size)
 {
 	size_t	i;
 
 	i = 0;
-	if (!n)
-		return (0);
-	while (s1[i] && s2[i] && i < n - 1)
+	while (i < size)
 	{
-		if ((s1[i] != s2[i]) && n != 0)
-			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		printf("tab[%lu]:%ld \n", i, tab[i]);
 		i++;
 	}
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+}
+
+void printlst(t_list **a, t_list **b)
+{
+	t_list	*ta;
+	t_list	*tb;
+
+	ta = *a;
+	tb = *b;
+	printf("lst a:  lst b:\n");
+	while (ta || tb)
+	{
+		if (ta)
+		{
+			printf("%lu\t\t", ta->content);
+			ta = ta->next;
+		}
+		if (tb)
+		{
+			printf("%lu",tb->content);
+		}
+		printf("\n");
+		
+		
+	}
 }

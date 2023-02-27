@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/17 16:13:03 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/02/24 19:51:46 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,7 +35,13 @@ NAME = push_swap
 
 FLAGS = -Wall -Wextra -Werror -I .
 
-SRCS =	src/libft/ft_atol.c \
+SRCS =	main.c \
+		src/push_swap.c \
+		src/debug.c \
+		src/parsing/parsing.c \
+		src/parsing/verif_val.c \
+		src/parsing/ft_split_spe.c \
+		src/libft/ft_atol.c \
 		src/libft/ft_bzero.c \
 		src/libft/ft_calloc.c \
 		src/libft/ft_isnumber.c \
@@ -52,8 +58,6 @@ SRCS =	src/libft/ft_atol.c \
 		src/libft/ft_strjoin.c \
 		src/libft/ft_strlen.c \
 		src/libft/ft_substr.c \
-		src/libft/ft_split.c \
-		src/libft/ft_split_atoi.c \
 		src/libft/ft_lstinit.c \
 		src/push_swap_utils/push.c \
 		src/push_swap_utils/reverse.c \
@@ -62,11 +66,6 @@ SRCS =	src/libft/ft_atol.c \
 		src/push_swap_utils/push_swap_utils.c \
 		src/push_swap_utils/smart_sort_tools.c \
 		src/push_swap_utils/five_hundred_sort.c \
-		src/parsing/parsing.c \
-		src/parsing/verif_val.c \
-		src/parsing/ft_split_spe.c \
-		src/push_swap.c \
-		main.c
 
 OBJS = ${SRCS:.c=.o}
 

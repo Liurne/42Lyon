@@ -5,8 +5,8 @@
 #                                                     +:+ +:+         +:+      #
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/27 12:11:17 by jcoquard         ###   ########.fr        #
+#    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
+#    Updated: 2023/02/24 13:58:42 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,24 +35,31 @@ UNDERLINE    = \x1b[4m
 REV            = \x1b[7m
 ERASE        = \033[2K\r
 
-NAME = so_long
+NAME = pipex
 
-FLAGS		= -Wall -Wextra -Werror -I minilibx-linux/
-ARFLAGS		= rsc
-MLXFLAGS	=  -Lminilibx-linux/ -lmlx -lXext -lX11 -lm -lz
-MLX			= minilibx-linux/libmlx.a
+FLAGS = -Wall -Wextra -Werror -I .
 
-SRCS =  main.c \
-		src/shape.c
+SRCS = pipex.c \
+		child.c \
+		free.c \
+		utils/ft_bzero.c \
+		utils/ft_calloc.c \
+		utils/ft_putstr_fd.c \
+		utils/ft_split.c \
+		utils/ft_strdup.c \
+		utils/ft_strjoin.c \
+		utils/ft_strlen.c \
+		utils/ft_strncmp.c \
+		utils/ft_substr.c \
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = src/so_long.h
+HEADER = pipex.h
 
-all:   ${NAME}
+all:	${NAME}
 
 ${NAME}:	${OBJS}
-	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
+	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npipex compilation...\\n\\n*===============*
 
 %.o:	%.c ${HEADER} Makefile
 	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@

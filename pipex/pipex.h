@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:28:52 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/01/24 13:55:17 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:14:00 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,31 @@
 # include <stdio.h>
 # include <stdint.h>
 
+typedef struct s_data
+{
+	pid_t	pid1;
+	pid_t	pid2;
+	int		infile;
+	int		outfile;
+	int		pipe[2];
+	int		is_pipe_open;
+	char	*paths;
+	char	**cmd_paths;
+	char	**args;
+	char	*cmd;
+}	t_data;
+
+/* childs.c */
+void	childs(t_data *pipex, char **av, char **envp);
+
+/* free.c */
+void	msg_error(char *error, t_data *pipex);
+void	close_pipes(t_data *pipex);
+void	parent_free(t_data *pipex);
+void	child_free(t_data *pipex);
+int		is_justspace(char *str);
+
+/* utils */
 size_t	ft_strlen(const char *s);
 char	**ft_split(char const *s, char c);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
@@ -37,4 +62,5 @@ void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s);
 char	*ft_strjoin(char const *s1, char const *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
+int		ft_putstr_fd(char *s, int fd);
 #endif
