@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 19:51:59 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/24 20:04:33 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,5 +73,8 @@ size_t		separate_val(t_list **la, t_list **lb, size_t lim1, size_t lim2);
 void		sort_b(t_list **lst_a, t_list **lst_b, size_t count, size_t svalue);
 void		fh_first_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
 void		fh_second_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
+
+/* -----utils----- */
+size_t	index_by_value(size_t value, t_list **l);
 
 #endif

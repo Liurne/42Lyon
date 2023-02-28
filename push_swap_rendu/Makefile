@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/24 19:51:46 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/02/24 20:16:53 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -69,7 +69,7 @@ SRCS =	main.c \
 
 OBJS = ${SRCS:.c=.o}
 
-HEADER = push_swap.h
+HEADER = src/push_swap.h
 
 all :	${NAME}
 
@@ -128,3 +128,5 @@ sus:
 	@echo "$(WHITE)         ░▀▀▀░▀▀▀░▀▀▀$(END)"
 
 .PHONY: all clean fclean re bonus
+
+.SUFFIXES:
