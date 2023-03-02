@@ -6,29 +6,57 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:06:00 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/22 11:29:21 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:32:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int map_error(t_map *map, size_t error)
+int	map_error(t_map *map, size_t error)
 {
-	while(error)
+	while (error)
 	{
 		free(map->map[error]);
 		error--;
 	}
 	free(map->map[error]);
 	free(map->map);
-	free(map->nbtileX);
-	free(map->nbtileY);
-	free(map->tile_size);
 	free(map);
 	return (1);
 }
 
-int draw_map
+void	switch_texture(t_data *data, size_t x, size_t y)
+{
+	t_rectangle	tile;
+
+	tile = (t_rectangle){(t_point){x * data->map->tile_size, y * data->map->tile_size} , data->map->tile_size, x * data->map->tile_size};
+	if (data->map->map[x][y] == 0)
+		draw_rectanglef(data->renderer, tile, 0xFF000000);
+	else if (data->map->map[x][y] == 1)
+		draw_rectanglef(data->renderer, tile, 0xFFFF0000);
+	else if (data->map->map[x][y] == 2)
+		draw_rectanglef(data->renderer, tile, 0xFF00FF00);
+	else
+		draw_rectanglef(data->renderer, tile, 0xFF0000FF);
+}
+
+void	draw_map(t_data *data)
+{
+	size_t	i;
+	size_t	j;
+
+	i = 0;
+	while (i < data->map->nbtile_x)
+	{
+		while (j < data->map->nbtile_y)
+		{
+			switch_texture(data, i, j);
+			j++;
+		}
+		i++;
+	}
+}
+
 t_map	*map_init(void)
 {
 	t_map	*res;
@@ -40,23 +68,23 @@ t_map	*map_init(void)
 		printf("error struct\n");
 		return (NULL);
 	}
-	res->nbtileX = 10;
-	res->nbtileY = 10;
+	res->nbtile_x = 10;
+	res->nbtile_y = 10;
 	res->tile_size = 50;
-	res->map = (int**)malloc(sizeof(int*) * res->nbtileX);
+	res->map = (int **)malloc(sizeof(int *) * res->nbtile_x);
 	if (!res->map)
 	{
 		printf("error map\n");
 		return (NULL);
 	}
 	i = 0;
-	while (i < res->nbtileY)
+	while (i < res->nbtile_y)
 	{
-		res->map[i] = (int*)malloc(sizeof(int) * res->nbtileY);
-		if(!res->map[i])
+		res->map[i] = (int *)malloc(sizeof(int) * res->nbtile_y);
+		if (!res->map[i])
 		{
 			map_error(res, i);
-			printf("error map*");
+			printf("error map");
 			return (NULL);
 		}
 		i++;

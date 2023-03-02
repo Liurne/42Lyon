@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:28:52 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 13:51:58 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/27 14:14:00 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,12 +28,6 @@
 /*to perror*/
 # include <stdio.h>
 # include <stdint.h>
-
-# define ERR_INFILE "Infile"
-# define ERR_OUTFILE "Outfile"
-# define ERR_INPUT "Invalid number of arguments.\n"
-# define ERR_PIPE "Pipe"
-# define ERR_CMD "Command not found\n"
 
 typedef struct s_data
 {
@@ -57,6 +51,7 @@ void	msg_error(char *error, t_data *pipex);
 void	close_pipes(t_data *pipex);
 void	parent_free(t_data *pipex);
 void	child_free(t_data *pipex);
+int		is_justspace(char *str);
 
 /* utils */
 size_t	ft_strlen(const char *s);

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/22 11:09:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/28 13:47:53 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ typedef struct s_rectangle
 
 typedef struct s_map
 {
-	size_t		nbtileX;
-	size_t		nbtileY;
+	size_t		nbtile_x;
+	size_t		nbtile_y;
 	size_t		tile_size;
-	int		**map;
+	int			**map;
 	t_surface	map_img;
 }	t_map;
 
@@ -58,11 +58,14 @@ typedef struct s_data
 {
 	t_wins		*win;
 	t_surface	*renderer;
-	t_rectangle *entity;
+	t_rectangle	*entity;
+	t_map		*map;
 }	t_data;
 
 void	put_pixel(t_surface *img, int x, int y, int color);
 void	draw_rectangle(t_surface *surf, t_rectangle rect, int color);
 void	draw_rectanglef(t_surface *surf, t_rectangle rect, int color);
+
+t_map	*map_init(void);
 
 #endif
