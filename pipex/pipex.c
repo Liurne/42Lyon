@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:31:19 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/27 15:39:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:28:00 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int	main(int ac, char **av, char **envp)
 	pipex.infile = open(av[1], O_RDONLY);
 	if (pipex.infile < 0)
 		ft_putstr_fd("Error: Infile doesn't exist\n", 2);
-	pipex.outfile = open(av[3], O_TRUNC | O_CREAT | O_RDWR, 0000644);
+	pipex.outfile = open(av[4], O_TRUNC | O_CREAT | O_RDWR, 0000644);
 	if (pipex.outfile < 0)
 		ft_putstr_fd("Error: Outfile doesn't work\n", 2);
 	childs(&pipex, av, envp);

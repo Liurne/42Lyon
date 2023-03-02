@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:24:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/27 15:34:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/02 12:28:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static void	second_child(t_data *pipex, char **av, char **envp)
 	dup2(pipex->pipe[0], 0);
 	close(pipex->pipe[1]);
 	dup2(pipex->outfile, 1);
-	pipex->args = ft_split(av[4], ' ');
+	pipex->args = ft_split(av[3], ' ');
 	pipex->cmd = get_cmd(pipex->cmd_paths, pipex->args[0]);
 	if (!pipex->cmd)
 	{
@@ -75,7 +75,7 @@ void	childs(t_data *pipex, char **av, char **envp)
 	}
 	else
 		ft_putstr_fd("Error: First command empty\n", 2);
-	if (!is_justspace(av[4]) && pipex->outfile)
+	if (!is_justspace(av[3]) && pipex->outfile)
 	{
 		pipex->pid2 = fork();
 		if (pipex->pid2 == -1)
