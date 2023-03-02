@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/22 11:06:00 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/27 12:39:20 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/28 16:32:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,6 @@ int	map_error(t_map *map, size_t error)
 	}
 	free(map->map[error]);
 	free(map->map);
-	free(map->nbtile_x);
-	free(map->nbtile_y);
-	free(map->tile_size);
 	free(map);
 	return (1);
 }
@@ -32,16 +29,15 @@ void	switch_texture(t_data *data, size_t x, size_t y)
 {
 	t_rectangle	tile;
 
-	tile = (t_rectangle){x * data->map->tile_size, y * data->map->tile_size,
-		data->map->tile_size, x * data->map->tile_size};
+	tile = (t_rectangle){(t_point){x * data->map->tile_size, y * data->map->tile_size} , data->map->tile_size, x * data->map->tile_size};
 	if (data->map->map[x][y] == 0)
-		draw_rectanglef(data->renderer, &tile, 0xFF000000);
+		draw_rectanglef(data->renderer, tile, 0xFF000000);
 	else if (data->map->map[x][y] == 1)
-		draw_rectanglef(data->renderer, &tile, 0xFF000000);
+		draw_rectanglef(data->renderer, tile, 0xFFFF0000);
 	else if (data->map->map[x][y] == 2)
-		draw_rectanglef(data->renderer, &tile, 0xFF000000);
+		draw_rectanglef(data->renderer, tile, 0xFF00FF00);
 	else
-		draw_rectanglef(data->renderer, &tile, 0xFF000000);
+		draw_rectanglef(data->renderer, tile, 0xFF0000FF);
 }
 
 void	draw_map(t_data *data)

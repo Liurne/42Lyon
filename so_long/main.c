@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/27 12:39:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/02/28 14:14:09 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,27 +26,27 @@ int	event_manager(int keycode, t_data *data)
 	printf("keycode:%d\n", keycode);
 	if (keycode == 65307)
 		close_window(data->win);
-	if (keycode == 119 && data->entity->pos.y > 0)
+	if (keycode == 119 && data->entity->pos.y > 3)
 	{
 		printf("up\n");
 		data->entity->pos.y -= 4;
 	}
-	if (keycode == 115 && data->entity->pos.y < 499)
+	if (keycode == 115 && data->entity->pos.y < 495)
 	{
 		printf("down\n");
 		data->entity->pos.y += 4;
 	}
-	if (keycode == 97 && data->entity->pos.x > 0)
+	if (keycode == 97 && data->entity->pos.x > 3)
 	{
 		printf("left\n");
 		data->entity->pos.x -= 4;
 	}
-	if (keycode == 100 && data->entity->pos.x < 499)
+	if (keycode == 100 && data->entity->pos.x < 495)
 	{
 		printf("right\n");
 		data->entity->pos.x += 4;
 	}
-	draw_rectanglef(data->renderer, *(data->entity), 0xFF000000);
+	draw_rectanglef(data->renderer, *(data->entity), 0xFFFF0000);
 	mlx_put_image_to_window(data->win->mlx, data->win->win,
 		data->renderer->img, 0, 0);
 	return (keycode);

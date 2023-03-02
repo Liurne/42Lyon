@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/27 12:11:17 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/02/28 13:51:22 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,7 +43,8 @@ MLXFLAGS	=  -Lminilibx-linux/ -lmlx -lXext -lX11 -lm -lz
 MLX			= minilibx-linux/libmlx.a
 
 SRCS =  main.c \
-		src/shape.c
+		src/shape.c \
+		src/map.c
 
 OBJS = ${SRCS:.c=.o}
 
