@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/08 15:32:38 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 16:09:30 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,12 +58,15 @@ int	main(void)
 	t_surface	renderer;
 	t_rectangle	cube;
 	t_data		data;
-	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-
+	int			img_width;
+	int			img_height;
+	void		*img;
+	
 	cube = (t_rectangle){(t_point){225, 225}, 50, 50};
 	window.mlx = mlx_init();
 	window.win = mlx_new_window(window.mlx, 500, 500, "so_long");
 	renderer.img = mlx_new_image(window.mlx, 500, 500);
+	img = mlx_xpm_file_to_image(window.mlx, "player.xpm", &img_width, &img_height);
 	renderer.addr = mlx_get_data_addr(renderer.img, &renderer.bits_per_pixel,
 			&renderer.line_length, &renderer.endian);
 	data.win = &window;
@@ -77,10 +80,11 @@ int	main(void)
 	mlx_hook(window.win, 2, 1L << 0, event_manager, &data);
 	mlx_hook(window.win, 17, 1L << 0, close_window, &window);
 	mlx_put_image_to_window(window.mlx, window.win, renderer.img, 0, 0);
+	mlx_put_image_to_window(window.mlx, window.win, img, 0, 0);
 	mlx_loop(window.mlx);
 	return (0);
 }
-
+/*
 int	main(void)
 {
 	void	*mlx;
@@ -91,4 +95,4 @@ int	main(void)
 
 	mlx = mlx_init();
 	img = mlx_xpm_file_to_image(mlx, relative_path, &img_width, &img_height);
-}
+}*/
