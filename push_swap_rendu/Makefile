@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/24 20:16:53 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/03/08 14:47:57 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,7 +37,6 @@ FLAGS = -Wall -Wextra -Werror -I .
 
 SRCS =	main.c \
 		src/push_swap.c \
-		src/debug.c \
 		src/parsing/parsing.c \
 		src/parsing/verif_val.c \
 		src/parsing/ft_split_spe.c \

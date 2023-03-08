@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:24:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/02 13:13:16 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:25:30 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,9 @@ static void	first_child(t_data *pipex, char **av, char **envp)
 	if (!pipex->cmd)
 	{
 		child_free(pipex);
-		ft_putstr_fd("Error: Command 1 not found\n", 2);
+		ft_putstr_fd("Error: Command \"", 2);
+		ft_putstr_fd(av[2], 2);
+		ft_putstr_fd("\" not found\n", 2);
 		exit(1);
 	}
 	execve(pipex->cmd, pipex->args, envp);
@@ -68,7 +70,9 @@ static void	second_child(t_data *pipex, char **av, char **envp)
 	if (!pipex->cmd)
 	{
 		child_free(pipex);
-		ft_putstr_fd("Error: Command 2 not found\n", 2);
+		ft_putstr_fd("Error: Command \"", 2);
+		ft_putstr_fd(av[3], 2);
+		ft_putstr_fd("\" not found\n", 2);
 		exit(1);
 	}
 	(void) envp;
@@ -77,7 +81,7 @@ static void	second_child(t_data *pipex, char **av, char **envp)
 
 void	childs(t_data *pipex, char **av, char **envp)
 {
-	if (!is_justspace(av[2]) && pipex->infile)
+	if (pipex->infile > 0 && !is_justspace(av[2]))
 	{
 		pipex->pid1 = fork();
 		if (pipex->pid1 == -1)
@@ -85,9 +89,9 @@ void	childs(t_data *pipex, char **av, char **envp)
 		if (pipex->pid1 == 0)
 			first_child(pipex, av, envp);
 	}
-	else
+	if (is_justspace(av[2]))
 		ft_putstr_fd("Error: First command empty\n", 2);
-	if (!is_justspace(av[3]) && pipex->outfile)
+	if (pipex->outfile > 0 && !is_justspace(av[3]))
 	{
 		pipex->pid2 = fork();
 		if (pipex->pid2 == -1)
@@ -95,6 +99,6 @@ void	childs(t_data *pipex, char **av, char **envp)
 		if (pipex->pid2 == 0)
 			second_child(pipex, av, envp);
 	}
-	else
+	if (is_justspace(av[3]))
 		ft_putstr_fd("Error: Second command empty\n", 2);
 }

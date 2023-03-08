@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:28:52 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/27 14:14:00 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:26:56 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@
 /* strerror */
 # include <string.h>
 /*to perror*/
-# include <stdio.h>
 # include <stdint.h>
 
 typedef struct s_data

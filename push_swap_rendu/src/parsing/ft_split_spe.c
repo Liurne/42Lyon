@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 22:42:32 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 19:58:27 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:45:48 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ long int	*ft_split_spe(char const *s, size_t *n)
 	j = 0;
 	*n = ft_nbword(s);
 	if (is_justspace((char *)s))
-		return(NULL);
+		return (NULL);
 	tab = (long int *)malloc(sizeof(long int) * (*n + 1));
 	if (!tab)
 		return (NULL);

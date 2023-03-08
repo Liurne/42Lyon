@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/11 20:52:50 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 11:55:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 15:13:07 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ int	ft_putstr_fd(char *s, int fd)
 	size_t	i;
 
 	i = 0;
+	if (!s)
+		write(fd, "(null)", 6);
 	while (s[i])
 		i++;
 	write(fd, s, i);
