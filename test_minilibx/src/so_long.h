@@ -5,23 +5,23 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/13 14:48:01 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/02/17 13:54:26 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/02/28 13:47:53 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
-# include "../minilibx/mlx.h"
+# include "../minilibx-linux/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
 
-typedef struct s_vec
+typedef struct s_wins
 {
-	int	x;
-	int	y;
-}	t_vec;
+	void	*mlx;
+	void	*win;
+}	t_wins;
 
 typedef struct s_surface
 {
@@ -32,31 +32,40 @@ typedef struct s_surface
 	int		endian;
 }	t_surface;
 
-typedef struct s_wins
+typedef struct s_point
 {
-	void		*mlx;
-	void		*win;
-	t_surface	renderer;
-}	t_wins;
+	int	x;
+	int	y;
+}	t_point;
 
-typedef struct s_img
+typedef struct s_rectangle
 {
-	int		img_w;
-	int		img_h;
-	void	*img;
-}	t_img;
+	t_point	pos;
+	size_t	w;
+	size_t	h;
+}	t_rectangle;
+
+typedef struct s_map
+{
+	size_t		nbtile_x;
+	size_t		nbtile_y;
+	size_t		tile_size;
+	int			**map;
+	t_surface	map_img;
+}	t_map;
 
 typedef struct s_data
 {
-	t_wins		win;
-	t_surface	renderer;
-	t_img		player;
+	t_wins		*win;
+	t_surface	*renderer;
+	t_rectangle	*entity;
+	t_map		*map;
 }	t_data;
 
-/* -----window----- */
-int	close_window(t_data *sl);
-int	init_window(t_data *sl);
+void	put_pixel(t_surface *img, int x, int y, int color);
+void	draw_rectangle(t_surface *surf, t_rectangle rect, int color);
+void	draw_rectanglef(t_surface *surf, t_rectangle rect, int color);
 
-/* -----event----- */
-int	event_manager(int keycode, t_data *sl);
+t_map	*map_init(void);
+
 #endif

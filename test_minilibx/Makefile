@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/03/13 14:35:39 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/02/28 13:51:22 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,16 +37,14 @@ ERASE        = \033[2K\r
 
 NAME = so_long
 
-FLAGS		= -Wall -Wextra -Werror -I minilibx/
+FLAGS		= -Wall -Wextra -Werror -I minilibx-linux/
 ARFLAGS		= rsc
-MLXFLAGS	=  -Lminilibx/ -lmlx -lXext -lX11 -lm -lz
-MLX			= minilibx/libmlx.a
+MLXFLAGS	=  -Lminilibx-linux/ -lmlx -lXext -lX11 -lm -lz
+MLX			= minilibx-linux/libmlx.a
 
-SRCS =	main.c \
-		src/so_long.c \
-		src/init/window.c \
-		src/init/load_img.c \
-		src/event/event.c \
+SRCS =  main.c \
+		src/shape.c \
+		src/map.c
 
 OBJS = ${SRCS:.c=.o}
 
