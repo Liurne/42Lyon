@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/13 14:32:36 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:57:09 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,19 @@ int	main(void)
 	t_data	so_long;
 
 	init_window(&so_long);
+	load_map_img(&so_long);
+	load_pl_img(&so_long);
+	load_map_img(&so_long);
+	so_long.map.map = (char *)malloc(sizeof(char) * 30);
+	so_long.map.map = "11111\n10001\n10001\n10001\n11111\0";
+	so_long.map.height = 5;
+	so_long.map.width = 5;
+	so_long.map.pos.x = 0;
+	so_long.map.pos.y = 0;
+	map_to_img(&so_long);
 	mlx_hook(so_long.win.win, 2, 1L << 0, event_manager, &so_long);
 	mlx_hook(so_long.win.win, 17, 1L << 0, close_window, &so_long);
+	mlx_loop_hook(so_long.win.mlx, update_display, &so_long);
 	mlx_loop(so_long.win.mlx);
 	return (0);
 }

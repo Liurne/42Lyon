@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/13 14:48:01 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/16 17:56:26 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,67 @@ typedef struct s_vec
 	int	y;
 }	t_vec;
 
-typedef struct s_surface
+typedef struct s_img
 {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
 	int		line_length;
 	int		endian;
-}	t_surface;
+	int		img_w;
+	int		img_h;
+}	t_img;
 
 typedef struct s_wins
 {
-	void		*mlx;
-	void		*win;
-	t_surface	renderer;
+	void	*mlx;
+	void	*win;
+	t_img	renderer;
 }	t_wins;
 
-typedef struct s_img
+typedef struct s_map
 {
-	int		img_w;
-	int		img_h;
-	void	*img;
-}	t_img;
+	char	*map;
+	int		width;
+	int		height;
+	t_vec	pos;
+	t_img	img;
+}	t_map;
+
+typedef struct s_entity
+{
+	t_vec	pos;
+	t_img	*img;
+}	t_entity;
 
 typedef struct s_data
 {
 	t_wins		win;
-	t_surface	renderer;
-	t_img		player;
+	t_map		map;
+	t_entity	pl;
+	t_img		tex_map[4];
+	t_img		tex_pl[1];
 }	t_data;
 
 /* -----window----- */
-int	close_window(t_data *sl);
-int	init_window(t_data *sl);
+int		close_window(t_data *sl);
+int		init_window(t_data *sl);
+
+/* -----load_img----- */
+int		new_img(t_data *sl, t_img *img, int w, int h);
+int		load_img(t_data *sl, char *path, t_img *img);
+int		load_map_img(t_data *sl);
+int		load_pl_img(t_data *sl);
+
+/* -----display----- */
+int		update_display(t_data *sl);
+void	put_pixel(t_img *img, int x, int y, int color);
+int		get_pixel(t_img *img, int x, int y);
 
 /* -----event----- */
-int	event_manager(int keycode, t_data *sl);
+int		event_manager(int keycode, t_data *sl);
+
+/* -----map----- */
+int		map_to_img(t_data *sl);
+
 #endif
