@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 14:32:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 18:47:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:45:13 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_error(t_list **a, t_list **b)
 
 int	ft_isdouble(long int *tab, size_t index, size_t size)
 {
-	size_t i;
+	size_t	i;
 
 	i = 0;
 	while (i < size)
@@ -40,9 +40,9 @@ int	is_justspace(char *str)
 {
 	if (!str)
 		return (0);
-	while(*str)
+	while (*str)
 	{
-		if(*str != ' ')
+		if (*str != ' ')
 			return (0);
 		str++;
 	}
@@ -51,7 +51,7 @@ int	is_justspace(char *str)
 
 int	ft_issorted(t_list **lst)
 {
-	t_list *tmp;
+	t_list	*tmp;
 
 	tmp = *lst;
 	while (tmp && tmp->next)

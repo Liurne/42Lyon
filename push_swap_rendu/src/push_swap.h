@@ -6,13 +6,12 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/20 17:43:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 20:04:33 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 14:45:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PUSH_SWAP_H
 # define PUSH_SWAP_H
-# include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
 # include <stdint.h>
@@ -53,10 +52,6 @@ int			ft_isdouble(long int *tab, size_t index, size_t size);
 int			ft_issorted(t_list **lst);
 int			is_justspace(char *str);
 
-/* -----debug----- */
-void		printTab(long int *tab, size_t size);
-void		printlst(t_list **a, t_list **b);
-
 /* -----action----- */
 void		push(t_list **dst, t_list **src, char c);
 void		swap(t_list **lst, char c);
@@ -75,6 +70,6 @@ void		fh_first_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
 void		fh_second_chunk(t_list **a, t_list **b, size_t nbv, size_t s_val);
 
 /* -----utils----- */
-size_t	index_by_value(size_t value, t_list **l);
+size_t		index_by_value(size_t value, t_list **l);
 
 #endif

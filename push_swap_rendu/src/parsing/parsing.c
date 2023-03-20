@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/14 14:30:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/24 19:50:57 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/08 12:51:47 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,18 +51,18 @@ static int	ft_loadlst(t_list **lst, long int *tab, size_t size)
 static long int	*ft_multi_arg(int ac, char **av, size_t *size)
 {
 	long int	*res;
-	int	i;
+	int			i;
 
 	*size = ac - 1;
-	res = (long int*)malloc(sizeof(long int) * (ac - 1));
+	res = (long int *)malloc(sizeof(long int) * (ac - 1));
 	if (!res)
 		return (NULL);
 	i = 1;
 	while (i < ac)
 	{
-		if (!av[i] || !ft_isnumber(av[i]) ||
-				ft_strlen(av[i]) > 11 || is_justspace(av[i]))
-			return(free(res), NULL);
+		if (!av[i] || !ft_isnumber(av[i])
+			|| ft_strlen(av[i]) > 11 || is_justspace(av[i]))
+			return (free(res), NULL);
 		res[i - 1] = ft_atol(av[i]);
 		i++;
 	}
@@ -74,6 +74,8 @@ int	ft_load(t_list **lst, int ac, char **av)
 	long int	*tab;
 	size_t		nb_v;
 
+	if (ac == 1)
+		return (0);
 	if (ac == 2)
 		tab = ft_split_spe(av[1], &nb_v);
 	else if (ac > 2)

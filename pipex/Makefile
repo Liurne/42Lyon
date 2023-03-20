@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/02/24 13:58:42 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/03/02 12:45:44 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ HEADER = pipex.h
 all:	${NAME}
 
 ${NAME}:	${OBJS}
-	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npipex compilation...\\n\\n*===============*
+	@ ${CC} ${FLAGS} $^ -o $@ && echo \\npipex compilation...\\n\\n*===============*
 
 %.o:	%.c ${HEADER} Makefile
 	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@
