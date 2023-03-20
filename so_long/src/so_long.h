@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/16 17:56:26 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:07:05 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,8 @@ typedef struct s_wins
 	void	*mlx;
 	void	*win;
 	t_img	renderer;
+	int		w;
+	int		h;
 }	t_wins;
 
 typedef struct s_map
@@ -53,7 +55,8 @@ typedef struct s_map
 typedef struct s_entity
 {
 	t_vec	pos;
-	t_img	*img;
+	int		dir;
+	size_t	nb_mv;
 }	t_entity;
 
 typedef struct s_data
@@ -62,7 +65,7 @@ typedef struct s_data
 	t_map		map;
 	t_entity	pl;
 	t_img		tex_map[4];
-	t_img		tex_pl[1];
+	t_img		tex_pl[4];
 }	t_data;
 
 /* -----window----- */
@@ -84,6 +87,7 @@ int		get_pixel(t_img *img, int x, int y);
 int		event_manager(int keycode, t_data *sl);
 
 /* -----map----- */
+char	get_tile(t_data *sl, int x, int y);
 int		map_to_img(t_data *sl);
 
 #endif

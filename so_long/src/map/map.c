@@ -6,13 +6,13 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/16 17:45:23 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/20 14:56:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-static char	get_tile(t_data *sl, int x, int y)
+char	get_tile(t_data *sl, int x, int y)
 {
 	if (x < sl->map.width && y < sl->map.height)
 		return (sl->map.map[(y * (sl->map.width + 1)) + x]);

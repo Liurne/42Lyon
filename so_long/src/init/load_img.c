@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/16 17:55:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/20 17:00:02 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,16 +39,18 @@ int	load_img(t_data *sl, char *path, t_img *img)
 
 int	load_map_img(t_data *sl)
 {
-	load_img(sl, "data/grass.xpm", &(sl->tex_map[0]));
-	load_img(sl, "data/wall.xpm", &(sl->tex_map[1]));
-	load_img(sl, "data/stone.xpm", &(sl->tex_map[2]));
-	load_img(sl, "data/stone.xpm", &(sl->tex_map[3]));
+	load_img(sl, "data/texture/grass.xpm", &(sl->tex_map[0]));
+	load_img(sl, "data/texture/wall.xpm", &(sl->tex_map[1]));
+	load_img(sl, "data/texture/stone.xpm", &(sl->tex_map[2]));
+	load_img(sl, "data/texture/stone.xpm", &(sl->tex_map[3]));
 	return (0);
 }
 
 int	load_pl_img(t_data *sl)
 {
-	load_img(sl, "data/player.xpm", &(sl->tex_pl[0]));
-	sl->pl.img = &(sl->tex_pl[0]);
+	load_img(sl, "data/texture/pl_front.xpm", &(sl->tex_pl[0]));
+	load_img(sl, "data/texture/pl_back.xpm", &(sl->tex_pl[1]));
+	load_img(sl, "data/texture/pl_right.xpm", &(sl->tex_pl[2]));
+	load_img(sl, "data/texture/pl_left.xpm", &(sl->tex_pl[3]));
 	return (0);
 }
