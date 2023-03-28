@@ -15,9 +15,6 @@ static char *_27fa73b582e4cfdac242c5f70e837a0jmcV33nAwSTAVnq8[] = {
 "                                                                ",
 "                                                                ",
 "                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
 "                            XXXXXXXX                            ",
 "                            XXXXXXXX                            ",
 "                        XXXXXXXXXXXXXXXX                        ",
@@ -71,5 +68,8 @@ static char *_27fa73b582e4cfdac242c5f70e837a0jmcV33nAwSTAVnq8[] = {
 "                            ....  XX                            ",
 "                            ....  XX                            ",
 "                                XXXX                            ",
-"                                XXXX                            "
+"                                XXXX                            ",
+"                                                                ",
+"                                                                ",
+"                                                                "
 };

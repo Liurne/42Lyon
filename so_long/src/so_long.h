@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/20 17:07:05 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/28 18:28:07 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 # include "../minilibx/mlx.h"
 # include <stdio.h>
 # include <unistd.h>
+# include <limits.h>
 # include <stdlib.h>
+//# include <stdint.h>
+# include <fcntl.h>
 
 typedef struct s_vec
 {
@@ -46,10 +49,12 @@ typedef struct s_wins
 typedef struct s_map
 {
 	char	*map;
-	int		width;
-	int		height;
+	int		w;
+	int		h;
 	t_vec	pos;
+	t_vec	end;
 	t_img	img;
+	t_img	tex[14];
 }	t_map;
 
 typedef struct s_entity
@@ -64,7 +69,6 @@ typedef struct s_data
 	t_wins		win;
 	t_map		map;
 	t_entity	pl;
-	t_img		tex_map[4];
 	t_img		tex_pl[4];
 }	t_data;
 
@@ -87,7 +91,16 @@ int		get_pixel(t_img *img, int x, int y);
 int		event_manager(int keycode, t_data *sl);
 
 /* -----map----- */
+int		load_map(t_data *sl, char *path);
+void	reload_tile_img(t_data *sl, int x, int y);
 char	get_tile(t_data *sl, int x, int y);
+int		put_tile(t_data *sl, int x, int y, char c);
 int		map_to_img(t_data *sl);
+
+/* -----utils----- */
+size_t	ft_strlen(const char *str);
+int		ft_strber(const char *haystack);
+char	*ft_strjoin(char *s1, char *s2);
+int		load_file(t_data *sl, char *path);
 
 #endif

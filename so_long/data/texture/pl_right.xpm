@@ -15,9 +15,6 @@ static char *_b12ee5dea62416eb62753e48f5fc937IZLe16LUiOUk1MX4[] = {
 "                                                                ",
 "                                                                ",
 "                                                                ",
-"                                                                ",
-"                                                                ",
-"                                                                ",
 "                            XXXXXXXX                            ",
 "                            XXXXXXXX                            ",
 "                        XXXXXXXXXXXXXXXX                        ",
@@ -71,5 +68,8 @@ static char *_b12ee5dea62416eb62753e48f5fc937IZLe16LUiOUk1MX4[] = {
 "                            XX  ....                            ",
 "                            XX  ....                            ",
 "                            XXXX                                ",
-"                            XXXX                                "
+"                            XXXX                                ",
+"                                                                ",
+"                                                                ",
+"                                                                "
 };

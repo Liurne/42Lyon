@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/20 17:00:02 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/28 11:47:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,10 +39,20 @@ int	load_img(t_data *sl, char *path, t_img *img)
 
 int	load_map_img(t_data *sl)
 {
-	load_img(sl, "data/texture/grass.xpm", &(sl->tex_map[0]));
-	load_img(sl, "data/texture/wall.xpm", &(sl->tex_map[1]));
-	load_img(sl, "data/texture/stone.xpm", &(sl->tex_map[2]));
-	load_img(sl, "data/texture/stone.xpm", &(sl->tex_map[3]));
+	load_img(sl, "data/texture/grass.xpm", &(sl->map.tex[0]));
+	load_img(sl, "data/texture/stone.xpm", &(sl->map.tex[1]));
+	load_img(sl, "data/texture/border_down.xpm", &(sl->map.tex[2]));
+	load_img(sl, "data/texture/border_up.xpm", &(sl->map.tex[3]));
+	load_img(sl, "data/texture/border_left.xpm", &(sl->map.tex[4]));
+	load_img(sl, "data/texture/border_right.xpm", &(sl->map.tex[5]));
+	load_img(sl, "data/texture/border_upright.xpm", &(sl->map.tex[6]));
+	load_img(sl, "data/texture/border_downright.xpm", &(sl->map.tex[7]));
+	load_img(sl, "data/texture/border_upleft.xpm", &(sl->map.tex[8]));
+	load_img(sl, "data/texture/border_downleft.xpm", &(sl->map.tex[9]));
+	load_img(sl, "data/texture/collectible.xpm", &(sl->map.tex[10]));
+	load_img(sl, "data/texture/col_empty.xpm", &(sl->map.tex[11]));
+	load_img(sl, "data/texture/col_inprogress.xpm", &(sl->map.tex[12]));
+	load_img(sl, "data/texture/col_full.xpm", &(sl->map.tex[13]));
 	return (0);
 }
 
