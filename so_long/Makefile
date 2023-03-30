@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/03/28 15:22:29 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/03/29 14:25:33 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -48,6 +48,7 @@ SRCS =	main.c \
 		src/parsing/parsing_utils.c \
 		src/init/window.c \
 		src/init/load_img.c \
+		src/init/destroy_img.c \
 		src/init/load_map.c \
 		src/display/display.c \
 		src/event/event.c \

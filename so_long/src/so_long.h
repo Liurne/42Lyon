@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 18:28:07 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:12:38 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ typedef struct s_map
 	t_vec	pos;
 	t_vec	end;
 	t_img	img;
-	t_img	tex[14];
+	t_img	tex[15];
 }	t_map;
 
 typedef struct s_entity
@@ -62,6 +62,8 @@ typedef struct s_entity
 	t_vec	pos;
 	int		dir;
 	size_t	nb_mv;
+	size_t	d;
+	int		inmove;
 }	t_entity;
 
 typedef struct s_data
@@ -69,7 +71,8 @@ typedef struct s_data
 	t_wins		win;
 	t_map		map;
 	t_entity	pl;
-	t_img		tex_pl[4];
+	t_img		tex_pl[4][4];
+	int 		anim;
 }	t_data;
 
 /* -----window----- */
@@ -79,8 +82,11 @@ int		init_window(t_data *sl);
 /* -----load_img----- */
 int		new_img(t_data *sl, t_img *img, int w, int h);
 int		load_img(t_data *sl, char *path, t_img *img);
+int 	destroy_img(t_data *sl, t_img *img);
 int		load_map_img(t_data *sl);
 int		load_pl_img(t_data *sl);
+void	destroy_img_map(t_data *sl);
+void	destroy_img_pl(t_data *sl);
 
 /* -----display----- */
 int		update_display(t_data *sl);
@@ -92,10 +98,10 @@ int		event_manager(int keycode, t_data *sl);
 
 /* -----map----- */
 int		load_map(t_data *sl, char *path);
-void	reload_tile_img(t_data *sl, int x, int y);
 char	get_tile(t_data *sl, int x, int y);
 int		put_tile(t_data *sl, int x, int y, char c);
 int		map_to_img(t_data *sl);
+void	reload_tile_img(t_data *sl, int x, int y);
 
 /* -----utils----- */
 size_t	ft_strlen(const char *str);

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 18:37:56 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:42:47 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,35 +26,63 @@ int	still_collectible(t_data *sl)
 	return (0);
 }
 
-void	pick_collectible(t_data *sl)
+int	collision_action(t_data *sl, int x, int y)
 {
-	if (get_tile(sl, sl->pl.pos.x / 64, sl->pl.pos.y / 64) == 'C')
+	if (get_tile(sl, x, y) == 'C')
 	{
-		put_tile(sl, (sl->pl.pos.x) / 64, (sl->pl.pos.y) / 64, '0');
-		reload_tile_img(sl, sl->pl.pos.x , sl->pl.pos.y);
+		put_tile(sl, x, y, '0');
+		reload_tile_img(sl, x * 64, y * 64);
 		if (get_tile(sl, sl->map.end.x / 64, sl->map.end.y /64) == 'E')
 			put_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64, 'I');
 		if (!still_collectible(sl))
 			put_tile(sl, sl->map.end.x / 64 , sl->map.end.y / 64, 'S');
 		reload_tile_img(sl, sl->map.end.x, sl->map.end.y);
 	}
-	if (get_tile(sl, sl->pl.pos.x / 64, sl->pl.pos.y / 64) == 'S')
+	if (get_tile(sl, x, y) == 'S')
 	{
 		printf("You Won !!\n");
 		close_window(sl);
 	}
+	if (get_tile(sl, x, y) == '1')
+		return (1);
+	return (0);
+}
+
+int test_collision(t_data *sl, int x, int y)
+{
+	int	next_x;
+	int	next_y;
+	int collision;
+
+	collision = 0;
+	next_x = (sl->pl.pos.x + x) / 64;
+	next_y = (sl->pl.pos.y + y) / 64;
+	if (get_tile(sl, next_x, next_y) != '0')
+		collision += collision_action(sl, next_x, next_y);
+	if (get_tile(sl, next_x, next_y + 1) != '0')
+		collision += collision_action(sl, next_x, next_y + 1);
+	if (get_tile(sl, next_x + 1, next_y) != '0')
+		collision += collision_action(sl, next_x + 1, next_y);
+	if (get_tile(sl, next_x + 1, next_y + 1) != '0')
+		collision += collision_action(sl, next_x + 1, next_y + 1);
+	return (collision);
 }
 
 int	move_player(t_data *sl, int x, int y, int dir)
 {
 	sl->pl.dir = dir;
-	if (get_tile(sl, (sl->pl.pos.x + x) / 64, (sl->pl.pos.y + y) / 64) != '1')
+	sl->pl.inmove = 1;
+	if (!test_collision(sl, x, y))
 	{
-		sl->pl.nb_mv++;
-		printf("nb move :%ld\n", sl->pl.nb_mv);
+		sl->pl.d += 8;
+		if (sl->pl.d == 64)
+		{
+			sl->pl.nb_mv++;
+			printf("nb move :%ld\n", sl->pl.nb_mv);
+			sl->pl.d = 0;
+		}
 		sl->pl.pos.x += x;
 		sl->pl.pos.y += y;
-		pick_collectible(sl);
 		if ((sl->pl.pos.x >= sl->win.w / 2 && x > 0 && (sl->map.w * 64)
 				+ sl->map.pos.x > sl->win.w) || (sl->pl.pos.x >= sl->win.w
 				/ 2 - 64 && x < 0 && sl->map.pos.x < 0))
@@ -69,28 +97,16 @@ int	move_player(t_data *sl, int x, int y, int dir)
 
 int	event_manager(int keycode, t_data *sl)
 {
-	printf("keycode:%d\n", keycode);
+	//printf("keycode:%d\n", keycode);
 	if (keycode == 65307)
 		close_window(sl);
 	if (keycode == 119 || keycode == 122)
-	{
-		printf("up\n");
-		move_player(sl, 0, -64, 1);
-	}
+		move_player(sl, 0, -8, 1);
 	if (keycode == 115)
-	{
-		printf("down\n");
-		move_player(sl, 0, 64, 0);
-	}	
+		move_player(sl, 0, 8, 0);
 	if (keycode == 97 || keycode == 113)
-	{
-		printf("left\n");
-		move_player(sl, -64, 0, 3);
-	}
+		move_player(sl, -8, 0, 3);
 	if (keycode == 100)
-	{
-		printf("right\n");
-		move_player(sl, 64, 0, 2);
-	}
+		move_player(sl, 8, 0, 2);
 	return (keycode);
 }

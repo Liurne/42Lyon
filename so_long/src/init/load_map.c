@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 18:48:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/29 15:40:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,23 +33,18 @@ void	find_pos(t_data *sl)
 	int	x;
 	int	y;
 
-	x = 0;
-	while (x < sl->map.w)
+	x = -1;
+	while (++x < sl->map.w)
 	{
-		y = 0;
-		while (y < sl->map.h)
+		y = -1;
+		while (++y < sl->map.h)
 		{
 			if (get_tile(sl, x, y) == 'P')
 			{
-				printf("yep\n");
 				sl->pl.pos.x = x * 64;
 				sl->pl.pos.y = y * 64;
-				printf("pos x:%d, y:%d\n",sl->pl.pos.x, sl->win.w / 2);
 				if (sl->pl.pos.x >= sl->win.w / 2)
-				{
 					sl->map.pos.x = -64 * ((sl->pl.pos.x / 2) / 64);
-					printf("ok\n");
-				}
 				if (sl->pl.pos.y >= sl->win.h / 2)
 					sl->map.pos.y = -64 * ((sl->pl.pos.y / 2) / 64);
 			}
@@ -58,9 +53,7 @@ void	find_pos(t_data *sl)
 				sl->map.end.x = x * 64;
 				sl->map.end.y = y * 64;
 			}
-			y++;
 		}
-		x++;
 	}
 }
 
@@ -75,5 +68,7 @@ int	load_map(t_data *sl, char *path)
 	find_pos(sl);
 	sl->pl.dir = 0;
 	sl->pl.nb_mv = 0;
+	sl->pl.d = 0;
+	sl->pl.inmove = 0;
 	return (1);
 }

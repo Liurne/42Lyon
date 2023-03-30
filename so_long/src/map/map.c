@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 16:31:17 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/29 17:18:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 static void	wich_wall(t_map *map, int x, int y)
 {
-	if (x < 64 && y > 64 && y < (map->h - 1) * 64)
+	if (x < 64 && y > 63 && y < (map->h - 1) * 64 + 1)
 		put_pixel(&(map->img), x, y, get_pixel(&(map->tex[4]), x % 64, y % 64));
-	else if (x > (map->w - 1) * 64 && y > 64 && y < (map->h - 1) * 64)
+	else if (x > (map->w - 1) * 64 + 1 && y > 63 && y < (map->h - 1) * 64 + 1)
 		put_pixel(&(map->img), x, y, get_pixel(&(map->tex[5]), x % 64, y % 64));
-	else if (y < 64 && x > 64 && x < (map->w - 1) * 64)
+	else if (y < 63 && x > 63 && x < (map->w - 1) * 64 + 1)
 		put_pixel(&(map->img), x, y, get_pixel(&(map->tex[3]), x % 64, y % 64));
-	else if (y > (map->h - 1) * 64 && x > 64 && x < (map->w - 1) * 64)
+	else if (y > (map->h - 1) * 64 && x > 63 && x < (map->w - 1) * 64 + 1)
 		put_pixel(&(map->img), x, y, get_pixel(&(map->tex[2]), x % 64, y % 64));
 	else if (y > (map->h - 1) * 64 && x < 64)
 		put_pixel(&(map->img), x, y, get_pixel(&(map->tex[9]), x % 64, y % 64));
@@ -37,8 +37,14 @@ static void	wich_wall(t_map *map, int x, int y)
 static void	wich_tile(t_data *sl, int x, int y)
 {
 	if (get_tile(sl, x / 64, y / 64) == '0' || get_tile(sl, x / 64, y / 64) == 'P')
-		put_pixel(&(sl->map.img), x, y, get_pixel(&(sl->map.tex[0]),
-				x % 64, y % 64));
+	{
+		if (!((x / 64) % 3) && !((y / 64) % 3))
+			put_pixel(&(sl->map.img), x, y, get_pixel(&(sl->map.tex[14]),
+					x % 64, y % 64));
+		else
+			put_pixel(&(sl->map.img), x, y, get_pixel(&(sl->map.tex[0]),
+					x % 64, y % 64));
+	}
 	else if (get_tile(sl, x / 64, y / 64) == '1')
 		wich_wall(&(sl->map), x, y);
 	else if (get_tile(sl, x / 64, y / 64) == 'E')
