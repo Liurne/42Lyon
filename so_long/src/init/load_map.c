@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 15:40:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/30 12:05:57 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,9 +44,9 @@ void	find_pos(t_data *sl)
 				sl->pl.pos.x = x * 64;
 				sl->pl.pos.y = y * 64;
 				if (sl->pl.pos.x >= sl->win.w / 2)
-					sl->map.pos.x = -64 * ((sl->pl.pos.x / 2) / 64);
+					sl->map.pos.x = -64 * (((sl->pl.pos.x / 2) / 64) - 1);
 				if (sl->pl.pos.y >= sl->win.h / 2)
-					sl->map.pos.y = -64 * ((sl->pl.pos.y / 2) / 64);
+					sl->map.pos.y = -64 * (((sl->pl.pos.y / 2) / 64));
 			}
 			if (get_tile(sl, x, y) == 'E')
 			{

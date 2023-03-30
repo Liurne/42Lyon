@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 15:42:47 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/30 14:37:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,23 +48,23 @@ int	collision_action(t_data *sl, int x, int y)
 	return (0);
 }
 
-int test_collision(t_data *sl, int x, int y)
+int	test_collision(t_data *sl, int x, int y)
 {
 	int	next_x;
 	int	next_y;
-	int collision;
+	int	collision;
 
 	collision = 0;
-	next_x = (sl->pl.pos.x + x) / 64;
-	next_y = (sl->pl.pos.y + y) / 64;
-	if (get_tile(sl, next_x, next_y) != '0')
-		collision += collision_action(sl, next_x, next_y);
-	if (get_tile(sl, next_x, next_y + 1) != '0')
-		collision += collision_action(sl, next_x, next_y + 1);
-	if (get_tile(sl, next_x + 1, next_y) != '0')
-		collision += collision_action(sl, next_x + 1, next_y);
-	if (get_tile(sl, next_x + 1, next_y + 1) != '0')
-		collision += collision_action(sl, next_x + 1, next_y + 1);
+	next_x = sl->pl.pos.x + x + 8;
+	next_y = sl->pl.pos.y + y + 8;
+	if (get_tile(sl, next_x / 64, next_y / 64) != '0')
+		collision += collision_action(sl, next_x / 64, next_y / 64);
+	if (get_tile(sl, next_x / 64, (next_y + 48) / 64) != '0')
+		collision += collision_action(sl, (next_x + 48) / 64, next_y / 64 + 1);
+	if (get_tile(sl, (next_x + 48) / 64, next_y / 64) != '0')
+		collision += collision_action(sl, (next_x + 48) / 64, next_y / 64);
+	if (get_tile(sl, (next_x + 48) / 64, (next_y + 48) / 64) != '0')
+		collision += collision_action(sl, (next_x + 48) / 64, (next_y + 48) / 64);
 	return (collision);
 }
 

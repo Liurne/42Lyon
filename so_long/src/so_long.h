@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 17:12:38 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/30 13:16:25 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
-//# include <stdint.h>
 # include <fcntl.h>
 
 typedef struct s_vec
@@ -72,7 +71,7 @@ typedef struct s_data
 	t_map		map;
 	t_entity	pl;
 	t_img		tex_pl[4][4];
-	int 		anim;
+	int			anim;
 }	t_data;
 
 /* -----window----- */
@@ -82,7 +81,7 @@ int		init_window(t_data *sl);
 /* -----load_img----- */
 int		new_img(t_data *sl, t_img *img, int w, int h);
 int		load_img(t_data *sl, char *path, t_img *img);
-int 	destroy_img(t_data *sl, t_img *img);
+int		destroy_img(t_data *sl, t_img *img);
 int		load_map_img(t_data *sl);
 int		load_pl_img(t_data *sl);
 void	destroy_img_map(t_data *sl);
