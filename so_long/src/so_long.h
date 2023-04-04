@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 15:09:16 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:19:35 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,10 @@
 # include <limits.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# define ERR_ARG "Invalid number of argument"
+# define ERR_LIB "Couldn't create a window"
+# define ERR_MAP "Map invalid or non-existant"
+# define ERR_TEX "Texture invalid or non-existant"
 
 typedef struct s_vec
 {

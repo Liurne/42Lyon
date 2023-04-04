@@ -6,19 +6,25 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 14:59:35 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 16:01:49 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+void	ft_bzero(void *s, size_t n)
+{
+	size_t	i;
+
+	i = 0;
+	while (++i < n + 1)
+		((char *) s)[i - 1] = '\0';
+}
+
 int	close_window(t_data *sl)
 {
-	printf("ok\n");
 	destroy_img_map(sl);
-	printf("ok\n");
 	destroy_img_pl(sl);
-	printf("ok\n");
 	destroy_img(sl, &(sl->map.img));
 	destroy_img(sl, &(sl->win.renderer));
 	if (sl->map.map)
@@ -36,6 +42,7 @@ int	close_window(t_data *sl)
 
 int	init_window(t_data *sl)
 {
+	ft_bzero(sl, sizeof(t_data));
 	sl->win.w = 640;
 	sl->win.h = 384;
 	sl->win.mlx = mlx_init();

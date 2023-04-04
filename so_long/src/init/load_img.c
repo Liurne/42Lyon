@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 15:03:36 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:58:36 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,6 @@ int	load_img(t_data *sl, char *path, t_img *img)
 			&(img->line_length), &(img->endian));
 	if (!img->addr)
 		close_window(sl);
-	return (0);
-}
-
-int	destroy_img(t_data *sl, t_img *img)
-{
-	if (img->img)
-		mlx_destroy_image(sl->win.mlx, img->img);
 	return (0);
 }
 

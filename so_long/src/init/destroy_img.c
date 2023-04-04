@@ -6,11 +6,18 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:25:14 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 11:50:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:58:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+int	destroy_img(t_data *sl, t_img *img)
+{
+	if (img->img)
+		mlx_destroy_image(sl->win.mlx, img->img);
+	return (0);
+}
 
 void	destroy_img_pl(t_data *sl)
 {
