@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/30 12:05:57 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 13:19:01 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	verif_map_size(t_data *sl)
 	int	tmp;
 
 	tmp = 0;
-	while(sl->map.map[tmp] != '\n' && sl->map.map[tmp])
+	while (sl->map.map[tmp] != '\n' && sl->map.map[tmp])
 		tmp++;
 	if (!sl->map.map[tmp])
 		return (0);
@@ -59,10 +59,10 @@ void	find_pos(t_data *sl)
 
 int	load_map(t_data *sl, char *path)
 {
-	(void)path;
 	load_file(sl, path);
-	if (!verif_map_size(sl))
-		return (free(sl->map.map), 0);
+	if (!verif_map_size(sl) || !is_still(sl, 'C') || !is_still(sl,
+			'E') || !is_still(sl, 'P'))
+		return (close_window(sl), 0);
 	sl->map.pos.x = 0;
 	sl->map.pos.y = 0;
 	find_pos(sl);

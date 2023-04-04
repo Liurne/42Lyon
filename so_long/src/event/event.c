@@ -6,25 +6,11 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/30 14:37:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:58:01 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
-
-int	still_collectible(t_data *sl)
-{
-	int	i;
-
-	i = 0;
-	while (sl->map.map[i])
-	{
-		if (sl->map.map[i] == 'C')
-			return (1);
-		i++;
-	}
-	return (0);
-}
 
 int	collision_action(t_data *sl, int x, int y)
 {
@@ -32,10 +18,10 @@ int	collision_action(t_data *sl, int x, int y)
 	{
 		put_tile(sl, x, y, '0');
 		reload_tile_img(sl, x * 64, y * 64);
-		if (get_tile(sl, sl->map.end.x / 64, sl->map.end.y /64) == 'E')
+		if (get_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64) == 'E')
 			put_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64, 'I');
-		if (!still_collectible(sl))
-			put_tile(sl, sl->map.end.x / 64 , sl->map.end.y / 64, 'S');
+		if (!is_still(sl, 'C'))
+			put_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64, 'S');
 		reload_tile_img(sl, sl->map.end.x, sl->map.end.y);
 	}
 	if (get_tile(sl, x, y) == 'S')
@@ -55,16 +41,17 @@ int	test_collision(t_data *sl, int x, int y)
 	int	collision;
 
 	collision = 0;
-	next_x = sl->pl.pos.x + x + 8;
-	next_y = sl->pl.pos.y + y + 8;
+	next_x = sl->pl.pos.x + x + 16;
+	next_y = sl->pl.pos.y + y + 16;
 	if (get_tile(sl, next_x / 64, next_y / 64) != '0')
 		collision += collision_action(sl, next_x / 64, next_y / 64);
-	if (get_tile(sl, next_x / 64, (next_y + 48) / 64) != '0')
-		collision += collision_action(sl, (next_x + 48) / 64, next_y / 64 + 1);
-	if (get_tile(sl, (next_x + 48) / 64, next_y / 64) != '0')
-		collision += collision_action(sl, (next_x + 48) / 64, next_y / 64);
-	if (get_tile(sl, (next_x + 48) / 64, (next_y + 48) / 64) != '0')
-		collision += collision_action(sl, (next_x + 48) / 64, (next_y + 48) / 64);
+	if (get_tile(sl, next_x / 64, (next_y + 46) / 64) != '0')
+		collision += collision_action(sl, next_x / 64, (next_y + 46) / 64);
+	if (get_tile(sl, (next_x + 32) / 64, next_y / 64) != '0')
+		collision += collision_action(sl, (next_x + 32) / 64, next_y / 64);
+	if (get_tile(sl, (next_x + 32) / 64, (next_y + 46) / 64) != '0')
+		collision += collision_action(sl, (next_x + 32) / 64,
+				(next_y + 46) / 64);
 	return (collision);
 }
 
@@ -97,7 +84,6 @@ int	move_player(t_data *sl, int x, int y, int dir)
 
 int	event_manager(int keycode, t_data *sl)
 {
-	//printf("keycode:%d\n", keycode);
 	if (keycode == 65307)
 		close_window(sl);
 	if (keycode == 119 || keycode == 122)

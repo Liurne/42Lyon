@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 15:24:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 16:20:36 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:51:43 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_strber(const char *haystack)
 {
 	size_t	i;
 	size_t	j;
-	char *ber;
+	char	*ber;
 
 	ber = ".ber\0";
 	i = 0;

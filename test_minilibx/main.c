@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/08 16:09:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:58:58 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 int	close_window(t_wins *win)
 {
+	mlx_destroy_image(win->mlx, win->img);
+	printf("img detruite\n");
 	mlx_destroy_window(win->mlx, win->win);
 	mlx_destroy_display(win->mlx);
 	free(win->mlx);
@@ -60,13 +62,12 @@ int	main(void)
 	t_data		data;
 	int			img_width;
 	int			img_height;
-	void		*img;
 	
 	cube = (t_rectangle){(t_point){225, 225}, 50, 50};
 	window.mlx = mlx_init();
 	window.win = mlx_new_window(window.mlx, 500, 500, "so_long");
 	renderer.img = mlx_new_image(window.mlx, 500, 500);
-	img = mlx_xpm_file_to_image(window.mlx, "player.xpm", &img_width, &img_height);
+	window.img = mlx_xpm_file_to_image(window.mlx, "data/player.xpm", &img_width, &img_height);
 	renderer.addr = mlx_get_data_addr(renderer.img, &renderer.bits_per_pixel,
 			&renderer.line_length, &renderer.endian);
 	data.win = &window;
@@ -80,7 +81,7 @@ int	main(void)
 	mlx_hook(window.win, 2, 1L << 0, event_manager, &data);
 	mlx_hook(window.win, 17, 1L << 0, close_window, &window);
 	mlx_put_image_to_window(window.mlx, window.win, renderer.img, 0, 0);
-	mlx_put_image_to_window(window.mlx, window.win, img, 0, 0);
+	mlx_put_image_to_window(window.mlx, window.win, window.img, 0, 0);
 	mlx_loop(window.mlx);
 	return (0);
 }

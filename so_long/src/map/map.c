@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 17:18:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:50:12 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,8 @@ static void	wich_wall(t_map *map, int x, int y)
 
 static void	wich_tile(t_data *sl, int x, int y)
 {
-	if (get_tile(sl, x / 64, y / 64) == '0' || get_tile(sl, x / 64, y / 64) == 'P')
+	if (get_tile(sl, x / 64, y / 64) == '0' || get_tile(sl,
+			x / 64, y / 64) == 'P')
 	{
 		if (!((x / 64) % 3) && !((y / 64) % 3))
 			put_pixel(&(sl->map.img), x, y, get_pixel(&(sl->map.tex[14]),

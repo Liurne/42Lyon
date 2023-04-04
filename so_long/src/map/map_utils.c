@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/28 16:26:07 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:49:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,18 @@ int	put_tile(t_data *sl, int x, int y, char c)
 	}
 	else
 		return (0);
+}
+
+int	is_still(t_data *sl, char c)
+{
+	int	i;
+
+	i = 0;
+	while (sl->map.map[i])
+	{
+		if (sl->map.map[i] == c)
+			return (1);
+		i++;
+	}
+	return (0);
 }

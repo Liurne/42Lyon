@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/30 13:16:25 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:09:16 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,6 +99,7 @@ int		event_manager(int keycode, t_data *sl);
 int		load_map(t_data *sl, char *path);
 char	get_tile(t_data *sl, int x, int y);
 int		put_tile(t_data *sl, int x, int y, char c);
+int		is_still(t_data *sl, char c);
 int		map_to_img(t_data *sl);
 void	reload_tile_img(t_data *sl, int x, int y);
 

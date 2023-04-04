@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/30 12:20:23 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 14:59:35 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,15 @@
 
 int	close_window(t_data *sl)
 {
+	printf("ok\n");
 	destroy_img_map(sl);
+	printf("ok\n");
 	destroy_img_pl(sl);
+	printf("ok\n");
 	destroy_img(sl, &(sl->map.img));
 	destroy_img(sl, &(sl->win.renderer));
+	if (sl->map.map)
+		free(sl->map.map);
 	if (sl->win.win)
 		mlx_destroy_window(sl->win.mlx, sl->win.win);
 	if (sl->win.mlx)

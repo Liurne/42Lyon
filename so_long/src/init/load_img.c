@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/30 12:03:17 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 15:03:36 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ int	load_img(t_data *sl, char *path, t_img *img)
 	return (0);
 }
 
-int destroy_img(t_data *sl, t_img *img)
+int	destroy_img(t_data *sl, t_img *img)
 {
 	if (img->img)
 		mlx_destroy_image(sl->win.mlx, img->img);
@@ -60,7 +60,7 @@ int	load_map_img(t_data *sl)
 	load_img(sl, "data/texture/col_empty.xpm", &(sl->map.tex[11]));
 	load_img(sl, "data/texture/col_inprogress.xpm", &(sl->map.tex[12]));
 	load_img(sl, "data/texture/col_full.xpm", &(sl->map.tex[13]));
-	load_img(sl, "data/texture/test.xpm", &(sl->map.tex[14]));
+	load_img(sl, "data/texture/grass_alt.xpm", &(sl->map.tex[14]));
 	return (0);
 }
 

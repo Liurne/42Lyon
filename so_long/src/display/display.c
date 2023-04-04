@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:45:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 16:05:21 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/04 11:52:39 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,6 @@ int	render_display(t_data *sl)
 					get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y));
 		}
 	}
-	put_pixel(&(sl->win.renderer), sl->pl.pos.x + sl->map.pos.x, sl->pl.pos.y + sl->map.pos.y + 64, 0xFF0000FF);
 	return (0);
 }
 
@@ -63,7 +62,7 @@ int	update_display(t_data *sl)
 {
 	int			x;
 	int			y;
-	
+
 	animation(sl);
 	x = -1;
 	while (x++ < sl->win.w)

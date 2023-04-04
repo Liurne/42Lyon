@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/02/28 13:47:53 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/03/30 11:56:16 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_wins
 {
 	void	*mlx;
 	void	*win;
+	void	*img;
 }	t_wins;
 
 typedef struct s_surface
