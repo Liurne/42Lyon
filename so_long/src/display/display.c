@@ -6,11 +6,33 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:45:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 11:52:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:43:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+void display_entity(t_data *sl, t_entity *e)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (x++ < sl->tex_pl[sl->pl.dir][sl->anim].img_w -1)
+	{
+		y = -1;
+		while (y++ < sl->tex_pl[sl->pl.dir][sl->anim].img_h - 1)
+		{
+			if (get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y) >> 24 == 0
+				&& e->pos.x + x + sl->map.pos.x > 0 && e->pos.x + x
+				+ sl->map.pos.x < sl->win.w && e->pos.y + y + sl->map.pos.y
+				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
+				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
+					e->pos.y + y + sl->map.pos.y,
+					get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y));
+		}
+	}
+}
 
 int	render_display(t_data *sl)
 {
@@ -25,18 +47,8 @@ int	render_display(t_data *sl)
 			put_pixel(&(sl->win.renderer), x, y, get_pixel(&(sl->map.img),
 					x - sl->map.pos.x, y - sl->map.pos.y));
 	}
-	x = -1;
-	while (x++ < sl->tex_pl[sl->pl.dir][sl->anim].img_w -1)
-	{
-		y = -1;
-		while (y++ < sl->tex_pl[sl->pl.dir][sl->anim].img_h - 1)
-		{
-			if (get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y) >> 24 == 0)
-				put_pixel(&(sl->win.renderer), sl->pl.pos.x + x + sl->map.pos.x,
-					sl->pl.pos.y + y + sl->map.pos.y,
-					get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y));
-		}
-	}
+	display_entity(sl, &(sl->cat));
+	display_entity(sl, &(sl->pl));
 	return (0);
 }
 

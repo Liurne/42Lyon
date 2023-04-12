@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/04/04 16:20:08 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/04/12 14:41:23 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,16 +43,16 @@ MLXFLAGS	=  -Lminilibx/ -lmlx -lXext -lX11 -lm -lz
 MLX			= minilibx/libmlx.a
 
 SRCS =	main.c \
-		src/parsing/parsing.c \
-		src/parsing/parsing_utils.c \
+		src/map/map.c \
+		src/map/map_utils.c \
+		src/map/map_img.c \
+		src/map/map_parsing.c \
+		src/map/verif_map.c \
 		src/init/window.c \
 		src/init/load_img.c \
 		src/init/destroy_img.c \
-		src/init/load_map.c \
 		src/display/display.c \
-		src/event/event.c \
-		src/map/map.c \
-		src/map/map_utils.c
+		src/event/event.c
 
 OBJS = ${SRCS:.c=.o}
 

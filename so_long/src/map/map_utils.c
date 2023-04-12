@@ -6,28 +6,22 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 11:49:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:38:48 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	get_tile(t_data *sl, int x, int y)
+size_t	ft_strlen(const char *str)
 {
-	if (x < sl->map.w && y < sl->map.h)
-		return (sl->map.map[(y * (sl->map.w + 1)) + x]);
-	return ('\0');
-}
+	int	i;
 
-int	put_tile(t_data *sl, int x, int y, char c)
-{
-	if (x < sl->map.w && y < sl->map.h)
-	{
-		sl->map.map[(y * (sl->map.w + 1)) + x] = c;
-		return (1);
-	}
-	else
+	i = 0;
+	if (!str)
 		return (0);
+	while (str[i])
+		i++;
+	return (i);
 }
 
 int	is_still(t_data *sl, char c)
@@ -42,4 +36,14 @@ int	is_still(t_data *sl, char c)
 		i++;
 	}
 	return (0);
+}
+
+void	init_entity(t_entity *e, int x, int y)
+{
+	e->pos.x = x * 64;
+	e->pos.y = y * 64;
+	e->dir = 0;
+	e->nb_mv = 0;
+	e->d = 0;
+	e->inmove = 0;
 }

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   load_map.c                                         :+:      :+:    :+:   */
+/*   verif_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 13:19:01 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 15:13:23 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	verif_map_size(t_data *sl)
 	return (1);
 }
 
-void	find_pos(t_data *sl)
+void	init_pos(t_data *sl)
 {
 	int	x;
 	int	y;
@@ -41,8 +41,7 @@ void	find_pos(t_data *sl)
 		{
 			if (get_tile(sl, x, y) == 'P')
 			{
-				sl->pl.pos.x = x * 64;
-				sl->pl.pos.y = y * 64;
+				init_entity(&(sl->pl), x, y);
 				if (sl->pl.pos.x >= sl->win.w / 2)
 					sl->map.pos.x = -64 * (((sl->pl.pos.x / 2) / 64) - 1);
 				if (sl->pl.pos.y >= sl->win.h / 2)
@@ -52,23 +51,8 @@ void	find_pos(t_data *sl)
 			{
 				sl->map.end.x = x * 64;
 				sl->map.end.y = y * 64;
+				init_entity(&(sl->cat), x, y);
 			}
 		}
 	}
-}
-
-int	load_map(t_data *sl, char *path)
-{
-	load_file(sl, path);
-	if (!verif_map_size(sl) || !is_still(sl, 'C') || !is_still(sl,
-			'E') || !is_still(sl, 'P'))
-		return (close_window(sl), 0);
-	sl->map.pos.x = 0;
-	sl->map.pos.y = 0;
-	find_pos(sl);
-	sl->pl.dir = 0;
-	sl->pl.nb_mv = 0;
-	sl->pl.d = 0;
-	sl->pl.inmove = 0;
-	return (1);
 }

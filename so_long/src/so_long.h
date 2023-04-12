@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 16:19:35 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 14:39:02 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ typedef struct s_data
 	t_wins		win;
 	t_map		map;
 	t_entity	pl;
+	t_entity	cat;
 	t_img		tex_pl[4][4];
 	int			anim;
 }	t_data;
@@ -100,17 +101,18 @@ int		get_pixel(t_img *img, int x, int y);
 int		event_manager(int keycode, t_data *sl);
 
 /* -----map----- */
+int		load_file(t_data *sl, char *path);
 int		load_map(t_data *sl, char *path);
 char	get_tile(t_data *sl, int x, int y);
 int		put_tile(t_data *sl, int x, int y, char c);
 int		is_still(t_data *sl, char c);
+void	init_entity(t_entity *e, int x, int y);
+void	init_pos(t_data *sl);
+int		verif_map_size(t_data *sl);
 int		map_to_img(t_data *sl);
 void	reload_tile_img(t_data *sl, int x, int y);
 
 /* -----utils----- */
 size_t	ft_strlen(const char *str);
-int		ft_strber(const char *haystack);
-char	*ft_strjoin(char *s1, char *s2);
-int		load_file(t_data *sl, char *path);
 
 #endif
