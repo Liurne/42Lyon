@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/04/12 14:41:23 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/04/12 16:29:58 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,7 +52,8 @@ SRCS =	main.c \
 		src/init/load_img.c \
 		src/init/destroy_img.c \
 		src/display/display.c \
-		src/event/event.c
+		src/event/event.c \
+		src/event/cat.c
 
 OBJS = ${SRCS:.c=.o}
 

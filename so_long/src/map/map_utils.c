@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 14:38:48 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:55:15 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,5 @@ void	init_entity(t_entity *e, int x, int y)
 	e->nb_mv = 0;
 	e->d = 0;
 	e->inmove = 0;
+	e->animation = 0;
 }

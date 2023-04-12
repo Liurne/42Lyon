@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 14:39:02 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 16:53:45 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_entity
 	size_t	nb_mv;
 	size_t	d;
 	int		inmove;
+	int 	animation;
 }	t_entity;
 
 typedef struct s_data
@@ -99,6 +100,7 @@ int		get_pixel(t_img *img, int x, int y);
 
 /* -----event----- */
 int		event_manager(int keycode, t_data *sl);
+void	cat_manager(t_data *sl, int r);
 
 /* -----map----- */
 int		load_file(t_data *sl, char *path);

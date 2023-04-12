@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:45:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 15:43:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/12 17:32:05 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,18 @@ void display_entity(t_data *sl, t_entity *e)
 	int	y;
 
 	x = -1;
-	while (x++ < sl->tex_pl[sl->pl.dir][sl->anim].img_w -1)
+	while (x++ < sl->tex_pl[e->dir][e->animation].img_w -1)
 	{
 		y = -1;
-		while (y++ < sl->tex_pl[sl->pl.dir][sl->anim].img_h - 1)
+		while (y++ < sl->tex_pl[e->dir][e->animation].img_h - 1)
 		{
-			if (get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y) >> 24 == 0
+			if (get_pixel(&(sl->tex_pl[e->dir][e->animation]), x, y) >> 24 == 0
 				&& e->pos.x + x + sl->map.pos.x > 0 && e->pos.x + x
 				+ sl->map.pos.x < sl->win.w && e->pos.y + y + sl->map.pos.y
 				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
 				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
 					e->pos.y + y + sl->map.pos.y,
-					get_pixel(&(sl->tex_pl[sl->pl.dir][sl->anim]), x, y));
+					get_pixel(&(sl->tex_pl[e->dir][e->animation]), x, y));
 		}
 	}
 }
@@ -52,22 +52,28 @@ int	render_display(t_data *sl)
 	return (0);
 }
 
-void	animation(t_data *sl)
+int	animation(t_data *sl)
 {
 	static int	frame;
 
-	if (frame == 25 && !sl->pl.inmove)
-		sl->anim = 0;
-	if (frame == 25)
+	if (frame >= 25)
 	{
-		if (sl->pl.inmove)
-			sl->anim++;
+		sl->anim++;
 		if (sl->anim > 3)
 			sl->anim = 0;
+		if (sl->pl.inmove)
+			sl->pl.animation = sl->anim;
+		else
+			sl->pl.animation = 0;
+		if (sl->cat.inmove)
+			sl->cat.animation = sl->anim;
+		else
+			sl->cat.animation = 0;
 		frame = 0;
 		sl->pl.inmove = 0;
 	}
 	++frame;
+	return (frame);
 }
 
 int	update_display(t_data *sl)
@@ -75,7 +81,7 @@ int	update_display(t_data *sl)
 	int			x;
 	int			y;
 
-	animation(sl);
+	cat_manager(sl, animation(sl));
 	x = -1;
 	while (x++ < sl->win.w)
 	{
