@@ -6,35 +6,52 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/24 16:42:24 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:38:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-int	verif_map_border(t_data *sl)
+int	recu_finder(t_data *sl, int x, int y, int dir)
+{
+	if (x >= sl->map.w || x < 0 || y >= sl->map.h || y < 0
+		|| get_tile(sl, x, y) == '1')
+		return (0);
+	if (get_tile(sl, x, y) == 'E')
+		set_tile(sl, x, y, 'e');
+	if (dir != 0)
+		recu_finder(sl, x - 1, y, 1);
+	if (dir != 1)
+		recu_finder(sl, x + 1, y, 0);
+	if (dir != 2)
+		recu_finder(sl, x, y - 1, 3);
+	if (dir != 3)
+		recu_finder(sl, x, y + 1, 2);
+}
+
+int	verif_map(t_data *sl)
 {
 	int	i;
+	int	j;
 
 	i = 0;
 	while (i < sl->map.w)
 	{
-		if (get_tile(sl, i, 0) != '1')
-			return (1);
-		if (get_tile(sl, i, sl->map.h - 1) != '1')
-			return (1);
+		j = 0;
+		while (j < sl->map.h)
+		{
+			if (get_tile(sl, i, j) != 'E' && get_tile(sl, i, j) != 'C'
+				&& get_tile(sl, i, j) != 'P' && get_tile(sl, i, j) != '1'
+				&& get_tile(sl, i, j) != '0')
+				return (0);
+			if (i == sl->map.w - 1 || i == 0 || j == sl->map.h - 1 || j == 0)
+				if (get_tile(sl, i, j) != '1')
+					return (0);
+			j++;
+		}
 		i++;
 	}
-	i = 0;
-	while (i < sl->map.h)
-	{
-		if (get_tile(sl, 0, i) != '1')
-			return (1);
-		if (get_tile(sl, sl->map.w - 1, i) != '1')
-			return (1);
-		i++;
-	}
-	return (0);
+	return (1);
 }
 
 int	verif_map_size(t_data *sl)
@@ -50,7 +67,7 @@ int	verif_map_size(t_data *sl)
 	if ((ft_strlen(sl->map.map) + 1) % (tmp + 1))
 		return (0);
 	sl->map.h = (ft_strlen(sl->map.map) + 1) / (tmp + 1);
-	if (verif_map_border(sl))
+	if (!verif_map(sl))
 		return (printf("ok"), 0);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/14 15:01:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,7 +108,7 @@ int		entity_collision(t_entity *e1, t_entity *e2);
 int		load_file(t_data *sl, char *path);
 int		load_map(t_data *sl, char *path);
 char	get_tile(t_data *sl, int x, int y);
-int		put_tile(t_data *sl, int x, int y, char c);
+int		set_tile(t_data *sl, int x, int y, char c);
 int		is_still(t_data *sl, char c);
 void	init_entity(t_entity *e, int x, int y);
 void	init_pos(t_data *sl);

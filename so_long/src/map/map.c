@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 14:28:55 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ char	get_tile(t_data *sl, int x, int y)
 	return ('\0');
 }
 
-int	put_tile(t_data *sl, int x, int y, char c)
+int	set_tile(t_data *sl, int x, int y, char c)
 {
 	if (x < sl->map.w && y < sl->map.h)
 	{
@@ -33,8 +33,7 @@ int	put_tile(t_data *sl, int x, int y, char c)
 int	load_map(t_data *sl, char *path)
 {
 	load_file(sl, path);
-	if (!verif_map_size(sl) || !is_still(sl, 'C') || !is_still(sl,
-			'E') || !is_still(sl, 'P'))
+	if (!verif_map_size(sl))
 		return (close_window(sl), 0);
 	sl->map.pos.x = 0;
 	sl->map.pos.y = 0;

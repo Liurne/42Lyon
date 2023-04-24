@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/14 17:04:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 17:32:18 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,12 +39,12 @@ int	collision_action(t_data *sl, int x, int y)
 {
 	if (get_tile(sl, x, y) == 'C')
 	{
-		put_tile(sl, x, y, '0');
+		set_tile(sl, x, y, '0');
 		reload_tile_img(sl, x * 128, y * 128);
 		if (get_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128) == 'E')
-			put_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'I');
+			set_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'I');
 		if (!is_still(sl, 'C'))
-			put_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'S');
+			set_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'S');
 		reload_tile_img(sl, sl->map.end.x, sl->map.end.y);
 	}
 	if (get_tile(sl, x, y) == 'S')
