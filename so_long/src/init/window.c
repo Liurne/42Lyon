@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 16:01:49 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:50:05 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,8 @@ int	close_window(t_data *sl)
 int	init_window(t_data *sl)
 {
 	ft_bzero(sl, sizeof(t_data));
-	sl->win.w = 640;
-	sl->win.h = 384;
+	sl->win.w = 1280;
+	sl->win.h = 768;
 	sl->win.mlx = mlx_init();
 	if (!sl->win.mlx)
 		exit(1);
@@ -55,5 +55,6 @@ int	init_window(t_data *sl)
 	if (!sl->win.renderer.img)
 		close_window(sl);
 	sl->anim = 0;
+	sl->need_pet = 250;
 	return (0);
 }

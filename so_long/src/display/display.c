@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:45:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 17:32:05 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:07:08 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,10 +40,10 @@ int	render_display(t_data *sl)
 	int	y;
 
 	x = -1;
-	while (x++ < sl->win.w && x - sl->map.pos.x < sl->map.w * 64)
+	while (x++ < sl->win.w && x - sl->map.pos.x < sl->map.w * 128)
 	{
 		y = -1;
-		while (y++ < sl->win.h && y - sl->map.pos.y < sl->map.h * 64)
+		while (y++ < sl->win.h && y - sl->map.pos.y < sl->map.h * 128)
 			put_pixel(&(sl->win.renderer), x, y, get_pixel(&(sl->map.img),
 					x - sl->map.pos.x, y - sl->map.pos.y));
 	}
@@ -56,7 +56,7 @@ int	animation(t_data *sl)
 {
 	static int	frame;
 
-	if (frame >= 25)
+	if (frame >= 8)
 	{
 		sl->anim++;
 		if (sl->anim > 3)

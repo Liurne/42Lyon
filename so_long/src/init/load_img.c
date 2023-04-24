@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/04 15:58:36 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:52:15 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	load_img(t_data *sl, char *path, t_img *img)
 int	load_map_img(t_data *sl)
 {
 	load_img(sl, "data/texture/grass.xpm", &(sl->map.tex[0]));
+	printf("ok\n");
 	load_img(sl, "data/texture/stone.xpm", &(sl->map.tex[1]));
 	load_img(sl, "data/texture/border_down.xpm", &(sl->map.tex[2]));
 	load_img(sl, "data/texture/border_up.xpm", &(sl->map.tex[3]));

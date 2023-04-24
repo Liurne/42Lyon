@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 16:55:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 16:49:21 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ int	is_still(t_data *sl, char c)
 
 void	init_entity(t_entity *e, int x, int y)
 {
-	e->pos.x = x * 64;
-	e->pos.y = y * 64;
+	e->pos.x = x * 128;
+	e->pos.y = y * 128;
 	e->dir = 0;
 	e->nb_mv = 0;
 	e->d = 0;

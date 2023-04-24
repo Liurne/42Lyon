@@ -6,22 +6,45 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 16:30:38 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 17:04:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
+
+int	entity_collision(t_entity *e1, t_entity *e2)
+{
+	int	x1;
+	int	y1;
+	int	x2;
+	int	y2;
+
+	x1 = e1->pos.x + 32;
+	y1 = e1->pos.y + 32;
+	x2 = e2->pos.x + 32;
+	y2 = e2->pos.y + 32;
+	if (x1 >= x2 && x1 < x2 + 64 && y1 >= y2 && y1 < y2 + 92)
+		return (1);
+	if (x1 + 64 >= x2 && x1 + 64 < x2 + 64 && y1 >= y2 && y1 < y2 + 92)
+		return (2);
+	if (x1 >= x2 && x1 < x2 + 64 && y1 + 92 >= y2 && y1 + 92 < y2 + 92)
+		return (3);
+	if (x1 + 64 >= x2 && x1 + 64 < x2 + 64 && y1 + 92 >= y2
+		&& y1 + 92 < y2 + 92)
+		return (4);
+	return (0);
+}
 
 int	collision_action(t_data *sl, int x, int y)
 {
 	if (get_tile(sl, x, y) == 'C')
 	{
 		put_tile(sl, x, y, '0');
-		reload_tile_img(sl, x * 64, y * 64);
-		if (get_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64) == 'E')
-			put_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64, 'I');
+		reload_tile_img(sl, x * 128, y * 128);
+		if (get_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128) == 'E')
+			put_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'I');
 		if (!is_still(sl, 'C'))
-			put_tile(sl, sl->map.end.x / 64, sl->map.end.y / 64, 'S');
+			put_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'S');
 		reload_tile_img(sl, sl->map.end.x, sl->map.end.y);
 	}
 	if (get_tile(sl, x, y) == 'S')
@@ -41,17 +64,17 @@ int	test_collision(t_data *sl, int x, int y)
 	int	collision;
 
 	collision = 0;
-	next_x = sl->pl.pos.x + x + 16;
-	next_y = sl->pl.pos.y + y + 16;
-	if (get_tile(sl, next_x / 64, next_y / 64) != '0')
-		collision += collision_action(sl, next_x / 64, next_y / 64);
-	if (get_tile(sl, next_x / 64, (next_y + 46) / 64) != '0')
-		collision += collision_action(sl, next_x / 64, (next_y + 46) / 64);
-	if (get_tile(sl, (next_x + 32) / 64, next_y / 64) != '0')
-		collision += collision_action(sl, (next_x + 32) / 64, next_y / 64);
-	if (get_tile(sl, (next_x + 32) / 64, (next_y + 46) / 64) != '0')
-		collision += collision_action(sl, (next_x + 32) / 64,
-				(next_y + 46) / 64);
+	next_x = sl->pl.pos.x + x + 32;
+	next_y = sl->pl.pos.y + y + 32;
+	if (get_tile(sl, next_x / 128, next_y / 128) != '0')
+		collision += collision_action(sl, next_x / 128, next_y / 128);
+	if (get_tile(sl, next_x / 128, (next_y + 92) / 128) != '0')
+		collision += collision_action(sl, next_x / 128, (next_y + 92) / 128);
+	if (get_tile(sl, (next_x + 64) / 128, next_y / 128) != '0')
+		collision += collision_action(sl, (next_x + 64) / 128, next_y / 128);
+	if (get_tile(sl, (next_x + 64) / 128, (next_y + 92) / 128) != '0')
+		collision += collision_action(sl, (next_x + 64) / 128,
+				(next_y + 92) / 128);
 	return (collision);
 }
 
@@ -61,8 +84,8 @@ int	move_player(t_data *sl, int x, int y, int dir)
 	sl->pl.inmove = 1;
 	if (!test_collision(sl, x, y))
 	{
-		sl->pl.d += 8;
-		if (sl->pl.d == 64)
+		sl->pl.d += 16;
+		if (sl->pl.d == 128)
 		{
 			sl->pl.nb_mv++;
 			printf("nb move :%ld\n", sl->pl.nb_mv);
@@ -70,13 +93,13 @@ int	move_player(t_data *sl, int x, int y, int dir)
 		}
 		sl->pl.pos.x += x;
 		sl->pl.pos.y += y;
-		if ((sl->pl.pos.x >= sl->win.w / 2 && x > 0 && (sl->map.w * 64)
+		if ((sl->pl.pos.x >= sl->win.w / 2 && x > 0 && (sl->map.w * 128)
 				+ sl->map.pos.x > sl->win.w) || (sl->pl.pos.x >= sl->win.w
-				/ 2 - 64 && x < 0 && sl->map.pos.x < 0))
+				/ 2 - 128 && x < 0 && sl->map.pos.x < 0))
 			sl->map.pos.x -= x;
-		if ((sl->pl.pos.y >= sl->win.h / 2 && y > 0 && (sl->map.h * 64)
+		if ((sl->pl.pos.y >= sl->win.h / 2 && y > 0 && (sl->map.h * 128)
 				+ sl->map.pos.y > sl->win.h) || (sl->pl.pos.y >= sl->win.h
-				/ 2 - 64 && y < 0 && sl->map.pos.y < 0))
+				/ 2 - 128 && y < 0 && sl->map.pos.y < 0))
 			sl->map.pos.y -= y;
 	}
 	return (0);
@@ -86,13 +109,16 @@ int	event_manager(int keycode, t_data *sl)
 {
 	if (keycode == 65307)
 		close_window(sl);
-	if (keycode == 119 || keycode == 122)
-		move_player(sl, 0, -8, 1);
-	if (keycode == 115)
-		move_player(sl, 0, 8, 0);
-	if (keycode == 97 || keycode == 113)
-		move_player(sl, -8, 0, 3);
-	if (keycode == 100)
-		move_player(sl, 8, 0, 2);
+	if (sl->need_pet > 150)
+	{
+		if (keycode == 119 || keycode == 122)
+			move_player(sl, 0, -16, 1);
+		if (keycode == 115)
+			move_player(sl, 0, 16, 0);
+		if (keycode == 97 || keycode == 113)
+			move_player(sl, -16, 0, 3);
+		if (keycode == 100)
+			move_player(sl, 16, 0, 2);
+	}
 	return (keycode);
 }

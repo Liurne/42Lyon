@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/12 16:53:45 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/14 15:01:30 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,7 @@ typedef struct s_data
 	t_entity	cat;
 	t_img		tex_pl[4][4];
 	int			anim;
+	int			need_pet;
 }	t_data;
 
 /* -----window----- */
@@ -101,6 +102,7 @@ int		get_pixel(t_img *img, int x, int y);
 /* -----event----- */
 int		event_manager(int keycode, t_data *sl);
 void	cat_manager(t_data *sl, int r);
+int		entity_collision(t_entity *e1, t_entity *e2);
 
 /* -----map----- */
 int		load_file(t_data *sl, char *path);
