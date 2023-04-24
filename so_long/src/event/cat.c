@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/14 17:21:32 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 16:46:24 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,9 +41,9 @@ int	move_cat(t_data *sl, int x, int y)
 	}
 	else
 	{
-		sl->cat.dir++;
+		sl->cat.dir += 2;
 		if (sl->cat.dir > 3)
-			sl->cat.dir = 0;
+			sl->cat.dir -= 4;
 	}
 	return (0);
 }
@@ -79,7 +79,7 @@ void	cat_manager(t_data *sl, int r)
 
 	if (sl->need_pet > 200)
 	{
-		if (time > 76)
+		if (time > 100)
 		{
 			time = 0;
 			sl->need_pet = 201;
