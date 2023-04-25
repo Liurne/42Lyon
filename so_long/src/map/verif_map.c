@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/24 17:38:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 15:00:32 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ int	recu_finder(t_data *sl, int x, int y, int dir)
 		recu_finder(sl, x, y - 1, 3);
 	if (dir != 3)
 		recu_finder(sl, x, y + 1, 2);
+	return (0);
 }
 
 int	verif_map(t_data *sl)
