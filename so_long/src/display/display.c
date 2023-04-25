@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 12:45:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 14:36:40 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:41:52 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,11 @@ int	render_display(t_data *sl)
 	}
 	display_entity(sl, &(sl->cat));
 	display_entity(sl, &(sl->pl));
+	if (sl->show_hitbox)
+	{
+		display_hitbox(sl, &(sl->cat));
+		display_hitbox(sl, &(sl->pl));
+	}
 	return (0);
 }
 

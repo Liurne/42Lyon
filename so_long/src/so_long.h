@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 14:43:13 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:39:03 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ typedef struct s_data
 	t_img		tex_pl[4][4];
 	int			anim;
 	int			need_pet;
+	int			show_hitbox;
 }	t_data;
 
 /* -----window----- */
@@ -101,6 +102,7 @@ void	destroy_img_pl(t_data *sl);
 
 /* -----display----- */
 void	display_entity(t_data *sl, t_entity *e);
+void	display_hitbox(t_data *sl, t_entity *e);
 int		update_display(t_data *sl);
 void	put_pixel(t_img *img, int x, int y, int color);
 int		get_pixel(t_img *img, int x, int y);
@@ -116,7 +118,8 @@ int		load_map(t_data *sl, char *path);
 char	get_tile(t_data *sl, int x, int y);
 int		set_tile(t_data *sl, int x, int y, char c);
 int		is_still(t_data *sl, char c);
-void	init_entity(t_entity *e, int x, int y);
+void	init_pl(t_entity *e, int x, int y);
+void	init_dog(t_entity *e, int x, int y);
 void	init_pos(t_data *sl);
 int		verif_map_size(t_data *sl);
 int		map_to_img(t_data *sl);

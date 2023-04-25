@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 15:00:32 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 18:01:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,9 +86,10 @@ void	init_pos(t_data *sl)
 		{
 			if (get_tile(sl, x, y) == 'P')
 			{
-				init_entity(&(sl->pl), x, y);
+				init_pl(&(sl->pl), x, y);
+				printf("dim: %d\n", (sl->pl.pos.x - sl->map.w) * 1);
 				if (sl->pl.pos.x >= sl->win.w / 2)
-					sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128) - 1);
+					sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128));
 				if (sl->pl.pos.y >= sl->win.h / 2)
 					sl->map.pos.y = -128 * (((sl->pl.pos.y / 2) / 128));
 			}
@@ -96,7 +97,7 @@ void	init_pos(t_data *sl)
 			{
 				sl->map.end.x = x * 128;
 				sl->map.end.y = y * 128;
-				init_entity(&(sl->cat), x, y);
+				init_dog(&(sl->cat), x, y);
 			}
 		}
 	}

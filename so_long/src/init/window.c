@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/14 16:50:05 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:39:17 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,5 +56,6 @@ int	init_window(t_data *sl)
 		close_window(sl);
 	sl->anim = 0;
 	sl->need_pet = 250;
+	sl->show_hitbox = 0;
 	return (0);
 }

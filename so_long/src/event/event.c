@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:18 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/25 17:46:23 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -109,6 +109,13 @@ int	event_manager(int keycode, t_data *sl)
 {
 	if (keycode == 65307)
 		close_window(sl);
+	if (keycode == 103)
+	{
+		if (sl->show_hitbox)
+			sl->show_hitbox = 0;
+		else
+			sl->show_hitbox = 1;
+	}
 	if (sl->need_pet > 150)
 	{
 		if (keycode == 119 || keycode == 122)
