@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 17:46:23 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 15:50:36 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,14 +93,16 @@ int	move_player(t_data *sl, int x, int y, int dir)
 		}
 		sl->pl.pos.x += x;
 		sl->pl.pos.y += y;
-		if ((sl->pl.pos.x >= sl->win.w / 2 && x > 0 && (sl->map.w * 128)
-				+ sl->map.pos.x > sl->win.w) || (sl->pl.pos.x >= sl->win.w
-				/ 2 - 128 && x < 0 && sl->map.pos.x < 0))
-			sl->map.pos.x -= x;
-		if ((sl->pl.pos.y >= sl->win.h / 2 && y > 0 && (sl->map.h * 128)
-				+ sl->map.pos.y > sl->win.h) || (sl->pl.pos.y >= sl->win.h
-				/ 2 - 128 && y < 0 && sl->map.pos.y < 0))
-			sl->map.pos.y -= y;
+		if (x != 0 && sl->pl.pos.x >= sl->win.w / 2 && ((sl->map.w * 128)
+				- sl->pl.pos.x) > sl->win.w / 2)
+			if (sl->map.pos.x - x <= 0 && sl->map.pos.x - x - sl->win.w
+				>= sl->map.w * -128)
+				sl->map.pos.x -= x;
+		if (y != 0 && sl->pl.pos.y >= sl->win.h / 2 && ((sl->map.h * 128)
+				- sl->pl.pos.y) > sl->win.h / 2)
+			if (sl->map.pos.y - y <= 0 && sl->map.pos.y - y - sl->win.h
+				>= sl->map.h * -128)
+				sl->map.pos.y -= y;
 	}
 	return (0);
 }

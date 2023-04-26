@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/04/25 14:44:12 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/04/26 16:14:29 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,7 +65,7 @@ all:   ${NAME}
 ${NAME}:	${OBJS}
 	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
 
-%.o:	%.c ${HEADER} Makefile
+%.o:	%.c ${HEADER}
 	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@
 
 clean:

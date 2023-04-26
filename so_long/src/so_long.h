@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:51 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 17:39:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:51:47 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,6 +118,7 @@ int		load_map(t_data *sl, char *path);
 char	get_tile(t_data *sl, int x, int y);
 int		set_tile(t_data *sl, int x, int y, char c);
 int		is_still(t_data *sl, char c);
+void	init_cam(t_data *sl);
 void	init_pl(t_entity *e, int x, int y);
 void	init_dog(t_entity *e, int x, int y);
 void	init_pos(t_data *sl);

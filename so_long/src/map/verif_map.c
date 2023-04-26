@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/28 11:59:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 18:01:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:55:19 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,15 @@
 
 int	recu_finder(t_data *sl, int x, int y, int dir)
 {
+	printf("nee x: %d, y: %d\n", x, y);
 	if (x >= sl->map.w || x < 0 || y >= sl->map.h || y < 0
 		|| get_tile(sl, x, y) == '1')
 		return (0);
-	if (get_tile(sl, x, y) == 'E')
-		set_tile(sl, x, y, 'e');
+	if (get_tile(sl, x, y) == 'C')
+	{
+		printf("me\n");
+		set_tile(sl, x, y, 'c');
+	}
 	if (dir != 0)
 		recu_finder(sl, x - 1, y, 1);
 	if (dir != 1)
@@ -35,11 +39,11 @@ int	verif_map(t_data *sl)
 	int	i;
 	int	j;
 
-	i = 0;
-	while (i < sl->map.w)
+	i = -1;
+	while (++i < sl->map.w)
 	{
-		j = 0;
-		while (j < sl->map.h)
+		j = -1;
+		while (++j < sl->map.h)
 		{
 			if (get_tile(sl, i, j) != 'E' && get_tile(sl, i, j) != 'C'
 				&& get_tile(sl, i, j) != 'P' && get_tile(sl, i, j) != '1'
@@ -48,10 +52,11 @@ int	verif_map(t_data *sl)
 			if (i == sl->map.w - 1 || i == 0 || j == sl->map.h - 1 || j == 0)
 				if (get_tile(sl, i, j) != '1')
 					return (0);
-			j++;
 		}
-		i++;
 	}
+	if (is_still(sl, 'E') != 1 || is_still(sl, 'C') < 1 || is_still(sl, 'P')
+		!= 1)
+		return (0);
 	return (1);
 }
 
@@ -87,11 +92,10 @@ void	init_pos(t_data *sl)
 			if (get_tile(sl, x, y) == 'P')
 			{
 				init_pl(&(sl->pl), x, y);
-				printf("dim: %d\n", (sl->pl.pos.x - sl->map.w) * 1);
-				if (sl->pl.pos.x >= sl->win.w / 2)
-					sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128));
-				if (sl->pl.pos.y >= sl->win.h / 2)
-					sl->map.pos.y = -128 * (((sl->pl.pos.y / 2) / 128));
+				printf("recu\n");
+				recu_finder(sl, x, y, 5);
+				printf("ok\n");
+				init_cam(sl);
 			}
 			if (get_tile(sl, x, y) == 'E')
 			{

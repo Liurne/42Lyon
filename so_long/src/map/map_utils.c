@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 17:58:16 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:09:08 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,25 +27,31 @@ size_t	ft_strlen(const char *str)
 int	is_still(t_data *sl, char c)
 {
 	int	i;
+	int tmp;
 
 	i = 0;
+	tmp = 0;
 	while (sl->map.map[i])
 	{
 		if (sl->map.map[i] == c)
-			return (1);
+			tmp++;
 		i++;
 	}
-	return (0);
+	return (tmp);
 }
 
 void	init_cam(t_data *sl)
 {
 	if (sl->pl.pos.x >= sl->win.w / 2)
-		sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128) - 1);
-	//while ((sl->pl.pos.x - sl->map.w) * -1 > sl->win.w / 2)
+		sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128));
+	if (((sl->map.w * 128) - sl->pl.pos.x) < sl->win.w / 2)
+		sl->map.pos.x = (sl->map.w * -128) + sl->win.w;
 	if (sl->pl.pos.y >= sl->win.h / 2)
-		sl->map.pos.y = -128 * (((sl->pl.pos.y / 2) / 128) - 1);
+		sl->map.pos.y = -128 * (((sl->pl.pos.y / 2) / 128));
+	if (((sl->map.h * 128) - sl->pl.pos.y) < sl->win.h / 2)
+		sl->map.pos.y = (sl->map.h * -128) + sl->win.h;
 }
+
 void	init_pl(t_entity *e, int x, int y)
 {
 	e->pos.x = x * 128;

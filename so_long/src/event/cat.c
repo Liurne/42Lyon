@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/24 16:46:24 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 16:03:08 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,8 @@ void	cat_action(t_data *sl, int time)
 			sl->cat.pos.x = sl->pl.pos.x;
 			sl->cat.pos.y = sl->pl.pos.y;
 			sl->pl.nb_mv += 100;
+			sl->pl.dir = 1;
+			sl->pl.inmove = 0;
 			time = 0;
 		}
 	}

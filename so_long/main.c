@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/25 13:29:59 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/26 13:59:26 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@ int	main(int ac, char **av)
 	load_map_img(&so_long);
 	load_pl_img(&so_long);
 	load_dog_img(&so_long);
-	printf("ok doggo\n");
 	map_to_img(&so_long);
 	mlx_hook(so_long.win.win, 2, 1L << 0, event_manager, &so_long);
 	mlx_hook(so_long.win.win, 17, 1L << 0, close_window, &so_long);
