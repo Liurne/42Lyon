@@ -1,42 +1,56 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map.c                                              :+:      :+:    :+:   */
+/*   parsing_map.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 14:57:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/24 17:32:18 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/04/27 14:20:55 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/04/27 17:10:43 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	get_tile(t_data *sl, int x, int y)
+static char	*read_file(int fd, char *str)
 {
-	if (x < sl->map.w && y < sl->map.h)
-		return (sl->map.map[(y * (sl->map.w + 1)) + x]);
-	return ('\0');
+	char	buff[43];
+	int		rbytes;
+
+	rbytes = 1;
+	while (rbytes)
+	{
+		rbytes = read(fd, buff, 42);
+		if (rbytes == -1)
+		{
+			free(str);
+			str = NULL;
+			return (NULL);
+		}
+		buff[rbytes] = '\0';
+		str = ft_strjoin(str, buff);
+	}
+	return (str);
 }
 
-int	set_tile(t_data *sl, int x, int y, char c)
+static int	load_file(t_data *sl, char *path)
 {
-	if (x < sl->map.w && y < sl->map.h)
-	{
-		sl->map.map[(y * (sl->map.w + 1)) + x] = c;
-		return (1);
-	}
-	else
+	int	fd;
+
+	if (!ft_strber(path))
 		return (0);
+	fd = open(path, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	sl->map.map = read_file(fd, sl->map.map);
+	close(fd);
+	return (1);
 }
 
 int	load_map(t_data *sl, char *path)
 {
 	load_file(sl, path);
-	if (!verif_map_size(sl))
-		return (close_window(sl), 0);
-	sl->map.pos.x = 0;
-	sl->map.pos.y = 0;
-	init_pos(sl);
+	if (!verif_map(sl))
+		return (0);
 	return (1);
 }

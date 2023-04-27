@@ -1,46 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   map_utils.c                                        :+:      :+:    :+:   */
+/*   init_entity.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/03/16 14:57:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/26 16:09:08 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/04/27 16:04:07 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/04/27 18:27:51 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-size_t	ft_strlen(const char *str)
-{
-	int	i;
-
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i])
-		i++;
-	return (i);
-}
-
-int	is_still(t_data *sl, char c)
-{
-	int	i;
-	int tmp;
-
-	i = 0;
-	tmp = 0;
-	while (sl->map.map[i])
-	{
-		if (sl->map.map[i] == c)
-			tmp++;
-		i++;
-	}
-	return (tmp);
-}
-
-void	init_cam(t_data *sl)
+static void	init_cam(t_data *sl)
 {
 	if (sl->pl.pos.x >= sl->win.w / 2)
 		sl->map.pos.x = -128 * (((sl->pl.pos.x / 2) / 128));
@@ -52,8 +24,9 @@ void	init_cam(t_data *sl)
 		sl->map.pos.y = (sl->map.h * -128) + sl->win.h;
 }
 
-void	init_pl(t_entity *e, int x, int y)
+static void	init_pl(t_entity *e, int x, int y)
 {
+	e->id = 0;
 	e->pos.x = x * 128;
 	e->pos.y = y * 128;
 	e->tpos.x = 40;
@@ -67,8 +40,9 @@ void	init_pl(t_entity *e, int x, int y)
 	e->animation = 0;
 }
 
-void	init_dog(t_entity *e, int x, int y)
+static void	init_dog(t_entity *e, int x, int y)
 {
+	e->id = 1;
 	e->pos.x = x * 128;
 	e->pos.y = y * 128;
 	e->tpos.x = 32;
@@ -80,4 +54,30 @@ void	init_dog(t_entity *e, int x, int y)
 	e->d = 0;
 	e->inmove = 0;
 	e->animation = 0;
+}
+
+void	init_pos(t_data *sl)
+{
+	int	x;
+	int	y;
+
+	x = -1;
+	while (++x < sl->map.w)
+	{
+		y = -1;
+		while (++y < sl->map.h)
+		{
+			if (get_tile(sl, x, y) == 'P')
+			{
+				init_pl(&(sl->pl), x, y);
+				init_cam(sl);
+			}
+			if (get_tile(sl, x, y) == 'E')
+			{
+				sl->map.end.x = x * 128;
+				sl->map.end.y = y * 128;
+				init_dog(&(sl->dog), x, y);
+			}
+		}
+	}
 }

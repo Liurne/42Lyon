@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 13:54:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/26 13:59:26 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/27 17:08:16 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,12 +16,12 @@ int	main(int ac, char **av)
 {
 	t_data	so_long;
 
-	init_window(&so_long);
-	if (ac != 2 || !load_map(&so_long, av[1]))
-		return (printf("fail\n"), 1);
-	load_map_img(&so_long);
-	load_pl_img(&so_long);
-	load_dog_img(&so_long);
+	init_window(&so_long, 1280, 768);
+	if (ac != 2)
+		error(&so_long, ERR_ARG);
+	if (!load_map(&so_long, av[1]))
+		error(&so_long, ERR_MAP);
+	load_all_image(&so_long);
 	map_to_img(&so_long);
 	mlx_hook(so_long.win.win, 2, 1L << 0, event_manager, &so_long);
 	mlx_hook(so_long.win.win, 17, 1L << 0, close_window, &so_long);
