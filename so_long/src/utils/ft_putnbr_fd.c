@@ -1,42 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:21:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 18:10:33 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/11 20:14:33 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/05/03 15:38:29 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+void	ft_putnbr_fd(int n, int fd)
 {
-	size_t	i;
-	size_t	j;
-	char	*res;
+	size_t	c;
 
-	i = 0;
-	j = 0;
-	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
-	if (!res)
+	c = 0;
+	if (n == -2147483648)
+		write(fd, "-2147483648", 11);
+	else
 	{
-		free(s1);
-		return (NULL);
+		if (n < 0)
+		{
+			n *= -1;
+			write(fd, "-", 1);
+		}
+		if (n > 9)
+			ft_putnbr_fd(n / 10, fd);
+		c = '0' + n % 10;
+		write(fd, &c, 1);
 	}
-	while (s1 && s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (s2 && s2[j])
-	{
-		res[i + j] = s2[j];
-		j++;
-	}
-	res[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	free(s1);
-	return (res);
 }

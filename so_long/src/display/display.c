@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:13:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 17:50:04 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:27:04 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,9 +72,24 @@ int	render_display(t_data *sl)
 
 int	update_display(t_data *sl)
 {
+	char	*tmp;
+
 	dog_manager(sl, animation(sl));
 	render_display(sl);
 	mlx_put_image_to_window(sl->win.mlx, sl->win.win,
 		sl->win.renderer.img, 0, 0);
+	mlx_string_put(sl->win.mlx, sl->win.win, 10, 20, 0xFF000000,
+		"Number of tiles traveled : ");
+	(void) tmp;
+	tmp = ft_itoa(sl->pl.nb_mv);
+	mlx_string_put(sl->win.mlx, sl->win.win, 175, 21, 0xFF000000, tmp);
+	free(tmp);
+	mlx_string_put(sl->win.mlx, sl->win.win, 10, 35, 0xFF000000,
+		"Number of boxes remaining : ");
+	tmp = ft_itoa(is_still(sl->map.map, 'C'));
+	mlx_string_put(sl->win.mlx, sl->win.win, 175, 36, 0xFF000000, tmp);
+	free(tmp);
+	if (sl->need_pet > 150 && sl->pl.dir == 4)
+		sl->pl.dir = 0;
 	return (0);
 }

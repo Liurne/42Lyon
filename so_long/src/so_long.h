@@ -6,18 +6,18 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 18:27:14 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:09:27 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef SO_LONG_H
 # define SO_LONG_H
 # include "../minilibx/mlx.h"
-# include <stdio.h>
 # include <unistd.h>
 # include <limits.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <stdio.h>
 # define ERR_MLX "Couldn't initiate mlx"
 # define ERR_ARG "Invalid number of argument"
 # define ERR_LIB "Couldn't create a window"
@@ -59,7 +59,7 @@ typedef struct s_map
 	t_vec	pos;
 	t_vec	end;
 	t_img	img;
-	t_img	tex[15];
+	t_img	tex[17];
 }	t_map;
 
 typedef struct s_entity
@@ -74,7 +74,7 @@ typedef struct s_entity
 	size_t	d;
 	int		inmove;
 	int		animation;
-	t_img	tex[4][4];
+	t_img	tex[5][4];
 }	t_entity;
 
 typedef struct s_data
@@ -93,8 +93,12 @@ size_t	ft_strlen(const char *str);
 void	ft_bzero(void *s, size_t n);
 char	*ft_strdup(const char *s);
 void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
 char	*ft_strjoin(char *s1, char *s2);
 int		ft_strber(const char *haystack);
+void	ft_putmove_fd(int nb_move, int fd);
+void	*ft_calloc(size_t count, size_t size);
+char	*ft_itoa(int n);
 
 /* -----init----- */
 int		init_window(t_data *sl, int win_w, int win_h);

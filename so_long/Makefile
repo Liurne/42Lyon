@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/04/27 17:25:36 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/03 18:08:46 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,8 +47,12 @@ SRCS =	main.c \
 		src/utils/ft_strlen.c \
 		src/utils/ft_strdup.c \
 		src/utils/ft_putstr_fd.c \
+		src/utils/ft_putnbr_fd.c \
 		src/utils/ft_strjoin.c \
 		src/utils/ft_strber.c \
+		src/utils/ft_putmove_fd.c \
+		src/utils/ft_calloc.c \
+		src/utils/ft_itoa.c \
 		src/init/window.c \
 		src/init/load_img.c \
 		src/init/destroy_img.c \

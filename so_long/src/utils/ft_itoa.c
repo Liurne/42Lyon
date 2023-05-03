@@ -1,42 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/27 14:21:35 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 18:10:33 by jcoquard         ###   ########.fr       */
+/*   Created: 2022/11/11 22:42:09 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/05/03 18:06:09 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
-char	*ft_strjoin(char *s1, char *s2)
+static void	ft_recurs_it(long int n, char *res, int l)
 {
-	size_t	i;
-	size_t	j;
+	if (n < 0)
+	{
+		n *= -1;
+		res[0] = '-';
+	}
+	if (n > 0)
+	{
+		res[l - 1] = '0' + n % 10;
+		l--;
+		ft_recurs_it(n / 10, res, l);
+	}
+}
+
+char	*ft_itoa(int n)
+{
+	int		l;
+	int		t;
 	char	*res;
 
-	i = 0;
-	j = 0;
-	res = malloc((ft_strlen(s1) + ft_strlen(s2) + 1) * sizeof(char));
+	l = 1;
+	t = n;
+	while (t > 9 || t < -9)
+	{
+		t /= 10;
+		l++;
+	}
+	if (t < 0)
+		l++;
+	res = ft_calloc((l + 1), sizeof(char));
 	if (!res)
-	{
-		free(s1);
 		return (NULL);
-	}
-	while (s1 && s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (s2 && s2[j])
-	{
-		res[i + j] = s2[j];
-		j++;
-	}
-	res[ft_strlen(s1) + ft_strlen(s2)] = '\0';
-	free(s1);
+	if (n == 0)
+		res[0] = '0';
+	else
+		ft_recurs_it(n, res, l);
 	return (res);
 }

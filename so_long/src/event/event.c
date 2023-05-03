@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 18:30:48 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:52:50 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int	collision_action(t_data *sl, t_entity *e, int x, int y)
 	{
 		if (get_tile(sl, x, y) == 'C')
 		{
-			set_tile(sl, x, y, '0');
+			set_tile(sl, x, y, 'c');
 			reload_tile_img(sl, x * 128, y * 128);
 			if (get_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128) == 'E')
 				set_tile(sl, sl->map.end.x / 128, sl->map.end.y / 128, 'I');
@@ -74,9 +74,11 @@ int	test_collision(t_data *sl, t_entity *e, int x, int y)
 	if (get_tile(sl, next_x / 128, next_y / 128) != '0')
 		collision += collision_action(sl, e, next_x / 128, next_y / 128);
 	if (get_tile(sl, next_x / 128, (next_y + e->h) / 128) != '0')
-		collision += collision_action(sl, e, next_x / 128, (next_y + e->h) / 128);
+		collision += collision_action(sl, e, next_x / 128, (next_y + e->h)
+				/ 128);
 	if (get_tile(sl, (next_x + e->w) / 128, next_y / 128) != '0')
-		collision += collision_action(sl, e, (next_x + e->w) / 128, next_y / 128);
+		collision += collision_action(sl, e, (next_x + e->w) / 128, next_y
+				/ 128);
 	if (get_tile(sl, (next_x + e->w) / 128, (next_y + e->h) / 128) != '0')
 		collision += collision_action(sl, e, (next_x + e->w) / 128,
 				(next_y + e->h) / 128);
@@ -92,8 +94,7 @@ int	move_player(t_data *sl, int x, int y, int dir)
 		sl->pl.d += 16;
 		if (sl->pl.d == 128)
 		{
-			sl->pl.nb_mv++;
-			printf("nb move :%ld\n", sl->pl.nb_mv);
+			ft_putmove_fd(sl->pl.nb_mv++, 1);
 			sl->pl.d = 0;
 		}
 		sl->pl.pos.x += x;

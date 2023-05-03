@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:25:14 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 17:26:53 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 18:26:25 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ static void	destroy_img_pl(t_data *sl)
 	destroy_img(sl, &(sl->pl.tex[3][1]));
 	destroy_img(sl, &(sl->pl.tex[3][2]));
 	destroy_img(sl, &(sl->pl.tex[3][3]));
+	destroy_img(sl, &(sl->pl.tex[4][0]));
 }
 
 static void	destroy_img_dog(t_data *sl)
@@ -50,6 +51,7 @@ static void	destroy_img_dog(t_data *sl)
 	destroy_img(sl, &(sl->dog.tex[3][1]));
 	destroy_img(sl, &(sl->dog.tex[3][2]));
 	destroy_img(sl, &(sl->dog.tex[3][3]));
+	destroy_img(sl, &(sl->dog.tex[4][0]));
 }
 
 static void	destroy_img_map(t_data *sl)
@@ -69,6 +71,8 @@ static void	destroy_img_map(t_data *sl)
 	destroy_img(sl, &(sl->map.tex[12]));
 	destroy_img(sl, &(sl->map.tex[13]));
 	destroy_img(sl, &(sl->map.tex[14]));
+	destroy_img(sl, &(sl->map.tex[15]));
+	destroy_img(sl, &(sl->map.tex[16]));
 }
 
 void	destroy_all_image(t_data *sl)

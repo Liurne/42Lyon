@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 13:47:20 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:42:40 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	load_map_img(t_data *sl)
 {
+	(void)sl;
 	load_img(sl, "data/texture/grass.xpm", &(sl->map.tex[0]));
 	load_img(sl, "data/texture/stone.xpm", &(sl->map.tex[1]));
 	load_img(sl, "data/texture/border_down.xpm", &(sl->map.tex[2]));
@@ -25,10 +26,12 @@ static void	load_map_img(t_data *sl)
 	load_img(sl, "data/texture/border_upleft.xpm", &(sl->map.tex[8]));
 	load_img(sl, "data/texture/border_downleft.xpm", &(sl->map.tex[9]));
 	load_img(sl, "data/texture/collectible.xpm", &(sl->map.tex[10]));
-	load_img(sl, "data/texture/col_empty.xpm", &(sl->map.tex[11]));
-	load_img(sl, "data/texture/col_inprogress.xpm", &(sl->map.tex[12]));
-	load_img(sl, "data/texture/col_full.xpm", &(sl->map.tex[13]));
+	load_img(sl, "data/texture/end_empty.xpm", &(sl->map.tex[11]));
+	load_img(sl, "data/texture/end_inprogress.xpm", &(sl->map.tex[12]));
+	load_img(sl, "data/texture/end_full.xpm", &(sl->map.tex[13]));
 	load_img(sl, "data/texture/grass_alt.xpm", &(sl->map.tex[14]));
+	load_img(sl, "data/texture/stone_alt.xpm", &(sl->map.tex[15]));
+	load_img(sl, "data/texture/collectible_empty.xpm", &(sl->map.tex[16]));
 }
 
 static void	load_pl_img(t_data *sl)
@@ -49,6 +52,7 @@ static void	load_pl_img(t_data *sl)
 	load_img(sl, "data/texture/pl_left_walk1.xpm", &(sl->pl.tex[3][1]));
 	load_img(sl, "data/texture/pl_left.xpm", &(sl->pl.tex[3][2]));
 	load_img(sl, "data/texture/pl_left_walk2.xpm", &(sl->pl.tex[3][3]));
+	load_img(sl, "data/texture/pl_pet_heart.xpm", &(sl->pl.tex[4][0]));
 }
 
 static void	load_dog_img(t_data *sl)
@@ -69,6 +73,7 @@ static void	load_dog_img(t_data *sl)
 	load_img(sl, "data/texture/dog_left_walk1.xpm", &(sl->dog.tex[3][1]));
 	load_img(sl, "data/texture/dog_left.xpm", &(sl->dog.tex[3][2]));
 	load_img(sl, "data/texture/dog_left_walk2.xpm", &(sl->dog.tex[3][3]));
+	load_img(sl, "data/texture/dog_lay.xpm", &(sl->dog.tex[4][0]));
 }
 
 void	load_all_image(t_data *sl)

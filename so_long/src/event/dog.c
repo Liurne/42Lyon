@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 18:33:04 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/03 17:50:33 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,22 @@ int	move_dog(t_data *sl, int x, int y)
 	return (0);
 }
 
+static void	dog_pet(t_data *sl)
+{
+	ft_putstr_fd("need...to...peeeeeet\n", 1);
+	ft_putstr_fd("You lost 100 moves\n", 1);
+	sl->need_pet = 0;
+	sl->dog.inmove = 0;
+	sl->dog.dir = 4;
+	sl->dog.animation = 0;
+	sl->dog.pos.x = sl->pl.pos.x;
+	sl->dog.pos.y = sl->pl.pos.y;
+	sl->pl.nb_mv += 100;
+	sl->pl.dir = 4;
+	sl->pl.animation = 0;
+	sl->pl.inmove = 0;
+}
+
 void	dog_action(t_data *sl, int time)
 {
 	if (sl->dog.inmove && !(time % 3))
@@ -41,17 +57,7 @@ void	dog_action(t_data *sl, int time)
 		if (sl->dog.dir == 3)
 			move_dog(sl, -16, 0);
 		if (entity_collision(&(sl->pl), &(sl->dog)) && sl->need_pet == 201)
-		{
-			ft_putstr_fd("need...to...peeeeeet\n", 1);
-			sl->need_pet = 0;
-			sl->dog.inmove = 0;
-			sl->dog.pos.x = sl->pl.pos.x;
-			sl->dog.pos.y = sl->pl.pos.y;
-			sl->pl.nb_mv += 100;
-			sl->pl.dir = 1;
-			sl->pl.inmove = 0;
-			time = 0;
-		}
+			dog_pet(sl);
 	}
 }
 
