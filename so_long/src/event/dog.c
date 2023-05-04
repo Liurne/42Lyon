@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:12:39 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 17:07:29 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ static void	dog_action(t_data *sl, t_entity *e, int time)
 			move_dog(sl, e, 10, 0);
 		if (e->dir == 3)
 			move_dog(sl, e, -10, 0);
-		if (entity_collision(&(sl->pl), e) && sl->need_pet == 201)
-			dog_pet(sl, e);
 	}
+	if (entity_collision(&(sl->pl), e) && sl->need_pet >= 275)
+		dog_pet(sl, e);
 }
 
 void	dog_manager(t_data *sl, t_entity *e)
@@ -71,7 +71,6 @@ void	dog_manager(t_data *sl, t_entity *e)
 		if (time > 100)
 		{
 			time = 0;
-			sl->need_pet = 201;
 			r += (sl->pl.pos.x + sl->pl.pos.y + sl->pl.d + sl->time + e->id);
 			if (r % 3 == 0)
 				e->inmove = 0;
@@ -79,9 +78,11 @@ void	dog_manager(t_data *sl, t_entity *e)
 				e->inmove = 1;
 			e->dir = (r % 4);
 		}
+		if (sl->need_pet < 275 && e->id == 1 && time % 8)
+			sl->need_pet++;
 		dog_action(sl, e, time);
 	}
-	else
+	else if (e->id == 1)
 		sl->need_pet++;
 	time++;
 }

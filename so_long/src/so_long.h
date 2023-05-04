@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:11:23 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:03 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ typedef struct s_data
 	t_keyboard	keys;
 	t_map		map;
 	t_entity	pl;
-	t_entity	dog[50];
+	t_entity	dog[3];
 	int			nb_dogs;
 	int			anim;
 	int			need_pet;
