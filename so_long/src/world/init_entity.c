@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:04:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 14:49:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:12:34 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,20 +40,27 @@ static void	init_pl(t_entity *e, int x, int y)
 	e->animation = 0;
 }
 
-static void	init_dog(t_entity *e, int x, int y)
+static void	init_dog(t_data *sl, int x, int y)
 {
-	e->id = 1;
-	e->pos.x = x * 128;
-	e->pos.y = y * 128;
-	e->tpos.x = 32;
-	e->tpos.y = 32;
-	e->w = 64;
-	e->h = 92;
-	e->dir = 0;
-	e->nb_mv = 0;
-	e->d = 0;
-	e->inmove = 0;
-	e->animation = 0;
+	int	i;
+
+	i = 0;
+	while (i < sl->nb_dogs)
+	{
+		sl->dog[i].id = i + 1;
+		sl->dog[i].pos.x = x * 128;
+		sl->dog[i].pos.y = y * 128;
+		sl->dog[i].tpos.x = 32;
+		sl->dog[i].tpos.y = 32;
+		sl->dog[i].w = 64;
+		sl->dog[i].h = 92;
+		sl->dog[i].dir = 0;
+		sl->dog[i].nb_mv = 0;
+		sl->dog[i].d = 0;
+		sl->dog[i].inmove = 0;
+		sl->dog[i].animation = 0;
+		i++;
+	}
 }
 
 void	init_pos(t_data *sl)
@@ -76,7 +83,7 @@ void	init_pos(t_data *sl)
 			{
 				sl->map.end.x = x * 128;
 				sl->map.end.y = y * 128;
-				init_dog(&(sl->dog), x, y);
+				init_dog(sl, x, y);
 			}
 		}
 	}

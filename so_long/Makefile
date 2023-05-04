@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/03 18:08:46 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/04 14:01:08 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -65,6 +65,7 @@ SRCS =	main.c \
 		src/display/display.c \
 		src/display/display_entity.c \
 		src/event/event.c \
+		src/event/keyboard.c \
 		src/event/dog.c
 
 OBJS = ${SRCS:.c=.o}

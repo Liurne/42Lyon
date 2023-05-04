@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 17:24:42 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:11:32 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,8 +79,7 @@ int	init_window(t_data *sl, int win_w, int win_h)
 	new_img(sl, &(sl->win.renderer), sl->win.w, sl->win.h);
 	if (!sl->win.renderer.img)
 		error(sl, ERR_IMG);
-	sl->anim = 0;
 	sl->need_pet = 250;
-	sl->show_hitbox = 0;
+	sl->nb_dogs = 50;
 	return (0);
 }

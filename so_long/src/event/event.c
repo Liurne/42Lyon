@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 17:52:50 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:11:58 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,17 +23,18 @@ int	entity_collision(t_entity *e1, t_entity *e2)
 	y1 = e1->pos.y + e1->tpos.y;
 	x2 = e2->pos.x + e1->tpos.x;
 	y2 = e2->pos.y + e1->tpos.y;
-	if (x1 >= x2 && x1 < x2 + e2->h && y1 >= y2 && y1 < y2 + e2->h)
+	if ((x1 >= x2 && x1 < x2 + e2->h && y1 >= y2 && y1 < y2 + e2->h)
+		|| (x1 >= x2 && x1 < x2 + e2->h && y1 >= y2 && y1 < y2 + e2->h)
+		|| (x1 + e1->w >= x2 && x1 + e1->w < x2 + e2->w && y1 >= y2 && y1
+			< y2 + e2->h) || (x1 + e1->w >= x2 && x1 + e1->w < x2 + e2->w && y1
+			+ e1->h >= y2 && y1 + e1->h < y2 + e2->h))
 		return (1);
-	if (x1 + e1->w >= x2 && x1 + e1->w < x2 + e2->w && y1 >= y2 && y1 < y2
-		+ e2->h)
-		return (2);
-	if (x1 >= x2 && x1 < x2 + e2->w && y1 + e1->h >= y2 && y1 + e1->h < y2
-		+ e2->h)
-		return (3);
-	if (x1 + e1->w >= x2 && x1 + e1->w < x2 + e2->w && y1 + e1->h >= y2
-		&& y1 + e1->h < y2 + e2->h)
-		return (4);
+	if ((x2 >= x1 && x2 < x1 + e1->h && y2 >= y1 && y2 < y1 + e1->h)
+		|| (x2 >= x1 && x2 < x1 + e1->h && y2 >= y1 && y2 < y1 + e1->h)
+		|| (x2 + e2->w >= x1 && x2 + e2->w < x1 + e1->w && y2 >= y1 && y2
+			< y1 + e1->h) || (x2 + e2->w >= x1 && x2 + e2->w < x1 + e1->w && y2
+			+ e2->h >= y1 && y2 + e2->h < y1 + e1->h))
+		return (1);
 	return (0);
 }
 
@@ -91,8 +92,8 @@ int	move_player(t_data *sl, int x, int y, int dir)
 	sl->pl.inmove = 1;
 	if (!test_collision(sl, &(sl->pl), x, y))
 	{
-		sl->pl.d += 16;
-		if (sl->pl.d == 128)
+		sl->pl.d += 10;
+		if (sl->pl.d >= 128)
 		{
 			ft_putmove_fd(sl->pl.nb_mv++, 1);
 			sl->pl.d = 0;
@@ -113,27 +114,17 @@ int	move_player(t_data *sl, int x, int y, int dir)
 	return (0);
 }
 
-int	event_manager(int keycode, t_data *sl)
+void	event_manager(t_data *sl)
 {
-	if (keycode == 65307)
-		close_window(sl);
-	if (keycode == 103)
-	{
-		if (sl->show_hitbox)
-			sl->show_hitbox = 0;
-		else
-			sl->show_hitbox = 1;
-	}
 	if (sl->need_pet > 150)
 	{
-		if (keycode == 119 || keycode == 122)
-			move_player(sl, 0, -16, 1);
-		if (keycode == 115)
-			move_player(sl, 0, 16, 0);
-		if (keycode == 97 || keycode == 113)
-			move_player(sl, -16, 0, 3);
-		if (keycode == 100)
-			move_player(sl, 16, 0, 2);
+		if (sl->keys.left)
+			move_player(sl, 0, -11, 1);
+		if (sl->keys.right)
+			move_player(sl, 0, 11, 0);
+		if (sl->keys.down)
+			move_player(sl, -11, 0, 3);
+		if (sl->keys.up)
+			move_player(sl, 11, 0, 2);
 	}
-	return (keycode);
 }

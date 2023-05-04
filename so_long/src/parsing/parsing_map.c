@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:20:55 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 17:10:43 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:32:15 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,8 @@ static int	load_file(t_data *sl, char *path)
 
 int	load_map(t_data *sl, char *path)
 {
-	load_file(sl, path);
+	if (!load_file(sl, path))
+		return (0);
 	if (!verif_map(sl))
 		return (0);
 	return (1);

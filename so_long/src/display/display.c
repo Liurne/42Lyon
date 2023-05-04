@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:13:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 18:27:04 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 15:13:52 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,28 +28,23 @@ int	get_pixel(t_img *img, int x, int y)
 	return (*(int *)dst);
 }
 
-static int	animation(t_data *sl)
+static void	animation(t_data *sl)
 {
-	static int	frame;
+	int	i;
 
-	if (frame >= 8)
+	i = -1;
+	if (sl->time >= 8)
 	{
 		sl->anim++;
 		if (sl->anim > 3)
 			sl->anim = 0;
-		if (sl->pl.inmove)
-			sl->pl.animation = sl->anim;
-		else
-			sl->pl.animation = 0;
-		if (sl->dog.inmove)
-			sl->dog.animation = sl->anim;
-		else
-			sl->dog.animation = 0;
-		frame = 0;
+		animation_entity(sl, &(sl->pl));
+		while (++i < sl->nb_dogs)
+			animation_entity(sl, &(sl->dog[i]));
+		sl->time = 0;
 		sl->pl.inmove = 0;
 	}
-	++frame;
-	return (frame);
+	++sl->time;
 }
 
 int	render_display(t_data *sl)
@@ -65,7 +60,9 @@ int	render_display(t_data *sl)
 			put_pixel(&(sl->win.renderer), x, y, get_pixel(&(sl->map.img),
 					x - sl->map.pos.x, y - sl->map.pos.y));
 	}
-	display_entity(sl, &(sl->dog));
+	x = -1;
+	while (++x < sl->nb_dogs)
+		display_dog(sl, &(sl->dog[x]));
 	display_entity(sl, &(sl->pl));
 	return (0);
 }
@@ -73,8 +70,13 @@ int	render_display(t_data *sl)
 int	update_display(t_data *sl)
 {
 	char	*tmp;
+	int		i;
 
-	dog_manager(sl, animation(sl));
+	event_manager(sl);
+	animation(sl);
+	i = -1;
+	while (++i < sl->nb_dogs)
+		dog_manager(sl, &(sl->dog[i]));
 	render_display(sl);
 	mlx_put_image_to_window(sl->win.mlx, sl->win.win,
 		sl->win.renderer.img, 0, 0);

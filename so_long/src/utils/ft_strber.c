@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:23:38 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/04/27 17:24:29 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:28:16 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,8 @@ int	ft_strber(const char *haystack)
 		j = 0;
 		while (haystack[i + j] == ber[j] && ber[j] && haystack[i + j])
 			j++;
-		if (!ber[j] && !haystack[i + j])
+		if (!ber[j] && !haystack[i + j] && i + j > 4 && haystack[i - 1]
+			!= '/')
 			return (1);
 		i++;
 	}

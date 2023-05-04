@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/29 14:25:14 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/03 18:26:25 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 14:44:23 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,23 @@ static void	destroy_img_pl(t_data *sl)
 
 static void	destroy_img_dog(t_data *sl)
 {
-	destroy_img(sl, &(sl->dog.tex[0][0]));
-	destroy_img(sl, &(sl->dog.tex[0][1]));
-	destroy_img(sl, &(sl->dog.tex[0][2]));
-	destroy_img(sl, &(sl->dog.tex[0][3]));
-	destroy_img(sl, &(sl->dog.tex[1][0]));
-	destroy_img(sl, &(sl->dog.tex[1][1]));
-	destroy_img(sl, &(sl->dog.tex[1][2]));
-	destroy_img(sl, &(sl->dog.tex[1][3]));
-	destroy_img(sl, &(sl->dog.tex[2][0]));
-	destroy_img(sl, &(sl->dog.tex[2][1]));
-	destroy_img(sl, &(sl->dog.tex[2][2]));
-	destroy_img(sl, &(sl->dog.tex[2][3]));
-	destroy_img(sl, &(sl->dog.tex[3][0]));
-	destroy_img(sl, &(sl->dog.tex[3][1]));
-	destroy_img(sl, &(sl->dog.tex[3][2]));
-	destroy_img(sl, &(sl->dog.tex[3][3]));
-	destroy_img(sl, &(sl->dog.tex[4][0]));
+	destroy_img(sl, &(sl->dog[0].tex[0][0]));
+	destroy_img(sl, &(sl->dog[0].tex[0][1]));
+	destroy_img(sl, &(sl->dog[0].tex[0][2]));
+	destroy_img(sl, &(sl->dog[0].tex[0][3]));
+	destroy_img(sl, &(sl->dog[0].tex[1][0]));
+	destroy_img(sl, &(sl->dog[0].tex[1][1]));
+	destroy_img(sl, &(sl->dog[0].tex[1][2]));
+	destroy_img(sl, &(sl->dog[0].tex[1][3]));
+	destroy_img(sl, &(sl->dog[0].tex[2][0]));
+	destroy_img(sl, &(sl->dog[0].tex[2][1]));
+	destroy_img(sl, &(sl->dog[0].tex[2][2]));
+	destroy_img(sl, &(sl->dog[0].tex[2][3]));
+	destroy_img(sl, &(sl->dog[0].tex[3][0]));
+	destroy_img(sl, &(sl->dog[0].tex[3][1]));
+	destroy_img(sl, &(sl->dog[0].tex[3][2]));
+	destroy_img(sl, &(sl->dog[0].tex[3][3]));
+	destroy_img(sl, &(sl->dog[0].tex[4][0]));
 }
 
 static void	destroy_img_map(t_data *sl)
