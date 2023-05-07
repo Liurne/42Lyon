@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/03/29 14:25:33 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/04 14:01:08 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -43,17 +43,30 @@ MLXFLAGS	=  -Lminilibx/ -lmlx -lXext -lX11 -lm -lz
 MLX			= minilibx/libmlx.a
 
 SRCS =	main.c \
-		src/so_long.c \
-		src/parsing/parsing.c \
-		src/parsing/parsing_utils.c \
+		src/utils/ft_bzero.c \
+		src/utils/ft_strlen.c \
+		src/utils/ft_strdup.c \
+		src/utils/ft_putstr_fd.c \
+		src/utils/ft_putnbr_fd.c \
+		src/utils/ft_strjoin.c \
+		src/utils/ft_strber.c \
+		src/utils/ft_putmove_fd.c \
+		src/utils/ft_calloc.c \
+		src/utils/ft_itoa.c \
 		src/init/window.c \
 		src/init/load_img.c \
 		src/init/destroy_img.c \
-		src/init/load_map.c \
+		src/init/error.c \
+		src/parsing/parsing_map.c \
+		src/parsing/verif_parsing.c \
+		src/world/map.c \
+		src/world/init_entity.c \
+		src/world/map_img.c \
 		src/display/display.c \
+		src/display/display_entity.c \
 		src/event/event.c \
-		src/map/map.c \
-		src/map/map_utils.c
+		src/event/keyboard.c \
+		src/event/dog.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -64,7 +77,7 @@ all:   ${NAME}
 ${NAME}:	${OBJS}
 	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
 
-%.o:	%.c ${HEADER} Makefile
+%.o:	%.c ${HEADER}
 	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@
 
 clean:

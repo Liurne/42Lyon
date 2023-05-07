@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 13:31:19 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/02 12:57:18 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:11:43 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ int	main(int ac, char **av, char **envp)
 {
 	t_data	pipex;
 
+	ft_bzero(&pipex, sizeof(t_data));
 	if (ac != 5)
 		return (ft_putstr_fd("Error: Invalid number of arguments\n", 2));
 	if (!envp || !envp[0] || !ft_strncmp("PATH", *envp, 4))

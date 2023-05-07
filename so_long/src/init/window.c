@@ -6,16 +6,54 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/29 17:14:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/04 16:52:14 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../so_long.h"
 
+int	new_img(t_data *sl, t_img *img, int w, int h)
+{
+	img->img = mlx_new_image(sl->win.mlx, w, h);
+	if (!img->img)
+		error(sl, ERR_IMG);
+	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
+			&(img->line_length), &(img->endian));
+	if (!img->addr)
+		error(sl, ERR_IMG);
+	return (0);
+}
+
+int	load_img(t_data *sl, char *path, t_img *img)
+{
+	img->img = mlx_xpm_file_to_image(sl->win.mlx, path, &(img->img_w),
+			&(img->img_h));
+	if (!img->img)
+	{
+		printf("%s\n", path);
+		error(sl, ERR_TEX);
+	}
+	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
+			&(img->line_length), &(img->endian));
+	if (!img->addr)
+		error(sl, ERR_TEX);
+	return (0);
+}
+
+int	destroy_img(t_data *sl, t_img *img)
+{
+	if (img->img)
+		mlx_destroy_image(sl->win.mlx, img->img);
+	return (0);
+}
+
 int	close_window(t_data *sl)
 {
-	//destroy_img_map(sl);
-	//destroy_img_pl(sl);
+	destroy_all_image(sl);
+	destroy_img(sl, &(sl->map.img));
+	destroy_img(sl, &(sl->win.renderer));
+	if (sl->map.map)
+		free(sl->map.map);
 	if (sl->win.win)
 		mlx_destroy_window(sl->win.mlx, sl->win.win);
 	if (sl->win.mlx)
@@ -27,19 +65,21 @@ int	close_window(t_data *sl)
 	return (0);
 }
 
-int	init_window(t_data *sl)
+int	init_window(t_data *sl, int win_w, int win_h)
 {
-	sl->win.w = 640;
-	sl->win.h = 384;
+	ft_bzero(sl, sizeof(t_data));
+	sl->win.w = win_w;
+	sl->win.h = win_h;
 	sl->win.mlx = mlx_init();
 	if (!sl->win.mlx)
-		exit(1);
+		error(sl, ERR_MLX);
 	sl->win.win = mlx_new_window(sl->win.mlx, sl->win.w, sl->win.h, "so_long");
 	if (!sl->win.win)
-		close_window(sl);
+		error(sl, ERR_LIB);
 	new_img(sl, &(sl->win.renderer), sl->win.w, sl->win.h);
 	if (!sl->win.renderer.img)
-		close_window(sl);
-	sl->anim = 0;
+		error(sl, ERR_IMG);
+	sl->need_pet = 250;
+	sl->nb_dogs = 3;
 	return (0);
 }

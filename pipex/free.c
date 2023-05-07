@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 10:06:54 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/02 12:39:43 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:12:40 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,11 +64,20 @@ void	child_free(t_data *pipex)
 	int	i;
 
 	i = 0;
+	while (pipex->cmd_paths[i])
+	{
+		free(pipex->cmd_paths[i]);
+		i++;
+	}
+	if (pipex->cmd_paths)
+		free(pipex->cmd_paths);
 	while (pipex->args[i])
 	{
 		free(pipex->args[i]);
 		i++;
 	}
-	free(pipex->args);
-	free(pipex->cmd);
+	if (pipex->args)
+		free(pipex->args);
+	if (pipex->cmd)
+		free(pipex->cmd);
 }

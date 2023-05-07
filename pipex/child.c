@@ -6,11 +6,19 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/24 13:24:37 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/03/08 15:25:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/04/24 15:11:26 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
+
+static void	close_everything(t_data *pipex)
+{
+	close(pipex->pipe[0]);
+	close(pipex->pipe[1]);
+	close(pipex->infile);
+	close(pipex->outfile);
+}
 
 static char	*get_cmd(char **paths, char *cmd)
 {
@@ -34,49 +42,58 @@ static char	*get_cmd(char **paths, char *cmd)
 
 static void	first_child(t_data *pipex, char **av, char **envp)
 {
-	if (dup2(pipex->pipe[1], 1) == -1)
-		ft_putstr_fd("Error: dup2 didn't work\n", 2);
-	if (dup2(pipex->infile, 0) == -1)
-		ft_putstr_fd("Error: dup2 didn't work\n", 2);
-	close(pipex->pipe[0]);
-	close(pipex->pipe[1]);
-	close(pipex->infile);
-	close(pipex->outfile);
-	pipex->args = ft_split(av[2], ' ');
-	pipex->cmd = get_cmd(pipex->cmd_paths, pipex->args[0]);
-	if (!pipex->cmd)
+	if (dup2(pipex->pipe[1], 1) == -1 || dup2(pipex->infile, 0) == -1)
+		ft_putstr_fd("Error: dup2 1 didn't work\n", 2);
+	else
 	{
-		child_free(pipex);
-		ft_putstr_fd("Error: Command \"", 2);
-		ft_putstr_fd(av[2], 2);
-		ft_putstr_fd("\" not found\n", 2);
-		exit(1);
+		pipex->args = ft_split(av[2], ' ');
+		pipex->cmd = get_cmd(pipex->cmd_paths, pipex->args[0]);
+		if (!pipex->cmd)
+		{
+			child_free(pipex);
+			ft_putstr_fd("Error: Command \"", 2);
+			ft_putstr_fd(av[2], 2);
+			ft_putstr_fd("\" not found\n", 2);
+			exit(1);
+		}
+		close_everything(pipex);
+		if (execve(pipex->cmd, pipex->args, envp) == -1)
+		{
+			ft_putstr_fd("Error: execve first child\n", 2);
+			child_free(pipex);
+			exit(1);
+		}
 	}
-	execve(pipex->cmd, pipex->args, envp);
+	close_everything(pipex);
+	exit(1);
 }
 
 static void	second_child(t_data *pipex, char **av, char **envp)
 {
-	if (dup2(pipex->pipe[0], 0) == -1)
-		ft_putstr_fd("Error: dup2 didn't work\n", 2);
-	if (dup2(pipex->outfile, 1) == -1)
-		ft_putstr_fd("Error: dup2 didn't work\n", 2);
-	close(pipex->pipe[0]);
-	close(pipex->pipe[1]);
-	close(pipex->infile);
-	close(pipex->outfile);
-	pipex->args = ft_split(av[3], ' ');
-	pipex->cmd = get_cmd(pipex->cmd_paths, pipex->args[0]);
-	if (!pipex->cmd)
+	if (dup2(pipex->pipe[0], 0) == -1 || dup2(pipex->outfile, 1) == -1)
+		ft_putstr_fd("Error: dup2 2 didn't work\n", 2);
+	else
 	{
-		child_free(pipex);
-		ft_putstr_fd("Error: Command \"", 2);
-		ft_putstr_fd(av[3], 2);
-		ft_putstr_fd("\" not found\n", 2);
-		exit(1);
+		pipex->args = ft_split(av[3], ' ');
+		pipex->cmd = get_cmd(pipex->cmd_paths, pipex->args[0]);
+		if (!pipex->cmd)
+		{
+			child_free(pipex);
+			ft_putstr_fd("Error: Command \"", 2);
+			ft_putstr_fd(av[3], 2);
+			ft_putstr_fd("\" not found\n", 2);
+			exit(1);
+		}
+		close_everything(pipex);
+		if (execve(pipex->cmd, pipex->args, envp) == -1)
+		{
+			ft_putstr_fd("Error: execve second child\n", 2);
+			child_free(pipex);
+			exit(1);
+		}
 	}
-	(void) envp;
-	execve(pipex->cmd, pipex->args, envp);
+	close_everything(pipex);
+	exit(1);
 }
 
 void	childs(t_data *pipex, char **av, char **envp)
