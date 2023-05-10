@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:15:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:32:51 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/10 17:16:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,10 +82,29 @@ void	display_dog(t_data *sl, t_entity *e)
 		display_hitbox(sl, e);
 }
 
-void	animation_entity(t_data *sl, t_entity *e)
+static void	animation_entity(t_data *sl, t_entity *e)
 {
 	if (e->inmove)
 		e->animation = sl->anim;
 	else
 		e->animation = 0;
+}
+
+void	animation(t_data *sl)
+{
+	int	i;
+
+	i = -1;
+	if (sl->time >= 8)
+	{
+		sl->anim++;
+		if (sl->anim > 3)
+			sl->anim = 0;
+		animation_entity(sl, &(sl->pl));
+		while (++i < sl->nb_dogs)
+			animation_entity(sl, &(sl->dog[i]));
+		sl->time = 0;
+		sl->pl.inmove = 0;
+	}
+	++sl->time;
 }

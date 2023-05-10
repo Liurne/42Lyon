@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:04:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 15:12:34 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:06:30 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,20 @@
 
 static void	init_cam(t_data *sl)
 {
-	if (sl->pl.pos.x >= sl->win.w / 2)
-		sl->map.pos.x = -128 * (((sl->pl.pos.x - (sl->win.w / 2)) / 128));
-	if (sl->map.pos.x * -1 > (sl->map.w * 128) - sl->win.w)
-		sl->map.pos.x = (sl->map.w * -128) + sl->win.w;
-	if (sl->pl.pos.y >= sl->win.h / 2)
-		sl->map.pos.y = -128 * (((sl->pl.pos.y - (sl->win.h / 2)) / 128));
-	if (sl->map.pos.y * -1 > (sl->map.h * 128) - sl->win.h)
-		sl->map.pos.y = (sl->map.h * -128) + sl->win.h;
+	if (sl->map.w * 128 > sl->win.w)
+	{
+		if (sl->pl.pos.x >= sl->win.w / 2)
+			sl->map.pos.x = -128 * (((sl->pl.pos.x - (sl->win.w / 2)) / 128));
+		if (sl->map.pos.x * -1 > (sl->map.w * 128) - sl->win.w)
+			sl->map.pos.x = (sl->map.w * -128) + sl->win.w;
+	}
+	if (sl->map.h * 128 > sl->win.h)
+	{
+		if (sl->pl.pos.y >= sl->win.h / 2)
+			sl->map.pos.y = -128 * (((sl->pl.pos.y - (sl->win.h / 2)) / 128));
+		if (sl->map.pos.y * -1 > (sl->map.h * 128) - sl->win.h)
+			sl->map.pos.y = (sl->map.h * -128) + sl->win.h;
+	}
 }
 
 static void	init_pl(t_entity *e, int x, int y)

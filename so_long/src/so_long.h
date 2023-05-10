@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:52:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:30:33 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,7 +138,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 int		get_pixel(t_img *img, int x, int y);
 void	display_entity(t_data *sl, t_entity *e);
 void	display_dog(t_data *sl, t_entity *e);
-void	animation_entity(t_data *sl, t_entity *e);
+void	animation(t_data *sl);
 int		update_display(t_data *sl);
 
 /* -----event----- */

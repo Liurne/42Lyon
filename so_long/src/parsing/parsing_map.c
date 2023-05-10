@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:20:55 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:32:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:43:03 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ static int	load_file(t_data *sl, char *path)
 		return (0);
 	sl->map.map = read_file(fd, sl->map.map);
 	close(fd);
+	if (!sl->map.map)
+		return (0);
 	return (1);
 }
 

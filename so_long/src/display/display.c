@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:13:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 15:13:52 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/10 14:37:17 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,7 @@ int	get_pixel(t_img *img, int x, int y)
 	return (*(int *)dst);
 }
 
-static void	animation(t_data *sl)
-{
-	int	i;
-
-	i = -1;
-	if (sl->time >= 8)
-	{
-		sl->anim++;
-		if (sl->anim > 3)
-			sl->anim = 0;
-		animation_entity(sl, &(sl->pl));
-		while (++i < sl->nb_dogs)
-			animation_entity(sl, &(sl->dog[i]));
-		sl->time = 0;
-		sl->pl.inmove = 0;
-	}
-	++sl->time;
-}
-
-int	render_display(t_data *sl)
+static void	render_display(t_data *sl)
 {
 	int	x;
 	int	y;
@@ -64,12 +45,36 @@ int	render_display(t_data *sl)
 	while (++x < sl->nb_dogs)
 		display_dog(sl, &(sl->dog[x]));
 	display_entity(sl, &(sl->pl));
-	return (0);
+}
+
+void	display_text(t_data	*sl)
+{
+	char	*tmp;
+
+	mlx_string_put(sl->win.mlx, sl->win.win, 10, 20, 0xFF000000,
+		"Number of tiles traveled : ");
+	tmp = ft_itoa(sl->pl.nb_mv);
+	if (!tmp)
+	{
+		ft_putstr_fd("Error : malloc failled\n", 2);
+		close_window(sl);
+	}
+	mlx_string_put(sl->win.mlx, sl->win.win, 175, 21, 0xFF000000, tmp);
+	free(tmp);
+	mlx_string_put(sl->win.mlx, sl->win.win, 10, 35, 0xFF000000,
+		"Number of boxes remaining : ");
+	tmp = ft_itoa(is_still(sl->map.map, 'C'));
+	if (!tmp)
+	{
+		ft_putstr_fd("Error : malloc failled\n", 2);
+		close_window(sl);
+	}
+	mlx_string_put(sl->win.mlx, sl->win.win, 175, 36, 0xFF000000, tmp);
+	free(tmp);
 }
 
 int	update_display(t_data *sl)
 {
-	char	*tmp;
 	int		i;
 
 	event_manager(sl);
@@ -80,17 +85,6 @@ int	update_display(t_data *sl)
 	render_display(sl);
 	mlx_put_image_to_window(sl->win.mlx, sl->win.win,
 		sl->win.renderer.img, 0, 0);
-	mlx_string_put(sl->win.mlx, sl->win.win, 10, 20, 0xFF000000,
-		"Number of tiles traveled : ");
-	(void) tmp;
-	tmp = ft_itoa(sl->pl.nb_mv);
-	mlx_string_put(sl->win.mlx, sl->win.win, 175, 21, 0xFF000000, tmp);
-	free(tmp);
-	mlx_string_put(sl->win.mlx, sl->win.win, 10, 35, 0xFF000000,
-		"Number of boxes remaining : ");
-	tmp = ft_itoa(is_still(sl->map.map, 'C'));
-	mlx_string_put(sl->win.mlx, sl->win.win, 175, 36, 0xFF000000, tmp);
-	free(tmp);
 	if (sl->need_pet > 150 && sl->pl.dir == 4)
 		sl->pl.dir = 0;
 	return (0);
