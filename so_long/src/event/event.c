@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/17 14:58:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:21:41 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,12 +104,12 @@ int	move_player(t_data *sl, int x, int y, int dir)
 				- sl->pl.pos.x) > sl->win.w / 2)
 			if (sl->map.pos.x - x <= 0 && sl->map.pos.x - x - sl->win.w
 				>= sl->map.w * -128)
-				sl->map.pos.x -= x;
+				sl->map.pos.x = -sl->pl.pos.x + sl->win.w / 2;
 		if (y != 0 && sl->pl.pos.y >= sl->win.h / 2 && ((sl->map.h * 128)
 				- sl->pl.pos.y) > sl->win.h / 2)
 			if (sl->map.pos.y - y <= 0 && sl->map.pos.y - y - sl->win.h
 				>= sl->map.h * -128)
-				sl->map.pos.y -= y;
+				sl->map.pos.y = -sl->pl.pos.y + sl->win.h / 2;
 	}
 	return (0);
 }
@@ -118,16 +118,13 @@ void	event_manager(t_data *sl)
 {
 	if (sl->need_pet > 110)
 	{
-		if (sl->keys.left)
-		{
-			move_player(sl, 0, -11, 1);
-			printf("gauche\n");
-		}
-		if (sl->keys.right)
-			move_player(sl, 0, 11, 0);
-		if (sl->keys.down)
-			move_player(sl, -11, 0, 3);
 		if (sl->keys.up)
+			move_player(sl, 0, -11, 1);
+		if (sl->keys.down)
+			move_player(sl, 0, 11, 0);
+		if (sl->keys.left)
+			move_player(sl, -11, 0, 3);
+		if (sl->keys.right)
 			move_player(sl, 11, 0, 2);
 	}
 }

@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/16 17:43:54 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/17 15:41:09 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ fclean: clean
 re:	fclean
 	${MAKE} all
 
-display:
+display: ${OBJS}
 		@echo "${BLUE}============================\n\n* ${NAME} compilation...\n\n============================\n${END}"
 
 sus:

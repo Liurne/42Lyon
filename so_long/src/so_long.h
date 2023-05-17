@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/16 17:39:44 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:30:45 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,7 +97,6 @@ typedef struct s_data
 	int			c_night;
 	float		trans;
 	int			nb_dogs;
-	int			anim;
 	int			need_pet;
 	int			show_hitbox;
 	size_t		nb_case;
