@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:14:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/11 15:32:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/15 18:11:22 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,10 +29,7 @@ int	load_img(t_data *sl, char *path, t_img *img)
 	img->img = mlx_xpm_file_to_image(sl->win.mlx, path, &(img->img_w),
 			&(img->img_h));
 	if (!img->img)
-	{
-		printf("%s\n", path);
 		error(sl, ERR_TEX);
-	}
 	img->addr = mlx_get_data_addr(img->img, &(img->bits_per_pixel),
 			&(img->line_length), &(img->endian));
 	if (!img->addr)
@@ -80,6 +77,8 @@ int	init_window(t_data *sl, int win_w, int win_h)
 	if (!sl->win.renderer.img)
 		error(sl, ERR_IMG);
 	sl->need_pet = 250;
-	sl->nb_dogs = 100;
+	sl->nb_dogs = 3;
+	sl->c_night = 0xFF001835;
+	sl->trans = 0.0;
 	return (0);
 }

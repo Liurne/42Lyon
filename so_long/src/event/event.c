@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:26:42 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:11:58 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 14:58:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,10 +116,13 @@ int	move_player(t_data *sl, int x, int y, int dir)
 
 void	event_manager(t_data *sl)
 {
-	if (sl->need_pet > 150)
+	if (sl->need_pet > 110)
 	{
 		if (sl->keys.left)
+		{
 			move_player(sl, 0, -11, 1);
+			printf("gauche\n");
+		}
 		if (sl->keys.right)
 			move_player(sl, 0, 11, 0);
 		if (sl->keys.down)

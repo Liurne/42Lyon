@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 16:04:07 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/10 14:06:30 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:51:08 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ static void	init_pl(t_entity *e, int x, int y)
 	e->d = 0;
 	e->inmove = 0;
 	e->animation = 0;
+	e->alive = 1;
 }
 
 static void	init_dog(t_data *sl, int x, int y)
@@ -65,8 +66,26 @@ static void	init_dog(t_data *sl, int x, int y)
 		sl->dog[i].d = 0;
 		sl->dog[i].inmove = 0;
 		sl->dog[i].animation = 0;
+		sl->dog[i].alive = 1;
 		i++;
 	}
+}
+
+static void	init_wolf(t_data *sl, int x, int y)
+{
+	sl->wolf.id = 1;
+	sl->wolf.pos.x = x * 128;
+	sl->wolf.pos.y = y * 128;
+	sl->wolf.tpos.x = 32;
+	sl->wolf.tpos.y = 32;
+	sl->wolf.w = 64;
+	sl->wolf.h = 92;
+	sl->wolf.dir = 0;
+	sl->wolf.nb_mv = 0;
+	sl->wolf.d = 0;
+	sl->wolf.inmove = 0;
+	sl->wolf.animation = 0;
+	sl->wolf.alive = 0;
 }
 
 void	init_pos(t_data *sl)
@@ -90,6 +109,7 @@ void	init_pos(t_data *sl)
 				sl->map.end.x = x * 128;
 				sl->map.end.y = y * 128;
 				init_dog(sl, x, y);
+				init_wolf(sl, x, y);
 			}
 		}
 	}

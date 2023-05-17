@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:15:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/10 17:16:31 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:36:10 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	display_entity(t_data *sl, t_entity *e)
 				+ sl->map.pos.x < sl->win.w && e->pos.y + y + sl->map.pos.y
 				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
 				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
-					e->pos.y + y + sl->map.pos.y,
-					get_pixel(&(e->tex[e->dir][e->animation]), x, y));
+					e->pos.y + y + sl->map.pos.y, transparence(get_pixel(
+							&(e->tex[e->dir][e->animation]), x, y),
+						sl->c_night, sl->trans));
 		}
 	}
 	if (sl->show_hitbox)
@@ -75,7 +76,9 @@ void	display_dog(t_data *sl, t_entity *e)
 				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
 				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
 					e->pos.y + y + sl->map.pos.y,
-					get_pixel(&(sl->dog[0].tex[e->dir][e->animation]), x, y));
+					transparence(get_pixel(
+							&(sl->dog[0].tex[e->dir][e->animation]), x, y),
+						sl->c_night, sl->trans));
 		}
 	}
 	if (sl->show_hitbox)
@@ -103,6 +106,8 @@ void	animation(t_data *sl)
 		animation_entity(sl, &(sl->pl));
 		while (++i < sl->nb_dogs)
 			animation_entity(sl, &(sl->dog[i]));
+		if (sl->wolf.alive)
+			animation_entity(sl, &(sl->wolf));
 		sl->time = 0;
 		sl->pl.inmove = 0;
 	}

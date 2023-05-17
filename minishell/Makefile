@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/10 18:42:40 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/11 18:11:33 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,8 +35,17 @@ NAME = minishell
 FLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
+		src/utils/ft_iswhitespace.c \
 		src/utils/ft_bzero.c \
+		src/utils/ft_calloc.c \
+		src/utils/ft_strlen.c \
 		src/utils/ft_strcmp.c \
+		src/utils/ft_strstr.c \
+		src/utils/ft_strndup.c \
+		src/utils/ft_substr.c \
+		src/utils/ft_split.c \
+		src/utils/ft_split_space.c \
+		src/parser/heredoc.c
 
 OBJS = ${SRCS:.c=.o}
 

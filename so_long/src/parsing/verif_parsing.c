@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 14:34:36 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/10 14:07:32 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:02:57 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,5 +105,6 @@ int	verif_map(t_data *sl)
 	recu_finder(sl, tmp, sl->pl.pos.x / 128, sl->pl.pos.y / 128);
 	if (is_still(tmp, 'E') || is_still(tmp, 'C'))
 		return (free(tmp), 0);
+	sl->nb_case = (sl->map.w * sl->map.h) - is_still(sl->map.map, '1');
 	return (free(tmp), 1);
 }

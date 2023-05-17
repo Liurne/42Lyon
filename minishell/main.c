@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:43 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/10 18:46:16 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/11 18:25:47 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,20 @@
 
 int	main(void)
 {
-	char	*line;
+	t_data	prompt;
 
-	printf(YELLOW"=========================\n|"END);
+	ft_bzero(&prompt, sizeof(t_data));
+	printf(YELLOW"===========================\n||"END);
 	printf(RED" minishell !! patate ! "END);
-	printf(YELLOW"|\n=========================\n"END);
-	while (ft_strcmp(line, "exit"))
+	printf(YELLOW"||\n===========================\n"END);
+	while (ft_strcmp(prompt.line, "exit"))
 	{
-		if (line)
-			free(line);
-		line = readline(RED"prout> "END);
+		if (prompt.line)
+			free(prompt.line);
+		prompt.line = readline(RED"patate> "END);
+		ft_pars(&prompt);
 	}
 	printf(RED"bye bye patate!!\n"END);
-	free(line);
+	free(prompt.line);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 17:07:29 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:59:53 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ static void	dog_action(t_data *sl, t_entity *e, int time)
 		if (e->dir == 3)
 			move_dog(sl, e, -10, 0);
 	}
-	if (entity_collision(&(sl->pl), e) && sl->need_pet >= 275)
+	if (entity_collision(&(sl->pl), e) && sl->need_pet >= 175)
 		dog_pet(sl, e);
 }
 
@@ -66,7 +66,7 @@ void	dog_manager(t_data *sl, t_entity *e)
 	static int	time;
 	static int	r;
 
-	if (sl->need_pet > 200)
+	if (sl->need_pet > 150 && e->alive)
 	{
 		if (time > 100)
 		{
@@ -78,7 +78,7 @@ void	dog_manager(t_data *sl, t_entity *e)
 				e->inmove = 1;
 			e->dir = (r % 4);
 		}
-		if (sl->need_pet < 275 && e->id == 1 && time % 8)
+		if (sl->need_pet < 175 && e->id == 1 && time % 8)
 			sl->need_pet++;
 		dog_action(sl, e, time);
 	}

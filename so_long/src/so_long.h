@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/11 15:31:10 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:39:44 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_entity
 	size_t	nb_mv;
 	size_t	d;
 	int		inmove;
+	int		alive;
 	int		animation;
 	t_img	tex[5][4];
 }	t_entity;
@@ -91,11 +92,15 @@ typedef struct s_data
 	t_keyboard	keys;
 	t_map		map;
 	t_entity	pl;
-	t_entity	dog[100];
+	t_entity	dog[3];
+	t_entity	wolf;
+	int			c_night;
+	float		trans;
 	int			nb_dogs;
 	int			anim;
 	int			need_pet;
 	int			show_hitbox;
+	size_t		nb_case;
 	int			time;
 }	t_data;
 
@@ -148,5 +153,12 @@ void	event_manager(t_data *sl);
 void	dog_manager(t_data *sl, t_entity *e);
 int		test_collision(t_data *sl, t_entity *e, int x, int y);
 int		entity_collision(t_entity *e1, t_entity *e2);
+
+/* -----test----- */
+void	put_night(t_data *sl);
+int		transparence(int c1, int c2, float t);
+void	update_night(t_data *sl);
+void	wolf_manager(t_data *sl, t_entity *e);
+void	bad_end(t_data *sl);
 
 #endif

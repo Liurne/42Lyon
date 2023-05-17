@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/04 14:01:08 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/16 17:43:54 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,26 +14,21 @@
 # $^ : tous les OBJS
 # $< : premiere dependance
 
-BLACK        = \033[1;30m
-RED            = \033[1;31m
-GREEN        = \033[1;32m
-YELLOW        = \033[1;33m
-BLUE        = \033[1;34m
-VIOLET        = \033[1;35m
-CYAN        = \033[1;36m
-WHITE        = \033[1;37m
-IGREY        = \x1b[40m
-IRED        = \x1b[41m
-IGREEN        = \x1b[42m
-IYELLOW        = \x1b[43m
-IBLUE        = \x1b[44m
-IPURPLE        = \x1b[45m
-ICYAN        = \x1b[46m
-IWHITE        = \x1b[47m
-END            = \x1b[0m
-UNDERLINE    = \x1b[4m
-REV            = \x1b[7m
-ERASE        = \033[2K\r
+GREY = \033[30m
+RED = \033[31m
+GREEN = \033[32m
+ORANGE = \033[33m
+BLUE = \033[34m
+PURPLE = \033[35m
+LIGHTBLUE = \033[36m
+WHITE = \033[37m
+
+IRED=\033[41m
+IWHITE=\033[47m
+IBLUE=\033[44m
+IPURPLE=\033[45m
+
+END = \033[0m
 
 NAME = so_long
 
@@ -66,7 +61,9 @@ SRCS =	main.c \
 		src/display/display_entity.c \
 		src/event/event.c \
 		src/event/keyboard.c \
-		src/event/dog.c
+		src/event/dog.c \
+		src/event/wolf.c \
+		src/event/end.c
 
 OBJS = ${SRCS:.c=.o}
 
@@ -74,39 +71,42 @@ HEADER = src/so_long.h
 
 all:   ${NAME}
 
-${NAME}:	${OBJS}
-	@ ${CC} ${FLAGS} $^ -o $@ ${MLXFLAGS} && echo \\npush_swap compilation...\\n\\n*===============*
+${NAME}:	display ${OBJS}
+	@ ${CC} ${FLAGS} ${OBJS} -o $@ ${MLXFLAGS} && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
 
 %.o:	%.c ${HEADER}
-	@ ${CC} ${FLAGS} -c $< -o $@ && echo $@
+	@ ${CC} ${FLAGS} -c $< -o $@ && echo "  $@"
 
 clean:
-	@ ${RM} ${OBJS} && echo clean...
+	@ ${RM} ${OBJS} && echo "${RED} * object cleared..."
 
-fclean:	clean
-	@ ${RM} ${NAME} && echo full clean...
+fclean: clean
+	@ ${RM} ${NAME} && echo "${RED} * everything is cleared..."
 
 re:	fclean
 	${MAKE} all
 
+display:
+		@echo "${BLUE}============================\n\n* ${NAME} compilation...\n\n============================\n${END}"
+
 sus:
-	@echo "$(IRED)           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        $(END)"
-	@echo "$(IRED)        ⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀     $(END)"
-	@echo "$(IRED)        ⣼⣿⠋       ⢀⣀⣀⠈⢻⣿⣿⡄    $(END)"
-	@echo "$(IRED)       ⣸⣿⡏   ⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣄   $(END)"
-	@echo "$(IRED)       ⣿⣿⠁  ⢰⣿⣿⣯⠁       ⠈⠙⢿⣷⡄ $(END)"
-	@echo "$(IRED)  ⣀⣤⣴⣶⣶⣿⡟   ⢸⣿⣿⣿⣆          ⣿⣷ $(END)"
-	@echo "$(IRED) ⢰⣿⡟⠋⠉⣹⣿⡇   ⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⣿⣿ $(END)"
-	@echo "$(IRED) ⢸⣿⡇  ⣿⣿⡇    ⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃ $(END)"
-	@echo "$(IRED) ⣸⣿⡇  ⣿⣿⡇     ⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛⢻⣿⡇  $(END)"
-	@echo "$(IRED) ⠸⣿⣧⡀ ⣿⣿⡇                ⣿⣿⠃  $(END)"
-	@echo "$(IRED)  ⠛⢿⣿⣿⣿⣿⣇     ⣰⣿⣿⣷⣶⣶⣶⣶⠶ ⢠⣿⣿   $(END)"
-	@echo "$(IRED)       ⣿⣿     ⣿⣿⡇ ⣽⣿⡏⠁  ⢸⣿⡇   $(END)"
-	@echo "$(IRED)       ⣿⣿     ⣿⣿⡇ ⢹⣿⡆   ⣸⣿⠇   $(END)"
-	@echo "$(IRED)       ⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁ ⠈⠻⣿⣿⣿⣿⡿⠏    $(END)"
-	@echo "$(IRED)       ⠈⠛⠻⠿⠿⠿⠿⠋⠁              $(END)"
-	@echo "$(WHITE)         ░█▀▀░█░█░█▀▀$(END)"
-	@echo "$(WHITE)         ░▀▀█░█░█░▀▀█$(END)"
-	@echo "$(WHITE)         ░▀▀▀░▀▀▀░▀▀▀$(END)"
+	@echo "${BLUE}           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        ${END}"
+	@echo "${BLUE}        ⢀⣴⣿⡿⠛⠉⠙⠛⠛⠛⠛⠻⢿⣿⣷⣤⡀     ${END}"
+	@echo "${BLUE}        ⣼⣿⠋       ${WHITE}⢀⣀⣀${BLUE}⠈⢻⣿⣿⡄    ${END}"
+	@echo "${BLUE}       ⣸⣿⡏   ${WHITE}⣠⣶⣾⣿⣿⣿⠿⠿⠿⢿⣿⣿⣿⣄   ${END}"
+	@echo "${BLUE}       ⣿⣿⠁  ${WHITE}⢰⣿⣿⣯⠁       ⠈⠙⢿⣷⡄ ${END}"
+	@echo "${BLUE}  ⣀⣤⣴⣶⣶⣿⡟   ${WHITE}⢸⣿⣿⣿⣆          ⣿⣷ ${END}"
+	@echo "${BLUE} ⢰⣿⡟⠋⠉⣹⣿⡇   ${WHITE}⠘⣿⣿⣿⣿⣷⣦⣤⣤⣤⣶⣶⣶⣶⣿⣿⣿ ${END}"
+	@echo "${BLUE} ⢸⣿⡇  ⣿⣿⡇    ${WHITE}⠹⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⣿⡿⠃ ${END}"
+	@echo "${BLUE} ⣸⣿⡇  ⣿⣿⡇     ${WHITE}⠉⠻⠿⣿⣿⣿⣿⡿⠿⠿⠛${BLUE}⢻⣿⡇  ${END}"
+	@echo "${BLUE} ⠸⣿⣧⡀ ⣿⣿⡇                ⣿⣿⠃  ${END}"
+	@echo "${BLUE}  ⠛⢿⣿⣿⣿⣿⣇     ⣰⣿⣿⣷⣶⣶⣶⣶⠶ ⢠⣿⣿   ${END}"
+	@echo "${BLUE}       ⣿⣿     ⣿⣿⡇ ⣽⣿⡏⠁  ⢸⣿⡇   ${END}"
+	@echo "${BLUE}       ⣿⣿     ⣿⣿⡇ ⢹⣿⡆   ⣸⣿⠇   ${END}"
+	@echo "${BLUE}       ⢿⣿⣦⣄⣀⣠⣴⣿⣿⠁ ⠈⠻⣿⣿⣿⣿⡿⠏    ${END}"
+	@echo "${BLUE}       ⠈⠛⠻⠿⠿⠿⠿⠋⠁              ${END}"
+	@echo "$(IBLUE)         ░█▀▀░█░█░█▀▀         ${END}"
+	@echo "$(IBLUE)         ░▀▀█░█░█░▀▀█         ${END}"
+	@echo "$(IBLUE)         ░▀▀▀░▀▀▀░▀▀▀         ${END}"
 
 .PHONY: all clean fclean re bonussh-5.1$ 
