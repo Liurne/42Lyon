@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/15 16:33:33 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/16 17:59:01 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 16:14:50 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,9 +101,9 @@ void	wolf_manager(t_data *sl, t_entity *e)
 		else
 			e->dir = 1;
 		wolf_action(sl, e);
-		if (e->pos.x < sl->pl.pos.x)
+		if (e->pos.x < sl->pl.pos.x && sl->pl.alive)
 			e->dir = 2;
-		else
+		else if (sl->pl.alive)
 			e->dir = 3;
 		wolf_action(sl, e);
 	}
