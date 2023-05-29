@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/13 14:36:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 14:43:48 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/16 17:47:46 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,8 @@ static void	load_pl_img(t_data *sl)
 	load_img(sl, "data/texture/pl_left.xpm", &(sl->pl.tex[3][2]));
 	load_img(sl, "data/texture/pl_left_walk2.xpm", &(sl->pl.tex[3][3]));
 	load_img(sl, "data/texture/pl_pet_heart.xpm", &(sl->pl.tex[4][0]));
+	load_img(sl, "data/texture/pl_front.xpm", &(sl->pl.tex[4][1]));
+	load_img(sl, "data/texture/pl_killed.xpm", &(sl->pl.tex[4][2]));
 }
 
 static void	load_dog_img(t_data *sl)
@@ -76,9 +78,32 @@ static void	load_dog_img(t_data *sl)
 	load_img(sl, "data/texture/dog_lay.xpm", &(sl->dog[0].tex[4][0]));
 }
 
+static void	load_wolf_img(t_data *sl)
+{
+	load_img(sl, "data/texture/test/pl_front.xpm", &(sl->wolf.tex[0][0]));
+	load_img(sl, "data/texture/test/pl_front_walk1.xpm", &(sl->wolf.tex[0][1]));
+	load_img(sl, "data/texture/test/pl_front.xpm", &(sl->wolf.tex[0][2]));
+	load_img(sl, "data/texture/test/pl_front_walk2.xpm", &(sl->wolf.tex[0][3]));
+	load_img(sl, "data/texture/test/pl_back.xpm", &(sl->wolf.tex[1][0]));
+	load_img(sl, "data/texture/test/pl_back_walk1.xpm", &(sl->wolf.tex[1][1]));
+	load_img(sl, "data/texture/test/pl_back.xpm", &(sl->wolf.tex[1][2]));
+	load_img(sl, "data/texture/test/pl_back_walk2.xpm", &(sl->wolf.tex[1][3]));
+	load_img(sl, "data/texture/test/pl_right.xpm", &(sl->wolf.tex[2][0]));
+	load_img(sl, "data/texture/test/pl_right_walk1.xpm", &(sl->wolf.tex[2][1]));
+	load_img(sl, "data/texture/test/pl_right.xpm", &(sl->wolf.tex[2][2]));
+	load_img(sl, "data/texture/test/pl_right_walk2.xpm", &(sl->wolf.tex[2][3]));
+	load_img(sl, "data/texture/test/pl_left.xpm", &(sl->wolf.tex[3][0]));
+	load_img(sl, "data/texture/test/pl_left_walk1.xpm", &(sl->wolf.tex[3][1]));
+	load_img(sl, "data/texture/test/pl_left.xpm", &(sl->wolf.tex[3][2]));
+	load_img(sl, "data/texture/test/pl_left_walk2.xpm", &(sl->wolf.tex[3][3]));
+	load_img(sl, "data/texture/test/pl_kill1.xpm", &(sl->wolf.tex[4][1]));
+	load_img(sl, "data/texture/test/pl_kill2.xpm", &(sl->wolf.tex[4][2]));
+}
+
 void	load_all_image(t_data *sl)
 {
 	load_map_img(sl);
 	load_pl_img(sl);
 	load_dog_img(sl);
+	load_wolf_img(sl);
 }

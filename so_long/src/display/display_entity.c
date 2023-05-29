@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:15:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:32:51 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:14:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,8 +50,9 @@ void	display_entity(t_data *sl, t_entity *e)
 				+ sl->map.pos.x < sl->win.w && e->pos.y + y + sl->map.pos.y
 				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
 				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
-					e->pos.y + y + sl->map.pos.y,
-					get_pixel(&(e->tex[e->dir][e->animation]), x, y));
+					e->pos.y + y + sl->map.pos.y, transparence(get_pixel(
+							&(e->tex[e->dir][e->animation]), x, y),
+						sl->c_night, sl->trans));
 		}
 	}
 	if (sl->show_hitbox)
@@ -75,17 +76,41 @@ void	display_dog(t_data *sl, t_entity *e)
 				> 0 && e->pos.y + y + sl->map.pos.y < sl->win.h)
 				put_pixel(&(sl->win.renderer), e->pos.x + x + sl->map.pos.x,
 					e->pos.y + y + sl->map.pos.y,
-					get_pixel(&(sl->dog[0].tex[e->dir][e->animation]), x, y));
+					transparence(get_pixel(
+							&(sl->dog[0].tex[e->dir][e->animation]), x, y),
+						sl->c_night, sl->trans));
 		}
 	}
 	if (sl->show_hitbox)
 		display_hitbox(sl, e);
 }
 
-void	animation_entity(t_data *sl, t_entity *e)
+static void	animation_entity(t_entity *e)
 {
 	if (e->inmove)
-		e->animation = sl->anim;
+	{
+		e->animation++;
+		if (e->animation > 3)
+			e->animation = 0;
+	}
 	else
 		e->animation = 0;
+}
+
+void	animation(t_data *sl)
+{
+	int	i;
+
+	i = -1;
+	if (sl->time >= 7)
+	{
+		animation_entity(&(sl->pl));
+		while (++i < sl->nb_dogs)
+			animation_entity(&(sl->dog[i]));
+		if (sl->wolf.alive)
+			animation_entity(&(sl->wolf));
+		sl->time = 0;
+		sl->pl.inmove = 0;
+	}
+	++sl->time;
 }

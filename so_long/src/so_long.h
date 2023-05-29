@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 12:37:46 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/04 16:52:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 15:30:45 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,7 @@ typedef struct s_entity
 	size_t	nb_mv;
 	size_t	d;
 	int		inmove;
+	int		alive;
 	int		animation;
 	t_img	tex[5][4];
 }	t_entity;
@@ -92,10 +93,13 @@ typedef struct s_data
 	t_map		map;
 	t_entity	pl;
 	t_entity	dog[3];
+	t_entity	wolf;
+	int			c_night;
+	float		trans;
 	int			nb_dogs;
-	int			anim;
 	int			need_pet;
 	int			show_hitbox;
+	size_t		nb_case;
 	int			time;
 }	t_data;
 
@@ -138,7 +142,7 @@ void	put_pixel(t_img *img, int x, int y, int color);
 int		get_pixel(t_img *img, int x, int y);
 void	display_entity(t_data *sl, t_entity *e);
 void	display_dog(t_data *sl, t_entity *e);
-void	animation_entity(t_data *sl, t_entity *e);
+void	animation(t_data *sl);
 int		update_display(t_data *sl);
 
 /* -----event----- */
@@ -148,5 +152,12 @@ void	event_manager(t_data *sl);
 void	dog_manager(t_data *sl, t_entity *e);
 int		test_collision(t_data *sl, t_entity *e, int x, int y);
 int		entity_collision(t_entity *e1, t_entity *e2);
+
+/* -----test----- */
+void	put_night(t_data *sl);
+int		transparence(int c1, int c2, float t);
+void	update_night(t_data *sl);
+void	wolf_manager(t_data *sl, t_entity *e);
+void	bad_end(t_data *sl);
 
 #endif
