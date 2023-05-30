@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Calculatrice</title>
+	</head>
+	<body>
+		<input id="nb1" type="text">
+		<select name="sign" id="op">
+			<option value="+"> + </option>
+			<option value="-"> - </option>
+			<option value="/"> / </option>
+			<option value="*"> * </option>
+			<option value="%"> % </option>
+		</select>
+		<input id="nb2" type="text">
+		<input id="submit" type="submit" value="Try me !">
+	</body>
+	<script>
+		document.getElementById('submit').addEventListener('click', calc);
+		function time_test()
+		{
+			alert("Please, use me...");
+			setTimeout(time_test, 30000);
+		}
+		setTimeout(time_test, 30000);
+		function calc() {
+			let nb1 = parseFloat(document.getElementById('nb1').value);
+			let nb2 = parseFloat(document.getElementById('nb2').value);
+			let op = document.getElementById('op').value;
+			
+			if (isNaN(nb1) || isNaN(nb2) || nb1 < 0 || nb2 < 0) {
+				alert('Error :(');
+				return;
+			}
+			if (op === '+')
+				res = nb1 + nb2;
+			if (op === '-')
+				res = nb1 - nb2;
+			if (op === '*')
+				res = nb1 * nb2;
+			if (op === '%')
+			{
+				if (nb2 === 0)
+				{
+					alert('it s over 9000');
+					return ;
+				}
+				res = nb1 % nb2;
+			}
+			if (op === '/')
+			{
+				if (nb2 === 0)
+				{
+					alert('it s over 9000');
+					return ;
+				}
+				res = nb1 / nb2;
+			}
+			alert('Resultat: ' + res);
+		}
+	</script>
+</html>  

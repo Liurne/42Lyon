@@ -6,16 +6,20 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:43 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/11 18:25:47 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/30 16:36:15 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "src/minishell.h"
 
-int	main(void)
+int	main(int ac, char** av, char **envp)
 {
 	t_data	prompt;
 
+	(void)ac;
+	(void)av;
+	if (!envp || !envp[0] || !ft_strncmp("PATH", *envp, 4))
+		return (printf("Error: environment non existent\n"), 1);
 	ft_bzero(&prompt, sizeof(t_data));
 	printf(YELLOW"===========================\n||"END);
 	printf(RED" minishell !! patate ! "END);
@@ -25,7 +29,8 @@ int	main(void)
 		if (prompt.line)
 			free(prompt.line);
 		prompt.line = readline(RED"patate> "END);
-		ft_pars(&prompt);
+		if (!ft_strcmp(prompt.line, "pwd"))
+			printf("%s\n",getcwd(NULL, 0));
 	}
 	printf(RED"bye bye patate!!\n"END);
 	free(prompt.line);

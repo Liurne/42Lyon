@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Button !!</title>
+		<link href="background.css" rel="stylesheet">
+	</head>
+	<body>
+		<form>
+		<center><button id='myButton'>Bouton Magique</button></center>
+
+		</form>
+		<script>
+			document.getElementById('myButton').addEventListener('click', updateBtn);
+
+			function updateBtn() {
+				event.preventDefault();
+				var b =  document.querySelector('body');
+				b.style.background = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
+			}
+		</script>
+	</body>
+</html>
