@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:40 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/31 16:51:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:51:17 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@
 # include <stdarg.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+# include "utils/libft/libft.h"
 
 # define END "\001\033[0m\002"
 # define GREY "\001\033[1;30m\002"
@@ -42,24 +43,9 @@ typedef struct s_data
 }	t_data;
 
 /* -----utils----- */
-void	ft_bzero(void *s, size_t n);
-void	*ft_calloc(size_t count, size_t size);
-int		ft_iswhitespace(char c);
-size_t	ft_strlen(const char *s);
-size_t	ft_strcmp(char *s1, char *s2);
-int		ft_strncmp(const char *s1, const char *s2, size_t n);
-char	*ft_strstr(const char *haystack, const char *needle);
-char	*ft_strndup(const char *s, size_t n);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
-int		ft_iswhitespace(char c);
-char	**ft_split(char const *s, char c);
-char	**ft_split_space(char const *s);
 
 /* -----minishell-----*/
-int		ft_pars(t_data *prmt);
 
 /* ------heredoc----- */
-int		is_hd(char *line);
-
 
 #endif
