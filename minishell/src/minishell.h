@@ -6,15 +6,17 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:40 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/11 18:25:04 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:51:37 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 # include <stdio.h>
+# include <unistd.h>
 # include <stdlib.h>
 # include <stdint.h>
+# include <stdarg.h>
 # include <readline/readline.h>
 # include <readline/history.h>
 
@@ -45,11 +47,11 @@ void	*ft_calloc(size_t count, size_t size);
 int		ft_iswhitespace(char c);
 size_t	ft_strlen(const char *s);
 size_t	ft_strcmp(char *s1, char *s2);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 char	*ft_strstr(const char *haystack, const char *needle);
 char	*ft_strndup(const char *s, size_t n);
 char	*ft_substr(char const *s, unsigned int start, size_t len);
 int		ft_iswhitespace(char c);
-char	*ft_substr(char const *s, unsigned int start, size_t len);
 char	**ft_split(char const *s, char c);
 char	**ft_split_space(char const *s);
 

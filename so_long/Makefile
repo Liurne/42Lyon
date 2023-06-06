@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/02/27 12:11:13 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/17 15:41:09 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/17 17:18:00 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,7 @@ IPURPLE=\033[45m
 END = \033[0m
 
 NAME = so_long
+DISPLAY = display
 
 FLAGS		= -Wall -Wextra -Werror -I minilibx/
 ARFLAGS		= rsc
@@ -69,9 +70,10 @@ OBJS = ${SRCS:.c=.o}
 
 HEADER = src/so_long.h
 
-all:   ${NAME}
+all:	${NAME}
 
-${NAME}:	display ${OBJS}
+
+${NAME}:	${OBJS}
 	@ ${CC} ${FLAGS} ${OBJS} -o $@ ${MLXFLAGS} && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
 
 %.o:	%.c ${HEADER}
@@ -86,7 +88,7 @@ fclean: clean
 re:	fclean
 	${MAKE} all
 
-display: ${OBJS}
+display:
 		@echo "${BLUE}============================\n\n* ${NAME} compilation...\n\n============================\n${END}"
 
 sus:

@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/11 18:11:33 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/05/30 16:32:08 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,12 +40,13 @@ SRCS = main.c \
 		src/utils/ft_calloc.c \
 		src/utils/ft_strlen.c \
 		src/utils/ft_strcmp.c \
+		src/utils/ft_strncmp.c \
 		src/utils/ft_strstr.c \
 		src/utils/ft_strndup.c \
 		src/utils/ft_substr.c \
 		src/utils/ft_split.c \
 		src/utils/ft_split_space.c \
-		src/parser/heredoc.c
+		src/parsing.c
 
 OBJS = ${SRCS:.c=.o}
 

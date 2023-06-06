@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/12 15:58:03 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/17 15:32:46 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:12:53 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	dog_manager(t_data *sl, t_entity *e)
 		{
 			time = 0;
 			r += (sl->pl.pos.x + sl->pl.pos.y + sl->pl.d + sl->time + e->id);
-			if (r % 3 == 0)
+			if (!(r % 3))
 				e->inmove = 0;
 			else
 				e->inmove = 1;

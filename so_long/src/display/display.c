@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:13:30 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/16 18:00:08 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:13:35 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,7 +89,7 @@ int	update_display(t_data *sl)
 		update_night(sl);
 		i = -1;
 		while (++i < sl->nb_dogs)
-			dog_manager(sl, &(sl->dog[i]));
+			dog_manager(sl, &(sl->dog[i]));	
 		if (sl->wolf.alive)
 			wolf_manager(sl, &(sl->wolf));
 	}

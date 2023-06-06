@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/27 17:15:17 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/17 15:14:37 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/05/17 17:06:29 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,7 @@ void	display_dog(t_data *sl, t_entity *e)
 static void	animation_entity(t_entity *e)
 {
 	if (e->inmove)
-	{
-		e->animation++;
-		if (e->animation > 3)
-			e->animation = 0;
-	}
+		e->animation = (e->animation + 1) % 4;
 	else
 		e->animation = 0;
 }
