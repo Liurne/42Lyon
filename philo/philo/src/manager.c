@@ -1,22 +1,14 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   manager.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 14:03:25 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 01:12:53 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/06/07 00:25:25 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/06/07 00:53:38 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "src/philo.h"
+#include "philo.h"
 
-int	main(int ac, char **av)
-{
-	if (ac < 5 || ac > 6)
-		return (1);
-	(void)av;
-	printf("time ms:%ld\n", get_time());
-	return (0);
-}
