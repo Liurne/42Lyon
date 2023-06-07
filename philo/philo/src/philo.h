@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 01:17:50 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:16:29 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,9 @@
 //pthread_join(); pour finir
 //penser a bien attendre tout thread et detruire tout les mutexs !!
 //pointeur sur data pour les temps et mort pointeur sur philo pour les ids !!
+//creer un decallage entre chaque philo !!
 
+typedef struct s_philo	t_philo;
 
 typedef struct s_data
 {
@@ -46,7 +48,7 @@ typedef struct s_data
 	t_philo			*table;
 }	t_data;
 
-typedef struct s_philo
+struct s_philo
 {
 	int				id;
 	pthread_t		thread;
@@ -57,18 +59,23 @@ typedef struct s_philo
 	int				last_meal;
 	int				nb_meal;
 	t_data			*shared;
-}	t_philo;
+};
 
 /* -----utils----- */
 long int	get_time(void);
-int	ft_atoi(const char *str);
+void		ft_bzero(void *s, size_t n);
+int			ft_atoi(const char *str);
 
 /* -----parsing----- */
+int			get_arg(int ac, char **av, t_data *philo);
 
 /* -----init----- */
+int			init_philo(t_data *data);
 
 /* -----manager----- */
+int			thread_tester(char *test);
 
 /* -----error----- */
+int			error_manager(int id_error);
 
 #endif

@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/06/07 01:11:43 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/06/07 17:10:19 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,13 +32,13 @@ END = \033[0m
 
 NAME = philo
 
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -pthread
 
 SRCS = main.c \
 		src/utils.c \
 		src/parsing.c \
 		src/init.c \
-		src/manager.h \
+		src/manager.c \
 		src/error.c
 
 OBJS = ${SRCS:.c=.o}

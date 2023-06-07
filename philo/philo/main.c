@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:03:25 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 01:12:53 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/07 17:16:57 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,10 @@
 
 int	main(int ac, char **av)
 {
-	if (ac < 5 || ac > 6)
-		return (1);
-	(void)av;
-	printf("time ms:%ld\n", get_time());
+	t_data	philo;
+
+	ft_bzero(&philo, sizeof(t_data));
+	get_arg(ac, av, &philo);
+	init_philo(&philo);
 	return (0);
 }
