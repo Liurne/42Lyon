@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:40 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/31 16:51:17 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:05:13 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@
 # include <stdarg.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-# include "utils/libft/libft.h"
+# include "../lib/libft/libft.h"
 
 # define END "\001\033[0m\002"
 # define GREY "\001\033[1;30m\002"

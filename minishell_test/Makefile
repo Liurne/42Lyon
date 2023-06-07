@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/31 16:50:43 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/06/03 16:03:45 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,31 +35,40 @@ NAME = minishell
 FLAGS = -Wall -Wextra -Werror
 
 SRCS = main.c \
-		src/minishell.c 
+		src/minishell.c
 
 OBJS = ${SRCS:.c=.o}
 
 HEADER = src/minishell.h
 
-all:	${NAME}
+LEAKS = valgrind --suppressions=ignorerl.txt --leak-check=full --track-fds=yes
 
-${NAME}: display ${OBJS}
-		@ ${CC} ${FLAGS} ${OBJS} -o $@ -lreadline && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
+all:	 libs ${NAME}
+
+${NAME}: ${OBJS}
+		@ ${CC} ${FLAGS} ${OBJS} -o $@ -lreadline lib/libft/libft.a && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
+
+libs:
+	${MAKE} -C lib/libft
 
 %.o:	%.c ${HEADER}
-		@ ${CC} ${FLAGS} -c $< -o $@ -lreadline && echo "  $@"
+		@ ${CC} ${FLAGS} -c $< -o $@ -lreadline lib/libft/libft.a && echo "  $@"
 
 clean:
+		${MAKE} -C lib/libft clean
 		@ ${RM} ${OBJS} && echo "${RED} * object cleared..."
 
 fclean: clean
+		${MAKE} -C lib/libft fclean
 		@ ${RM} ${NAME} && echo "${RED} * everything is cleared..."
 
 re:	fclean
 		${MAKE} all
 
-display:
-		@echo "${BLUE}============================\n\n* ${NAME} compilation...\n\n============================\n${END}"
+leaks:
+	clear
+	$(MAKE) -j VALGRIND=yes
+	$(LEAKS) ./minishell
 
 sus:
 		@echo "${BLUE}           ⣠⣤⣤⣤⣤⣤⣶⣦⣤⣄⡀        ${END}"

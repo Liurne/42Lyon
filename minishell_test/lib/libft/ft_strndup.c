@@ -1,40 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strjoin.c                                       :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/11 21:08:00 by jcoquard          #+#    #+#             */
-/*   Updated: 2022/11/24 15:21:16 by jcoquard         ###   ########.fr       */
+/*   Created: 2023/05/11 15:16:59 by jcoquard          #+#    #+#             */
+/*   Updated: 2023/06/03 19:15:50 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strjoin(char const *s1, char const *s2)
+char	*ft_strndup(const char *s, size_t n)
 {
+	char	*res;
 	size_t	l;
 	size_t	i;
-	size_t	j;
-	char	*res;
 
-	i = 0;
-	j = 0;
-	l = ft_strlen(s1) + ft_strlen(s2) + 1;
-	res = (char *)malloc(l * sizeof(char));
+	l = 0;
+	while (s[l])
+		l++;
+	if (l < n || n == 0)
+		return (NULL);
+	res = (char *)malloc(sizeof(char) * (n + 1));
 	if (res == NULL)
 		return (NULL);
-	while (s1[i])
-	{
-		res[i] = s1[i];
-		i++;
-	}
-	while (s2[j])
-	{
-		res[i + j] = s2[j];
-		j++;
-	}
-	res[l - 1] = '\0';
+	i = -1;
+	while (s[++i] && i < n)
+		res[i] = s[i];
+	res[i] = '\0';
 	return (res);
 }

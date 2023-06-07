@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:51:43 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/31 16:50:20 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/03 19:43:27 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,13 @@ int	main(int ac, char** av, char **envp)
 		if (prompt.line[0])
 			add_history(prompt.line);
 		if (!ft_strcmp(prompt.line, "pwd"))
-			printf("%s\n",getcwd(NULL, 0));
+		{
+			char	*pwd = getcwd(NULL, 0);
+			ft_dprintf(2, "%s\n", pwd);
+			free(pwd);
+		}
+		if (!ft_strcmp(prompt.line, "slt"))
+			ft_dprintf(2, "%s %d\n", ", ca va ?", 8);
 	}
 	printf(RED"bye bye patate!!\n"END);
 	free(prompt.line);

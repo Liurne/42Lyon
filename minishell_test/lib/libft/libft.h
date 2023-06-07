@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/14 11:55:56 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/31 16:04:15 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/03 14:28:45 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,7 @@ void	ft_lstclear(t_list **lst, void (*del)(void*));
 void	ft_lstiter(t_list *lst, void (*f)(void *));
 
 /* -----DPRINTF----- */
-char	*get_char(char c);
-char	*get_hexa(unsigned int nb, char *base);
+char	*get_arg(const char *str, va_list ap);
 int		ft_dprintf(int fd, const char *str, ...);
 
 #endif

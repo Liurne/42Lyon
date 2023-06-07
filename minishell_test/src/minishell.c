@@ -6,14 +6,14 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/11 17:20:04 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/30 18:47:06 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/03 13:54:56 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 //penser au char spe : " ' * $ | <<
-//si "" bien copier tout le  contenue
+//si "" bien copier tout le  contenu
 //si '%2 = 1 || "%2 = 1 planter (ne pas conter le contenue entre guillemet)
 //<< si 0 mot apres planter (le mot peut etre une commande)
 //retirer tout les espaces n'etant pas entre guillemet

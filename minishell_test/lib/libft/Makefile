@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/15 13:46:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/05/31 16:08:24 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/06/03 15:07:18 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ HEADER = libft.h
 all :	${NAME}
 
 ${NAME}:	${OBJS}
-		${AR} rcs $@ $^ && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
+		@ ${AR} rcs $@ $^ && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
 
 %.o:	%.c ${HEADER}
 		@ ${CC} ${FLAGS} -c $< -o $@ -lreadline && echo "  $@"

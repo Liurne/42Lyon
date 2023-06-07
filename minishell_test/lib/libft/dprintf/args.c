@@ -6,13 +6,13 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 15:13:00 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/05/31 15:53:57 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/03 18:54:21 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../libft.h"
 
-char	*get_char(char c)
+static char	*get_char(char c)
 {
 	char *res;
 
@@ -24,7 +24,7 @@ char	*get_char(char c)
 	return (res);
 }
 
-unsigned int	rec_hexa(unsigned int nb)
+static unsigned int	rec_hexa(unsigned int nb)
 {
 	unsigned int	len;
 	
@@ -39,7 +39,7 @@ unsigned int	rec_hexa(unsigned int nb)
 	return(len);
 }
 
-void fill_hexa(unsigned int nb, char *base, char *res)
+static void fill_hexa(unsigned int nb, char *base, char *res)
 {
 	if (nb > 15)
 	{
@@ -50,7 +50,7 @@ void fill_hexa(unsigned int nb, char *base, char *res)
 		*res = base[nb % 16];
 }
 
-char	*get_hexa(unsigned int nb, char *base)
+static char	*get_hexa(unsigned int nb, char *base)
 {
 	unsigned int	len;
 	char			*res;
@@ -62,4 +62,23 @@ char	*get_hexa(unsigned int nb, char *base)
 	res[len] = '\0';
 	fill_hexa(nb, base, res);
 	return (res);
+}
+
+char	*get_arg(const char *str, va_list ap)
+{
+	if (*str == 'c')
+		return (get_char((char)va_arg(ap, int)));
+	if (*str == '%')
+		return (get_char('%'));
+	if (*str == 's')
+		return (ft_strdup(va_arg(ap, char *)));
+	if (*str == 'i' || *str == 'd')
+		return (ft_itoa(va_arg(ap, int)));
+	if (*str == 'x')
+		return (get_hexa(va_arg(ap, unsigned int), "0123456789abcdef"));
+	if (*str == 'X')
+		return (get_hexa(va_arg(ap, unsigned int), "0123456789ABCDEF"));
+	if (*str == 'u')
+		return (ft_itoa(va_arg(ap, unsigned int)));
+	return (0);
 }
