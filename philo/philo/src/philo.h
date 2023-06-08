@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 17:16:29 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:33:00 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,12 +52,14 @@ struct s_philo
 {
 	int				id;
 	pthread_t		thread;
+	
 	pthread_mutex_t	m_fork_left;
 	pthread_mutex_t	*m_fork_right;
 	int				fork_left;
 	int				*fork_right;
 	int				last_meal;
 	int				nb_meal;
+	char			*msg;
 	t_data			*shared;
 };
 
@@ -73,7 +75,7 @@ int			get_arg(int ac, char **av, t_data *philo);
 int			init_philo(t_data *data);
 
 /* -----manager----- */
-int			thread_tester(char *test);
+int			thread_tester(t_philo *test);
 
 /* -----error----- */
 int			error_manager(int id_error);

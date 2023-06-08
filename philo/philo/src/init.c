@@ -6,19 +6,61 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:06:21 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 17:13:52 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/08 11:18:46 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+char	*ft_strdup(const char *s)
+{
+	char	*res;
+	size_t	l;
+	size_t	i;
+
+	l = 0;
+	while (s[l])
+		l++;
+	res = (char *)malloc(sizeof(char) * (l + 1));
+	if (res == NULL)
+		return (NULL);
+	i = -1;
+	while (s[++i] && l != 0)
+		res[i] = s[i];
+	res[i] = '\0';
+	return (res);
+}
+
 int	init_philo(t_data *data)
 {
-	data->table = (t_philo *)malloc(data ->nb_philo * sizeof(t_philo));
+	int	i;
+
+	data->table = (t_philo *)malloc(data->nb_philo * sizeof(t_philo));
 	if (!data->table)
 		return (error_manager(4));
-	if (pthread_create(&data->table[0].thread, NULL, (void *) thread_tester, "je marche !!") != 0)
-		printf("Couldn't bring forth the thread\n");
-	pthread_join(data->table[0].thread, NULL);
+	i = 0;
+	pthread_mutex_init(&(data->m_write), NULL);
+	pthread_mutex_lock(&(data->m_write));
+	while (i < data->nb_philo)
+	{
+		data->table[i].id = i;
+		data->table[i].shared = data;
+		data->table[i].msg = ft_strdup("je marche !!\0");
+		if (pthread_create(&data->table[i].thread, NULL, (void *) thread_tester,
+				&(data->table[i])) != 0)
+			printf("Couldn't bring forth the thread\n");
+		i++;
+	}
+	pthread_mutex_unlock(&(data->m_write));
+	i = 0;
+	while (i < data->nb_philo)
+	{
+		pthread_join(data->table[i].thread, NULL);
+		free(data->table[i].msg);
+		printf("Thread nb %d killed\n", i);
+		i++;
+	}
+	pthread_mutex_destroy(&(data->m_write));
+	free(data->table);
 	return (0);
 }

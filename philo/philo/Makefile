@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/06/07 17:10:19 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/06/08 10:59:11 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ ${NAME}: ${OBJS}
 		@ ${CC} ${FLAGS} ${OBJS} -o $@ && echo "${GREEN}\n* ${NAME} compilation completed !!!\n${END}"
 
 %.o:	%.c ${HEADER}
-		@ ${CC} ${FLAGS} -c $< -o $@ -lreadline && echo "  $@"
+		@ ${CC} ${FLAGS} -c $< -o $@ && echo "  $@"
 
 clean:
 		@ ${RM} ${OBJS} && echo "${RED} * object cleared..."
