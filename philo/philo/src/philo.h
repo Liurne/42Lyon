@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/08 11:33:00 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:50:17 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ struct s_philo
 {
 	int				id;
 	pthread_t		thread;
-	
+	long int		t_start;
 	pthread_mutex_t	m_fork_left;
 	pthread_mutex_t	*m_fork_right;
 	int				fork_left;
@@ -72,7 +72,7 @@ int			ft_atoi(const char *str);
 int			get_arg(int ac, char **av, t_data *philo);
 
 /* -----init----- */
-int			init_philo(t_data *data);
+int			init_philos(t_data *data);
 
 /* -----manager----- */
 int			thread_tester(t_philo *test);

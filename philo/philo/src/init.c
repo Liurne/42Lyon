@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:06:21 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/08 11:18:46 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/08 12:52:14 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,14 @@ char	*ft_strdup(const char *s)
 	return (res);
 }
 
-int	init_philo(t_data *data)
+int	launch_one_philo(t_data *data, int id_philo)
+{
+	data->table[id_philo].id = id_philo;
+	data->table[id_philo].shared = data;
+	data->table[id_philo].msg = ft_strdup("je marche !!\0");
+}
+
+int	init_philos(t_data *data)
 {
 	int	i;
 
@@ -43,9 +50,7 @@ int	init_philo(t_data *data)
 	pthread_mutex_lock(&(data->m_write));
 	while (i < data->nb_philo)
 	{
-		data->table[i].id = i;
-		data->table[i].shared = data;
-		data->table[i].msg = ft_strdup("je marche !!\0");
+		
 		if (pthread_create(&data->table[i].thread, NULL, (void *) thread_tester,
 				&(data->table[i])) != 0)
 			printf("Couldn't bring forth the thread\n");
