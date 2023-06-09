@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:08:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/07 17:11:16 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/09 14:13:41 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,21 @@ void	ft_bzero(void *s, size_t n)
 	i = 0;
 	while (++i < n + 1)
 		((char *) s)[i - 1] = '\0';
+}
+
+void	*ft_calloc(size_t count, size_t size)
+{
+	void		*res;
+
+	if (size > 0 && count > SIZE_MAX / size)
+		return (NULL);
+	res = malloc(count * size);
+	if (res)
+	{
+		ft_bzero(res, count * size);
+		return (res);
+	}
+	return (NULL);
 }
 
 static int	ft_check_overflow(long int n, int last, int sign)

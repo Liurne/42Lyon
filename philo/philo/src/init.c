@@ -6,66 +6,52 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 01:06:21 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/08 12:52:14 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/09 15:28:54 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-char	*ft_strdup(const char *s)
+static int	launch_one_philo(t_data *table, int id_ph)
 {
-	char	*res;
-	size_t	l;
-	size_t	i;
-
-	l = 0;
-	while (s[l])
-		l++;
-	res = (char *)malloc(sizeof(char) * (l + 1));
-	if (res == NULL)
-		return (NULL);
-	i = -1;
-	while (s[++i] && l != 0)
-		res[i] = s[i];
-	res[i] = '\0';
-	return (res);
+	table->philos[id_ph].shared = table;
+	if (pthread_mutex_init(&(table->philos[id_ph].m_fork_left), NULL) != 0)
+		return (1);
+	else
+		table->philos[id_ph].id = id_ph + 1;
+	if (id_ph == table->nb_philo - 1 && table->nb_philo != -1)
+	{
+		table->philos[id_ph].m_fork_right = &(table->philos[0].m_fork_left);
+		table->philos[id_ph].fork_right = &(table->philos[0].fork_left);
+	}
+	else if (table->nb_philo != -1)
+	{
+		table->philos[id_ph].m_fork_right
+			= &(table->philos[id_ph + 1].m_fork_left);
+		table->philos[id_ph].fork_right = &(table->philos[id_ph + 1].fork_left);
+	}
+	if (pthread_create(&table->philos[id_ph].thread, NULL,
+			(void *)thread_tester, &(table->philos[id_ph])) != 0)
+		return (1);
+	return (0);
 }
 
-int	launch_one_philo(t_data *data, int id_philo)
-{
-	data->table[id_philo].id = id_philo;
-	data->table[id_philo].shared = data;
-	data->table[id_philo].msg = ft_strdup("je marche !!\0");
-}
-
-int	init_philos(t_data *data)
+int	init_philos(t_data *table)
 {
 	int	i;
 
-	data->table = (t_philo *)malloc(data->nb_philo * sizeof(t_philo));
-	if (!data->table)
+	table->philos = (t_philo *)ft_calloc(table->nb_philo, sizeof(t_philo));
+	if (!table->philos)
 		return (error_manager(4));
-	i = 0;
-	pthread_mutex_init(&(data->m_write), NULL);
-	pthread_mutex_lock(&(data->m_write));
-	while (i < data->nb_philo)
+	i = -1;
+	if (pthread_mutex_init(&(table->m_write), NULL) != 0)
+		return (error_manager(4))
+	pthread_mutex_lock(&(table->m_write));
+	while (++i < table->nb_philo)
 	{
-		
-		if (pthread_create(&data->table[i].thread, NULL, (void *) thread_tester,
-				&(data->table[i])) != 0)
-			printf("Couldn't bring forth the thread\n");
-		i++;
+		if (launch_one_philo(table, i))
+			return (error_manager());
 	}
-	pthread_mutex_unlock(&(data->m_write));
-	i = 0;
-	while (i < data->nb_philo)
-	{
-		pthread_join(data->table[i].thread, NULL);
-		free(data->table[i].msg);
-		printf("Thread nb %d killed\n", i);
-		i++;
-	}
-	pthread_mutex_destroy(&(data->m_write));
-	free(data->table);
+	pthread_mutex_unlock(&(table->m_write));
 	return (0);
 }

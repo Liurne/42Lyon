@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/08 12:50:17 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/09 14:14:24 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ typedef struct s_data
 	int				nb_meal;
 	int				is_dead;
 	pthread_mutex_t	m_write;
-	t_philo			*table;
+	t_philo			*philos;
 }	t_data;
 
 struct s_philo
@@ -59,13 +59,13 @@ struct s_philo
 	int				*fork_right;
 	int				last_meal;
 	int				nb_meal;
-	char			*msg;
 	t_data			*shared;
 };
 
 /* -----utils----- */
 long int	get_time(void);
 void		ft_bzero(void *s, size_t n);
+void		*ft_calloc(size_t count, size_t size);
 int			ft_atoi(const char *str);
 
 /* -----parsing----- */
