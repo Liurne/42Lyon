@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:08:26 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/09 14:13:41 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/13 13:51:41 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ long int	get_time(void)
 
 	if (gettimeofday(&tv, NULL) == -1)
 		return (printf("Error : Couldn't get time\n"), -1);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
+	return (((tv.tv_sec % 1000) * 1000) + (tv.tv_usec / 1000));
 }
 
 void	ft_bzero(void *s, size_t n)
