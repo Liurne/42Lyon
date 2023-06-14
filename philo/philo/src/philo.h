@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/13 16:23:03 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/14 10:45:51 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,6 +68,7 @@ struct s_philo
 	int				*fork_right;
 	long int		last_meal;
 	int				nb_meal;
+	int				alive;
 	t_data			*shared;
 };
 
