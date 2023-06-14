@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:03:25 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/13 17:46:32 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/14 16:06:49 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	main(int ac, char **av)
 
 	ft_bzero(&table, sizeof(t_data));
 	get_arg(ac, av, &table);
-	init_philos(&table);
+	init_philos(&table, ac);
 	error_manager(0, &table);
 	return (0);
 }

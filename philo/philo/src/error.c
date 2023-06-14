@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:04:25 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/13 17:52:21 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/14 17:43:13 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,14 +20,14 @@ static int	close_philo(t_data *table, int id_error)
 	while (++i < table->nb_philo)
 	{
 		if (table->philos[i].thread)
-		{
 			pthread_join(table->philos[i].thread, NULL);
-			printf("Thread nb %d killed\n", table->philos[i].id);
-		}
+	}
+	i = -1;
+	while (++i < table->nb_philo)
 		if (table->philos[i].id)
 			pthread_mutex_destroy(&(table->philos[i].m_fork_left));
-	}
-	if (id_error != 6 || id_error != 7)
+	(void)id_error;
+	if (id_error != 6 && id_error != 7)
 		pthread_mutex_destroy(&(table->whistleblower));
 	if (id_error != 6)
 		pthread_mutex_destroy(&(table->launcher));
@@ -50,19 +50,5 @@ int	error_manager(int id_error, t_data *table)
 	close_philo(table, id_error);
 	if (id_error != 0)
 		exit (1);
-	return (0);
-}
-
-int	philo_say(t_philo *philo, char *action)
-{
-	pthread_mutex_lock(&(philo->shared->whistleblower));
-	if (philo->shared->is_dead)
-	{
-		pthread_mutex_unlock(&(philo->shared->whistleblower));
-		return (1);
-	}
-	printf("%ld %d %s\n", (get_time() - philo->shared->t_start), philo->id,
-		action);
-	pthread_mutex_unlock(&(philo->shared->whistleblower));
 	return (0);
 }
