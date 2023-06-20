@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 14:07:29 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/14 16:19:08 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/20 15:00:01 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ typedef struct s_data
 	int				t_sleep;
 	long int		t_start;
 	int				nb_meal;
+	int				belly_full;
 	int				is_dead;
 	pthread_mutex_t	launcher;
 	pthread_mutex_t	whistleblower;
