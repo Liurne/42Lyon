@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/07 00:04:25 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/14 17:43:13 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/22 15:52:09 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	close_philo(t_data *table, int id_error)
 	int	i;
 
 	i = -1;
+	if (id_error >= 1 && id_error <= 3)
+		return (0);
 	while (++i < table->nb_philo)
 	{
 		if (table->philos[i].thread)
@@ -26,7 +28,6 @@ static int	close_philo(t_data *table, int id_error)
 	while (++i < table->nb_philo)
 		if (table->philos[i].id)
 			pthread_mutex_destroy(&(table->philos[i].m_fork_left));
-	(void)id_error;
 	if (id_error != 6 && id_error != 7)
 		pthread_mutex_destroy(&(table->whistleblower));
 	if (id_error != 6)

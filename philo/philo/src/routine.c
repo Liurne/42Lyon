@@ -6,7 +6,7 @@
 /*   By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 14:51:44 by jcoquard          #+#    #+#             */
-/*   Updated: 2023/06/20 16:45:51 by jcoquard         ###   ########.fr       */
+/*   Updated: 2023/06/22 14:21:31 by jcoquard         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,13 @@ int	philo_say(t_philo *philo, char *action)
 	if (philo->shared->is_dead)
 		return (pthread_mutex_unlock(&(philo->shared->whistleblower)), 1);
 	if (philo->lifespan < get_time())
+	{
 		philo->shared->is_dead = 1;
-	pthread_mutex_unlock(&(philo->shared->whistleblower));
+		action = DIE;
+	}
 	printf("%ld %d %s\n", (get_time() - philo->shared->t_start), philo->id,
 		action);
+	pthread_mutex_unlock(&(philo->shared->whistleblower));
 	return (0);
 }
 
@@ -67,7 +70,6 @@ int	routine(t_philo *philo)
 			return (1);
 		if (is_belly_full(philo))
 			return (0);
-		//if (get_time() < philo->shared.t_start)
 	}
 	return (0);
 }

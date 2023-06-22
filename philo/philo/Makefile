@@ -6,7 +6,7 @@
 #    By: jcoquard <jcoquard@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 17:47:33 by jcoquard          #+#    #+#              #
-#    Updated: 2023/06/14 15:10:51 by jcoquard         ###   ########.fr        #
+#    Updated: 2023/06/22 15:19:00 by jcoquard         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,11 +30,26 @@ IPURPLE=\033[45m
 
 END = \033[0m
 
+DFLAGS = no
+DEBUG_A = no
+DEBUG_T = no
 NAME = philo
 
 FLAGS = -Wall -Wextra -Werror -pthread
 
-SRCS = main.c \
+DFLAGS	=	-g3 -fsanitize=address
+ifeq ($(DEBUG_A), yes)
+FLAGS	+=	$(DFLAGS)
+endif
+
+DFLAGS	=	-g -fsanitize=thread
+ifeq ($(DEBUG_T), yes)
+FLAGS	+=	$(DFLAGS)
+endif
+
+LEAKS	= valgrind --leak-check=full #--tool=helgrind #--tool=drd
+
+SRCS =	main.c \
 		src/utils.c \
 		src/init.c \
 		src/routine.c \
@@ -52,6 +67,17 @@ ${NAME}: ${OBJS}
 
 %.o:	%.c ${HEADER}
 		@ ${CC} ${FLAGS} -c $< -o $@ && echo "  $@"
+
+debug_address:
+	$(MAKE) re DEBUG_A=yes
+
+debug_thread:
+	$(MAKE) re DEBUG_T=yes
+
+leaks:
+	clear
+	$(MAKE) re VALGRIND=yes
+	$(LEAKS) ./philo 5 800 200 200 5
 
 clean:
 		@ ${RM} ${OBJS} && echo "${RED} * object cleared..."
